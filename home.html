@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title>Genshin Tracker – Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bazowe style/zmienne (spójne z resztą apki) -->
+  <link rel="stylesheet" href="css/materials.css" />
+  <link rel="stylesheet" href="css/global-nav.css" />
+  
+
+  <!-- HOME DASHBOARD (nowy, odseparowany plik) -->
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+</head>
+<body>
+  <nav id="global-nav"></nav>
+
+  <main class="home-main">
+    <!-- SECTION: HERO -->
+    <section class="home-card home-hero" id="home-hero">
+      <!-- HERO CONTENT INJECTED HERE -->
+    </section>
+
+    <!-- SECTION: TODAY -->
+    <section class="home-card home-today" id="home-today">
+      <!-- TODAY WIDGET INJECTED HERE -->
+    </section>
+
+    <!-- SECTION: LAUNCHER -->
+    <section class="home-card home-launcher" id="home-launcher">
+      <!-- LAUNCHER CONTENT INJECTED HERE -->
+    </section>
+
+    <!-- SECTION: SHORTCUTS -->
+    <section class="home-card home-shortcuts" id="home-shortcuts">
+      <!-- SHORTCUTS CONTENT INJECTED HERE -->
+    </section>
+
+    <!-- SECTION: RECENT -->
+    <section class="home-card home-recent" id="home-recent">
+      <!-- RECENT CONTENT INJECTED HERE -->
+    </section>
+
+    <!-- SECTION: STATS -->
+    <section class="home-card home-stats" id="home-stats">
+      <!-- STATS CONTENT INJECTED HERE -->
+    </section>
+  </main>
+
+  <!-- Dane z aplikacji -->
+  <script src="js/characterData.js" defer></script>
+  <script src="js/tier-history.js" defer></script>
+  <script src="js/idb.js" defer></script>
+  <script src="js/migrator.js" defer></script>
+  <script src="js/settings-core.js"></script>
+
+  <!-- Logika dashboardu -->
+  <script src="js/home.js" defer></script>
+
+  <!-- Globalna nawigacja (bez defer – tak jak na innych stronach) -->
+  <script src="js/global-nav.js"></script>
+</body>
+</html>

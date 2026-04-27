@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Genshin Tracker – What should I do today?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Ogólne style + zmienne kolorów z materials -->
+  <link rel="stylesheet" href="css/materials.css" />
+  <!-- Styl globalnej nawigacji -->
+  <link rel="stylesheet" href="css/global-nav.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+  <!-- Dodatkowe style dla widoku Today -->
+  <link rel="stylesheet" href="css/today.css" />
+</head>
+<body>
+  <nav id="global-nav"></nav>
+
+  <main class="today-main">
+    <header class="today-header">
+      <div>
+        <h1 class="today-title">What should I do today?</h1>
+        <div class="today-date" id="today-date"></div>
+      </div>
+      <div class="today-summary">
+        <span id="today-books-runs"></span>
+        <span class="today-summary-sep">•</span>
+        <span id="today-counter"></span>
+      </div>
+    </header>
+
+    <section class="today-section today-section--must">
+      <h2 class="today-section-title">Must do (weekly / limited)</h2>
+      <div class="today-section-desc">
+        Weekly bosses and other limited activities you should not miss.
+      </div>
+      <div class="today-list" id="today-must-list"></div>
+    </section>
+
+    <section class="today-section today-section--high">
+      <h2 class="today-section-title">High value (talent books / boss mats)</h2>
+      <div class="today-section-desc">
+        Talent books available today and normal bosses for your top targets.
+      </div>
+      <div class="today-list" id="today-high-list"></div>
+    </section>
+
+    <section class="today-section today-section--optional">
+      <h2 class="today-section-title">Optional farm (artifacts / teams)</h2>
+      <div class="today-section-desc">
+        Artifact sets for important characters and teams.
+      </div>
+      <div class="today-list" id="today-optional-list"></div>
+    </section>
+  </main>
+
+  <!-- Dane z aplikacji -->
+  <script src="js/characterData.js" defer></script>
+  <script src="js/tier-history.js" defer></script>
+  <script src="js/materials.js" defer></script>
+  <script src="js/bosses.js" defer></script>
+  <script src="js/idb.js" defer></script>
+  <script src="js/migrator.js" defer></script>
+  <script src="js/settings-core.js" defer></script>
+
+  <!-- Logika widoku Today -->
+  <script src="js/today.js" defer></script>
+
+  <!-- Globalna nawigacja (bez defer – tak jak na innych stronach) -->
+  <script src="js/global-nav.js"></script>
+</body>
+</html>

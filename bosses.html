@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Genshin Tracker – Bosses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/materials.css" />
+  <style>
+    .boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:12px;padding:12px}
+    .boss-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .boss-head{display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid var(--border);background:#101423}
+    .boss-head img{width:224px;height:224px;border-radius:14px;border:1px solid var(--border);object-fit:cover}
+    .drops{padding:10px;display:flex;flex-direction:column;gap:8px}
+    .drop-row{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px}
+    .drop-row img{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);object-fit:cover}
+    .drop-row .spacer{flex:1}
+
+    .section-label{margin:12px 0 4px 2px;font-size:12px;color:var(--muted)}
+    .tabs{display:flex;gap:8px;padding:8px}
+    .tab-btn{padding:6px 10px;border:1px solid var(--border);background:#12172a;color:#cbd5e1;border-radius:10px;cursor:pointer}
+    .tab-btn.active{background:#1b2340}
+    .tab{display:none}
+    .tab.active{display:block}
+
+    /* --- Collapsible Gems --- */
+    .gems-section{border:1px dashed var(--border);border-radius:10px;padding:8px}
+    .gems-header{
+      display:flex;align-items:center;gap:10px;
+      font-size:12px;color:var(--muted);
+      cursor:pointer;user-select:none;
+    }
+    .gems-header .chev{font-weight:700;display:inline-block;min-width:1.2em;text-align:center}
+    .gems-body{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+    .gems-section.collapsed .gems-body{display:none}
+  </style>
+<link rel="stylesheet" href="css/global-nav.css">
+<link rel="stylesheet" href="css/settings-overrides.css" />
+<link rel="stylesheet" href="css/app-shell.css" />
+</head>
+<body>
+<nav id="global-nav"></nav>
+
+  <header class="app-header">
+    <h1>Genshin Tracker – Bosses</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="normal">Normal Bosses</button>
+      <button class="tab-btn" data-tab="weekly">Weekly Bosses</button>
+    </nav>
+  </header>
+
+  <section id="tab-normal" class="tab active">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Normal Bosses</h2>
+        <div class="actions">
+          <button id="normal-expand-all">Expand all Gems</button>
+          <button id="normal-collapse-all">Collapse all Gems</button>
+        </div>
+      </div>
+      <div id="normal-grid" class="boss-grid"></div>
+    </div>
+  </section>
+
+  <section id="tab-weekly" class="tab">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Weekly Bosses</h2>
+        <div class="actions">
+          <button id="weekly-expand-all">Expand all Gems</button>
+          <button id="weekly-collapse-all">Collapse all Gems</button>
+        </div>
+      </div>
+      <div id="weekly-grid" class="boss-grid"></div>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <small>Add or subtract drops without leaving the page.</small>
+  </footer>
+
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/materials.js"></script>
+  <script src="js/bosses.js"></script>
+  <script>
+    const $  = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+
+    // Tabs
+    $$('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        $$('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab=btn.dataset.tab;
+        $$('.tab').forEach(x=>x.classList.remove('active'));
+        $('#tab-'+tab).classList.add('active');
+      });
+    });
+
+    // IndexedDB helpers (zgodne z idb.js)
+    async function getInv(key){ return await IDB.get('inventory', key) ?? 0; }
+    async function setInv(key,val){ return await IDB.set('inventory', key, val); }
+
+    // Szukanie definicji materiału w MATERIALS.* (gems, books, enemies, boss drops, local, misc)
+    function findMaterial(key){
+      const secs = [MATERIALS.gems, MATERIALS.books, MATERIALS.enemies, MATERIALS.bossNormal, MATERIALS.bossWeekly, MATERIALS.local, MATERIALS.misc];
+      for (const sec of secs){
+        const hit = (sec?.items||[]).find(i=>i.key===key);
+        if(hit) return hit;
+      }
+      return null;
+    }
+
+    // Pomocnicze: znajdź gem po grupie (element) i tierze (1..4)
+    function findGemByGroupTier(group, tier){
+      const items = MATERIALS?.gems?.items || [];
+      return items.find(it => it.group === group && it.tier === tier) || null;
+    }
+
+    // Wspólny renderer wiersza dropu z licznikami
+    function renderDropRow(container, materialKey){
+      const def = findMaterial(materialKey);
+      if(!def) return;
+
+      const row = document.createElement('div'); row.className='drop-row';
+
+      const ic = document.createElement('img'); ic.src = def.icon || ''; ic.alt = def.name || materialKey;
+      const nm = document.createElement('div'); nm.textContent = def.name || materialKey;
+      const spacer = document.createElement('div'); spacer.className='spacer';
+
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.inputMode = 'numeric';
+      input.min = '0';
+      input.step = '1';
+      input.style.width = '80px';
+      input.style.textAlign = 'center';
+
+      const minus = document.createElement('button'); minus.textContent='−1';
+      const plus  = document.createElement('button'); plus.textContent='+1';
+
+      async function commitDirect(){
+        let v = parseInt(input.value || '0', 10);
+        if (Number.isNaN(v) || v < 0) v = 0;
+        await setInv(materialKey, v);
+        input.value = String(v);
+        input.setAttribute('data-current', String(v));
+      }
+
+      minus.addEventListener('click', async ()=>{
+        const cur = parseInt(input.getAttribute('data-current') || '0', 10);
+        const nv = Math.max(0, cur - 1);
+        await setInv(materialKey, nv);
+        input.value = String(nv);
+        input.setAttribute('data-current', String(nv));
+      });
+      plus.addEventListener('click', async ()=>{
+        const cur = parseInt(input.getAttribute('data-current') || '0', 10);
+        const nv = cur + 1;
+        await setInv(materialKey, nv);
+        input.value = String(nv);
+        input.setAttribute('data-current', String(nv));
+      });
+
+      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ input.blur(); }});
+      input.addEventListener('change', commitDirect);
+      input.addEventListener('blur', commitDirect);
+
+      row.append(ic, nm, spacer, minus, input, plus);
+      container.appendChild(row);
+
+      // Init stanu
+      getInv(materialKey).then(c=>{
+        const v = parseInt(c || 0, 10);
+        input.value = String(v);
+        input.setAttribute('data-current', String(v));
+      });
+    }
+
+    // --- Tworzenie karty bossa ---
+    // --- Tworzenie karty bossa ---
+function bossCard(b){
+  const card = document.createElement('div'); 
+  card.className = 'boss-card';
+
+  const head = document.createElement('div'); 
+  head.className = 'boss-head';
+
+  const img = document.createElement('img'); 
+  img.src = b.imageBase + ".png"; 
+  img.alt = b.name;
+  img.style.cursor = 'pointer';
+  img.addEventListener('click', (e) => {
+    e.stopPropagation();
+    location.href = `guide.html?id=${b.id}`;
+  });
+
+  const title = document.createElement('div');
+  title.innerHTML = `<div style="font-weight:700;cursor:pointer">${b.name}</div><div class="badge">${b.region} • ${b.type}</div>`;
+  title.querySelector('div').addEventListener('click', (e) => {
+    e.stopPropagation();
+    location.href = `guide.html?id=${b.id}`;
+  });
+
+  head.append(img, title);
+
+  const drops = document.createElement('div'); 
+  drops.className = 'drops';
+
+  // usunięto:
+  // card.style.cursor = 'pointer';
+  // card.addEventListener('click', ()=> {
+  //   location.href = `guide.html?id=${b.id}`;
+  // });
+
+  (b.drops||[]).forEach(dk=>{
+    renderDropRow(drops, dk);
+  });
+
+  if (Array.isArray(b.elements) && b.elements.length){
+    const sect = document.createElement('div');
+    sect.className = 'gems-section';
+    const header = document.createElement('div');
+    header.className = 'gems-header';
+    header.innerHTML = `<span class="chev">▼</span><span>Gems (by elements)</span>`;
+    const body = document.createElement('div');
+    body.className = 'gems-body';
+
+    b.elements.forEach(el=>{
+      const group = String(el || '').toLowerCase().trim();
+      for(let t=1; t<=4; t++){
+        const gem = findGemByGroupTier(group, t);
+        if (gem) renderDropRow(body, gem.key);
+      }
+    });
+
+    header.addEventListener('click', ()=>{
+      const collapsed = sect.classList.toggle('collapsed');
+      header.querySelector('.chev').textContent = collapsed ? '▲' : '▼';
+    });
+
+    sect.append(header, body);
+    drops.appendChild(sect);
+  }
+
+  card.append(head, drops);
+  return card;
+}
+
+    // Render zakładek
+    function render(){
+      const normal = BOSSES.filter(b=>b.type==='normal');
+      const weekly = BOSSES.filter(b=>b.type==='weekly');
+      const ng = $('#normal-grid'); const wg = $('#weekly-grid');
+      ng.innerHTML=''; wg.innerHTML='';
+      normal.forEach(b=> ng.appendChild(bossCard(b)));
+      weekly.forEach(b=> wg.appendChild(bossCard(b)));
+    }
+
+    // Helpery do Expand/Collapse ALL w obrębie jednej sekcji (normal/weekly)
+    function setAllGemsStateIn(containerSel, collapsed){
+      // collapsed === true => zwinąć; false => rozwinąć
+      $$(containerSel + ' .gems-section').forEach(sect=>{
+        const isCollapsed = sect.classList.contains('collapsed');
+        if (collapsed && !isCollapsed) {
+          sect.classList.add('collapsed');
+          const h = sect.querySelector('.gems-header .chev');
+          if (h) h.textContent = '▲';
+        }
+        if (!collapsed && isCollapsed) {
+          sect.classList.remove('collapsed');
+          const h = sect.querySelector('.gems-header .chev');
+          if (h) h.textContent = '▼';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      render();
+
+      // Przyciski Expand/Collapse ALL
+      $('#normal-expand-all')  ?.addEventListener('click', ()=> setAllGemsStateIn('#tab-normal',  false));
+      $('#normal-collapse-all')?.addEventListener('click', ()=> setAllGemsStateIn('#tab-normal',  true));
+      $('#weekly-expand-all')  ?.addEventListener('click', ()=> setAllGemsStateIn('#tab-weekly',  false));
+      $('#weekly-collapse-all')?.addEventListener('click', ()=> setAllGemsStateIn('#tab-weekly',  true));
+    }, { once:true });
+  </script>
+<script src="js/global-nav.js"></script>
+</body>
+</html>

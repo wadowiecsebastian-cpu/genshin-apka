@@ -1,0 +1,493 @@
+.tier-grid-container {
+  padding: 10px;
+  background-color: #121212;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  grid-template-rows: 50px repeat(6, 1fr);
+  gap: 2px;
+  width: 95vw;
+  height: 95vh;
+  max-width: none;
+  max-height: none;
+  background: #444;
+  border: 2px solid #444;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Widok alternatywny – kolumny: Main DPS / Sub-DPS / Support */
+.tier-grid.role-view {
+  grid-template-columns: 80px repeat(3, 1fr);
+  width: 96vw;              /* zbliżone do szerokości z obrazka */
+  max-width: 1600px;        /* centralna, „zebrana” tabela */
+  height: auto;
+  grid-auto-rows: minmax(90px, auto);   /* wysokie wiersze jak na screenie */
+}
+
+/* --- AUTOMATYCZNA WYSOKOŚĆ WIERSZY W ROLE-VIEW --- */
+.tier-grid.role-view {
+    grid-template-rows: auto;      /* nadpisuje stałe 50px + fr z .tier-grid */
+    grid-auto-rows: auto;          /* każdy kolejny wiersz rośnie zgodnie z zawartością */
+    height: auto !important;       /* brak wymuszonego 95vh */
+    row-gap: 14px;                 /* przyjemny oddech między wierszami */
+    padding-bottom: 12px;
+}
+
+/* Nagłówki kolumn w widoku po rolach (Main DPS / Sub-DPS / Support) */
+.tier-grid.role-view .tier-grid-header.role-header {
+  background: #191919;
+  border-bottom: 2px solid #303030;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Lewy górny narożnik – napis TIER, jak na screenie */
+.tier-grid.role-view .tier-grid-header:first-child::before {
+  content: "TIER";
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #bbbbbb;
+}
+
+/* Ujednolicone, ciemniejsze ramki w role-view */
+.tier-grid.role-view .tier-grid-header,
+.tier-grid.role-view .tier-label,
+.tier-grid.role-view .role-cell {
+  border-color: #303030;
+}
+
+/* Komórki z nazwą tieru (SS/S/A/...) w widoku po rolach */
+.tier-grid.role-view .tier-label {
+  background: #151515;
+  border-right: 1px solid #303030;
+}
+
+/* Komórki z postaciami w widoku po rolach */
+.tier-grid.role-view .role-cell {
+  background: #181818;
+  border-left: 1px solid #303030;
+  border-right: 1px solid #303030;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;   /* portrety startują od lewej ściany jak na screenie */
+  gap: 6px;
+  padding: 14px 18px;
+  min-height: 70px;
+}
+
+/* --- KAFELKI POSTACI w widoku po rolach --- */
+.tier-grid.role-view .character-compact {
+  display: flex;                 /* nadpisuje ogólną definicję tylko w role-view */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 78px;                   /* szerokość kafelka jak na screenie */
+  padding: 4px 6px 3px;
+  background: #202020;           /* ciemny prostokąt pod postacią */
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #404040; /* delikatna ramka kafelka */
+  position: relative;            /* zostawiamy – potrzebne dla napisu DEBUT */
+}
+
+/* Portret w kafelku – kwadrat z lekko zaokrąglonymi rogami */
+.tier-grid.role-view .character-portrait-small {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;           /* zamiast pełnego koła – jak na screenie */
+}
+
+/* Podpis w kafelku – mały, wewnątrz prostokąta */
+.tier-grid.role-view .character-name-small {
+  font-size: 9px;
+  margin-top: 3px;
+  max-width: 70px;
+}
+
+/* Nagłówki żywiołów */
+.tier-grid-header {
+  background: #2a2a2a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #555;
+}
+
+/* Komórki z nazwami tierów */
+.tier-label {
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  border: 1px solid #555;
+}
+
+/* Ikona litery tieru */
+.tier-icon {
+  max-width: 40px;
+  max-height: 40px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ikona żywiołu w nagłówku */
+.element-icon {
+  max-width: 40px;
+  max-height: 40px;
+  width: 70%;
+  height: auto;
+  display: block;
+  border-radius: 50%;
+}
+
+/* Komórki z postaciami */
+.element-cell {
+  background: #1e1e1e;
+  border: 1px solid #555;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+/* Pojedyncza postać */
+.character-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.character-portrait-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid;
+  transition: transform 0.2s ease;
+}
+
+.character-portrait-small:hover {
+  transform: scale(1.05);
+}
+
+.character-name-small {
+  font-size: 9px;
+  color: #ddd;
+  text-align: center;
+  line-height: 1.1;
+  margin-top: 2px;
+  max-width: 55px;
+  word-wrap: break-word;
+}
+
+/* Kolory żywiołów */
+.character-portrait-small.anemo { border-color: #4cd964; }
+.character-portrait-small.geo { border-color: #ffcc00; }
+.character-portrait-small.electro { border-color: #bb86fc; }
+.character-portrait-small.dendro { border-color: #7cfc00; }
+.character-portrait-small.hydro { border-color: #2196f3; }
+.character-portrait-small.pyro { border-color: #ff5722; }
+.character-portrait-small.cryo { border-color: #87ceeb; }
+
+/* Kolory tierów */
+.tier-label.ss { color: #ff6b6b; }
+.tier-label.s { color: #ffa366; }
+.tier-label.a { color: #ffd166; }
+.tier-label.b { color: #a5d6a7; }
+.tier-label.c { color: #81d4fa; }
+.tier-label.d { color: #b39ddb; }
+
+/* Placeholder dla brakujących obrazków */
+.character-portrait-small[src*="placeholder"] {
+  background: #333;
+  border: 2px solid #666 !important;
+}
+
+/* Responsywność */
+@media (max-width: 1920px) {
+  .character-compact {
+    width: 55px;
+  }
+  
+  .character-portrait-small {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .character-name-small {
+    font-size: 8px;
+    max-width: 50px;
+  }
+
+  .tier-grid {
+    grid-template-rows: auto;    /* Wiersze rosną zgodnie z zawartością */
+    grid-auto-rows: auto;         /* Kolejne wiersze również */
+    height: auto;                 /* Przestaje wymuszać stałą wysokość */
+    max-height: none;
+  }
+}
+
+@media (max-height: 800px) {
+  .tier-grid {
+    height: 80vh;
+  }
+  
+  .character-compact {
+    width: 50px;
+  }
+  
+  .character-portrait-small {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .character-name-small {
+    font-size: 8px;
+    max-width: 45px;
+  }
+}
+
+/* Responsywność */
+@media (max-width: 1920px) {
+  /* Procentowe skalowanie kafelków postaci w widoku po rolach */
+  .tier-grid.role-view .character-compact {
+    width: 60px;            /* szerokość logiczna */
+    transform: scale(0.8);  /* 80% rozmiaru względem 2560×1440 */
+    transform-origin: top left;
+  }
+  
+  .tier-grid.role-view .character-portrait-small {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .tier-grid.role-view .character-name-small {
+    font-size: 9px;
+    max-width: 55px;
+  }
+
+  .tier-grid {
+    grid-template-rows: auto;    /* Wiersze rosną zgodnie z zawartością */
+    grid-auto-rows: auto;        /* Kolejne wiersze również */
+    height: auto;                /* Przestaje wymuszać stałą wysokość */
+    max-height: none;
+  }
+}
+
+
+.character-compact.debut-highlight .character-portrait-small {
+    transform: scale(1.03);
+    border-width: 2px;
+    border-style: solid;
+}
+
+/* Delikatna animacja pulsowania */
+@keyframes debutPulse {
+  0%   { box-shadow: 0 0 10px #9aff3d; }
+  50%  { box-shadow: 0 0 22px #b6ff66; }
+  100% { box-shadow: 0 0 10px #9aff3d; }
+}
+
+.character-compact.debut-highlight .character-portrait-small {
+  animation: debutPulse 1.8s infinite ease-in-out;
+}
+
+/* Mała plakietka DEBUT w prawym górnym rogu portretu */
+.character-compact.debut-highlight::before {
+  content: "DEBUT";
+  position: absolute;
+  bottom: -18px;              /* już nie wystaje ponad kafelek */
+  background: #9aff3d;
+  color: #000;
+  font-weight: bold;
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+/* --- Kolory debiutów zależne od żywiołu --- */
+
+/* Anemo (zielony miętowy) */
+.character-compact.debut-highlight .character-portrait-small.anemo {
+    border-color: #7fffd4;
+    box-shadow: 0 0 10px #7fffd4, 0 0 18px #7fffd4;
+}
+
+/* Geo (złoty) */
+.character-compact.debut-highlight .character-portrait-small.geo {
+    border-color: #e2c35c;
+    box-shadow: 0 0 10px #e2c35c, 0 0 18px #e2c35c;
+}
+
+/* Electro (fioletowy) */
+.character-compact.debut-highlight .character-portrait-small.electro {
+    border-color: #c57fff;
+    box-shadow: 0 0 10px #c57fff, 0 0 18px #c57fff;
+}
+
+/* Dendro (jasna zieleń) */
+.character-compact.debut-highlight .character-portrait-small.dendro {
+    border-color: #9aff3d;
+    box-shadow: 0 0 10px #9aff3d, 0 0 18px #9aff3d;
+}
+
+/* Hydro (błękitny) */
+.character-compact.debut-highlight .character-portrait-small.hydro {
+    border-color: #6bc5ff;
+    box-shadow: 0 0 10px #6bc5ff, 0 0 18px #6bc5ff;
+}
+
+/* Pyro (pomarańczowy) */
+.character-compact.debut-highlight .character-portrait-small.pyro {
+    border-color: #ff7b47;
+    box-shadow: 0 0 10px #ff7b47, 0 0 18px #ff7b47;
+}
+
+/* Cryo (lodowy niebieski) */
+.character-compact.debut-highlight .character-portrait-small.cryo {
+    border-color: #a4e7ff;
+    box-shadow: 0 0 10px #a4e7ff, 0 0 18px #a4e7ff;
+}
+
+/* Gdy pasek nawigacyjny jest ukryty (klawisz G w fullscreen) */
+body.nav-hidden .tier-grid-container {
+  min-height: 100vh;     /* nadpisuje calc(100vh - 60px) */
+}
+
+/* (opcjonalnie) jeśli chcesz, by sama siatka też rosła do pełnego ekranu */
+body.nav-hidden .tier-grid {
+  height: 100vh;
+}
+
+/* Pełnoekranowe dopasowanie tier-listy bez scrollowania */
+.tier-grid-container.is-tier-fullscreen,
+.tier-grid-container:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 12px !important;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+  overflow: hidden;
+}
+
+.tier-grid-container.is-tier-fullscreen .tier-grid,
+.tier-grid-container:fullscreen .tier-grid {
+  flex: 0 0 auto;
+  width: 100vw !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0;
+  transform: scale(var(--tier-fullscreen-scale, 1));
+  transform-origin: center center;
+  transition: transform 0.18s ease;
+}
+
+.tier-grid-container.is-tier-fullscreen .tier-grid.role-view,
+.tier-grid-container:fullscreen .tier-grid.role-view {
+  width: min(1600px, 100vw) !important;
+}
+
+
+
+/*------------------------------------------------------------------------*/
+
+/* Naprawa role-view na 1920×1080 — tabela nie może mieć stałej wysokości */
+.tier-grid.role-view {
+    height: auto !important;
+    max-height: none !important;
+}
+
+/* Naprawa — na mniejszych monitorach tabela ma zajmować całą szerokość,
+   a nie 95vw, które zostawia zbyt duże marginesy */
+@media (max-width: 1920px) {
+  .tier-grid {
+    width: 100vw !important;
+  }
+}
+
+/* Każdy wiersz w role-view powinien sam się rozszerzać */
+.tier-grid.role-view {
+    grid-auto-rows: minmax(90px, auto);
+}
+
+/* Fullscreen tier-listy: siatka ma wypełniać cały monitor */
+.tier-grid-container:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  background: #121212;
+}
+
+.tier-grid-container:fullscreen::backdrop {
+  background: #121212;
+}
+
+.tier-grid-container:fullscreen .tier-grid {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  box-sizing: border-box;
+  border-radius: 0;
+  grid-template-rows: 42px repeat(6, minmax(0, 1fr)) !important;
+}
+
+.tier-grid-container:fullscreen .tier-grid.role-view {
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  grid-template-columns: 80px repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: 26px repeat(6, minmax(0, 1fr)) !important;
+  grid-auto-rows: minmax(0, 1fr) !important;
+  row-gap: 2px;
+  padding-bottom: 0;
+}
+
+.tier-grid-container:fullscreen .element-cell,
+.tier-grid-container:fullscreen .role-cell {
+  min-height: 0 !important;
+  overflow: hidden;
+}
+
+.tier-grid-container:fullscreen .tier-grid.role-view .character-compact {
+  transform: none;
+}

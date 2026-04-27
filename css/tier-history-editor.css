@@ -1,0 +1,475 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #121212;
+  color: #f5f5f5;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  padding: 16px 24px;
+  background: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+.app-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+}
+
+.app-header .subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #bbbbbb;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px 16px 16px;
+  overflow: auto;
+}
+
+.panel {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.panel h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.field-row label {
+  min-width: 120px;
+  font-size: 13px;
+}
+
+.field-row input,
+.field-row select,
+#newVersionInput {
+  background: #111;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 13px;
+}
+
+.field-row input:focus,
+.field-row select:focus {
+  outline: 1px solid #4caf50;
+}
+
+button {
+  background: #2e7d32;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button:hover {
+  background: #388e3c;
+}
+
+button:active {
+  background: #2e7d32;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.hint {
+  font-size: 11px;
+  color: #aaaaaa;
+  margin: 4px 0 0 0;
+}
+
+/* Nagłówek panelu z przyciskiem zwijania */
+.panel-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.panel-header-row h2 {
+  margin: 0;
+}
+
+.panel-toggle {
+  background: #333;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* Panel tabeli w stanie zwiniętym */
+.panel-table.collapsed .table-wrapper {
+  display: none;
+}
+
+.panel-table.collapsed .table-hint {
+  display: none;
+}
+
+/* Filtry */
+.panel-filters .filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 16px;
+}
+
+/* Tabela */
+.table-wrapper {
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: #262626;
+  z-index: 1;
+}
+
+th, td {
+  border-bottom: 1px solid #333;
+  padding: 4px 6px;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background: #181818;
+}
+
+tbody tr:nth-child(odd) {
+  background: #141414;
+}
+
+/* Zaznaczony wiersz */
+tbody tr.selected-row {
+  background: #29434e !important;
+}
+
+tbody tr.selected-row td {
+  border-bottom-color: #476776;
+}
+
+/* Wiersz postaci, która w tej wersji jeszcze nie istnieje (przed debiutem) */
+tbody tr.debut-locked-row,
+tbody tr.debut-locked-row td {
+  background: #4a1b1b !important;
+  border-bottom-color: #663232;
+  color: #ffdddd;
+}
+
+td select {
+  width: 100%;
+  background: #111;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+
+/* Output */
+#outputArea {
+  width: 100%;
+  margin-top: 8px;
+  background: #0d0d0d;
+  color: #e6e6e6;
+  border-radius: 6px;
+  border: 1px solid #333;
+  font-family: "Consolas", "Fira Code", monospace;
+  font-size: 12px;
+  padding: 8px;
+  resize: vertical;
+  white-space: pre;
+}
+
+/* Widok graficzny – kolumny z ratingami */
+.panel-visual .visual-board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+/* Napis z wersją w trybie pełnoekranowym */
+.fullscreen-version-label {
+  position: fixed;                 /* przyklejony do ekranu w fullscreen */
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;                  /* złoty kolor */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;                   /* domyślnie ukryty */
+}
+
+/* Pokazujemy tylko gdy panel-visual jest w fullscreen i JS nada klasę .visible */
+.panel-visual:fullscreen .fullscreen-version-label.visible {
+  display: block;
+}
+
+.visual-column {
+  flex: 1 1 0;
+  min-width: 140px;
+  background: #181818;
+  border-radius: 6px;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  max-height: 720px;
+}
+
+.visual-column-header {
+  padding: 6px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  background: #262626;
+  border-bottom: 1px solid #333;
+}
+
+.visual-dropzone {
+  flex: 1;
+  padding: 6px;
+  display: flex;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+/* Kafelek postaci */
+.character-tile {
+  display: inline-flex;       /* kafelek zachowuje się jak element o szerokości zawartości */
+  flex-direction: column;     /* podpis pod obrazem */
+  align-items: center;
+  flex: 0 0 auto;             /* nie rozciąga się, nie kurczy ponad zawartość */
+  gap: 4px;
+  padding: 2px 4px;
+  background: #202020;
+  border-radius: 4px;
+  border: 1px solid #444;
+  font-size: 11px;
+  cursor: grab;
+  width: auto;                /* jawnie: szerokość = zawartość */
+}
+
+.character-tile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+  object-fit: cover;
+  display: block; /* żeby szerokość kafelka liczyła obraz jako minimalną */
+}
+
+.character-tile span {
+  white-space: nowrap;    /* nadal nie łamie się do 2 linii */
+  overflow: visible;      /* podpis może rozszerzyć kafelek */
+  text-overflow: unset;   /* żadnych … */
+}
+
+.character-tile.dragging {
+  opacity: 0.6;
+}
+
+/* Podświetlenie miejsca upuszczenia */
+.visual-dropzone.drag-over {
+  outline: 2px dashed #888;
+  outline-offset: -3px;
+}
+
+/* Postać zablokowana debiutem (nie można jej przeciągać) */
+.character-tile.debut-locked {
+  background: #8b1e1e;      /* jaśniejsza, bardziej jaskrawa czerwień */
+  border-color: #b53333;    /* wyraźniejsza ramka */
+  color: #ffeaea;           /* czytelna, jasnoczerwonawa czcionka */
+  cursor: not-allowed;
+}
+
+/* Postać, która debiutuje w aktualnie edytowanej wersji (jasnozielone podświetlenie) */
+.character-tile.debut-current {
+  background: #1b3a1b;   /* ciemne, ale wyraźnie zielone tło */
+  border-color: #4caf50; /* zielona ramka, spójna z resztą UI */
+  color: #d7ffd9;        /* jasna, czytelna zieleń/cyjan dla tekstu */
+}
+
+/* Nagłówek jak w tabeli tier-listy */
+.visual-header-row {
+  display: grid;
+  grid-template-columns: 80px repeat(3, 1fr);
+  background: #141414;
+  border-radius: 6px;
+  border: 1px solid #333;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.visual-header-cell {
+  padding: 6px 8px;
+  text-align: center;
+  border-right: 1px solid #333;
+}
+
+.visual-header-cell:last-child {
+  border-right: none;
+}
+
+.visual-header-tier {
+  text-transform: uppercase;
+}
+
+/* Wiersze SS–D */
+.visual-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.visual-row {
+  display: grid;
+  grid-template-columns: 80px repeat(3, 1fr);
+  background: #181818;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+.visual-row-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  border-right: 1px solid #333;
+  background: #202020;
+}
+
+/* Wiersz z którego przeciągam postacie do docelowych tierów – niebieskie tło */
+.visual-row-none {
+  background: #102238;      /* ciemnoniebieskie tło wiersza */
+  border-color: #295b9b;    /* delikatnie niebieska ramka */
+}
+
+.visual-row-none .visual-row-label {
+  font-size: 14px;
+  background: #1b3558;  /* ciemniejszy niebieski pasek z etykietą */
+  color: #dbe9ff;       /* jasny tekst, dobrze widoczny */
+}
+
+.visual-cell {
+  border-left: 1px solid #333;
+  padding: 4px;
+  display: flex;
+}
+
+/* Wiersz z postaciami niedostępnymi w aktualnej wersji */
+.visual-row-locked {
+  background: #241515;
+  border-color: #663232;
+}
+
+.visual-row-locked .visual-row-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffdddd;
+  background: #4a1b1b;
+}
+
+/* Dropzony – gęsta siatka ikon jak na screenie */
+.visual-cell .visual-dropzone {
+  display: grid;
+  grid-template-columns: repeat(7, max-content); /* dokładnie 4 kafelki w wierszu */
+  justify-content: center;                       /* centrowanie całego bloku w komórce */
+  align-content: start;                          /* kafelki zaczynają się od góry */
+  gap: 4px;
+  padding: 2px;
+  flex: 1; 
+}
+
+/* Puste tiery – większa wysokość, żeby łatwiej upuścić pierwsze postaci */
+.visual-cell .visual-dropzone:empty {
+  min-height: 90px; /* możesz zwiększyć np. do 120px, jeśli chcesz jeszcze więcej miejsca */
+}
+
+/* Drobniejszy tekst podpowiedzi w panelu graficznym */
+.panel-visual .hint.small {
+  font-size: 11px;
+  color: #aaaaaa;
+}
+
+/* Napis z nazwą tieru przy przeciąganym obrazku */
+.tier-hint {
+  position: fixed;            /* względem ekranu – będzie podążać za kursorem */
+  pointer-events: none;       /* nie blokuje drag & drop */
+  z-index: 9999;
+  color: #4caf50;             /* zielony druk */
+  font-weight: 700;
+  font-size: 26px;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  display: none;              /* domyślnie ukryte */
+  transform: translate(45px, -80%);
+  /* translate(-110%, -50%) sprawia, że napis ląduje po LEWEJ stronie kursora
+     i mniej więcej na jego wysokości */
+}
+
+/* Responsywność */
+@media (max-width: 800px) {
+  .field-row {
+    align-items: flex-start;
+  }
+
+  .field-row label {
+    min-width: 0;
+    width: 100%;
+  }
+}

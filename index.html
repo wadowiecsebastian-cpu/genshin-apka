@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nowoczesna Aplikacja Genshin</title>
+<link rel="stylesheet" href="css/styles.css">
+<link href="css/rotation.css" rel="stylesheet"/>
+<link rel="stylesheet" href="css/global-nav.css"/>
+<link rel="stylesheet" href="css/settings-overrides.css" />
+<style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #101014;
+      color: #ddd;
+    }
+    header {
+      background: linear-gradient(to right, #333, #222);
+      padding: 1rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .container {
+      padding: 1rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #1e1e1e;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      text-align: center;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+    }
+    .accordion-toggle {
+      margin-top: 2rem;
+      background: #444;
+      color: white;
+      font-weight: bold;
+    }
+    .dark .card {
+      background: #2a2a2a;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+    }
+  </style>
+
+  <link rel="stylesheet" href="css/app-shell.css"/>
+  
+</head>
+<body>
+<nav id="global-nav"></nav>
+
+<div class="container">
+
+<section class="app-page-intro">
+  <div class="app-page-kicker">Characters</div>
+  <h1>Biblioteka postaci</h1>
+  <p>Wyszukuj i przeglądaj postacie w prostszym, bardziej przyjaznym układzie, bez zmiany obecnej logiki działania kart.</p>
+</section>
+
+<input id="search" class="app-search-input" placeholder="Szukaj postaci..." type="text"/>
+<button class="accordion-toggle">📁 Pokaż/Zwiń postacie</button>
+<div class="accordion-content">
+<div class="card-grid" id="character-grid">
+<!-- Karty postaci zostaną wygenerowane dynamicznie -->
+</div>
+</div>
+</div>
+<footer>Wersja przebudowana · Debug aktywny w konsoli</footer>
+<script src="js/accordion.js"></script>
+<script src="js/idb.js" defer></script>
+<script src="js/migrator.js" defer></script>
+<script src="js/settings-core.js" defer></script>
+<script src="js/storage.js"></script>
+<script src="js/characterData.js"></script>
+<script src="js/index.js"></script>
+<script>
+    console.log("✅ Strona załadowana i gotowa");
+  </script>
+<script src="js/global-nav.js"></script>
+</body>
+</html>

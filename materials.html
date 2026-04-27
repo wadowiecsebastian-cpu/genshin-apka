@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Genshin Tracker – Materials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/materials.css" />
+<link rel="stylesheet" href="css/global-nav.css">
+<link rel="stylesheet" href="css/settings-overrides.css" />
+</head>
+<body>
+<nav id="global-nav"></nav>
+
+  <header class="app-header">
+    <h1>Genshin Tracker – Materials</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="progress">Character Progress</button>
+      <button class="tab-btn" data-tab="inventory">Inventory</button>
+      <button class="tab-btn" data-tab="global">Global Materials Demand</button>
+    </nav>
+  </header>
+
+  <!-- Character Progress -->
+  <section id="tab-progress" class="tab active">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Character Progress</h2>
+        <div class="actions">
+          <button id="add-row">+ Add Row</button>
+          <button id="clear-progress">Clear Progress</button>
+          <label style="margin-left:8px; display:inline-flex; align-items:center; gap:6px;">
+            <input type="checkbox" id="filter-today" /> Show characters farmable today
+          </label>
+        
+
+          <div class="bulk-targets" role="group" aria-label="Masowe ustawianie celów">
+            <strong style="margin-right:6px;">Masowo:</strong>
+            <label>Asc
+              <select id="bulk-asc">
+                <option value="">—</option>
+                <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+              </select>
+            </label>
+            <label>NA
+              <select id="bulk-na">
+                <option value="">—</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              </select>
+            </label>
+            <label>Skill
+              <select id="bulk-skill">
+                <option value="">—</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              </select>
+            </label>
+            <label>Burst
+              <select id="bulk-burst">
+                <option value="">—</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              </select>
+            </label>
+            <label>Zakres
+              <select id="bulk-scope">
+                <option value="visible">Tylko widoczne</option>
+                <option value="all">Wszystkie</option>
+              </select>
+            </label>
+            <button id="bulk-apply" class="btn-primary">Ustaw</button>
+          </div>
+</div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="grid">
+          <thead>
+            <tr>
+              <th>Character</th>
+              <th>Element<br><select id="filter-element" style="margin-top:4px; font-size:12px;"><option value="">—</option><option value="Pyro">Pyro</option><option value="Hydro">Hydro</option><option value="Electro">Electro</option><option value="Cryo">Cryo</option><option value="Anemo">Anemo</option><option value="Geo">Geo</option><option value="Dendro">Dendro</option></select></th>
+              <th>Level Cur</th>
+              <th>Level Target</th>
+              <th>Asc Cur</th>
+              <th>Asc Target</th>
+              <th>NA Cur</th>
+              <th>NA Target</th>
+              <th>Skill Cur</th>
+              <th>Skill Target</th>
+              <th>Burst Cur</th>
+              <th>Burst Target</th>
+              <th>Book farm days</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="progress-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inventory (cards + filters) -->
+  <section id="tab-inventory" class="tab">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Inventory</h2>
+        <div class="filters">
+          <label>Filter type:</label>
+          <select id="inv-filter">
+            <option value="all">All</option>
+            <option value="gems">Gems</option>
+            <option value="books">Books</option>
+            <option value="enemies">Enemies</option>
+            <option value="bossNormal">Normal Boss Drops</option>
+            <option value="bossWeekly">Weekly Boss Drops</option>
+            <option value="local">Local Specialty</option>
+            <option value="levelUp">Level-Up Materials</option>
+            <option value="mora">Mora</option>
+          </select>
+          <input id="inv-search" type="search" placeholder="Search..." />
+          <button id="inv-reset">Reset</button>
+          <button id="inv-used-by-chars">Chars from characterData</button>
+        </div>
+      </div>
+
+      <div id="inventory-cards" class="card-grid"></div>
+    </div>
+  </section>
+
+  <!-- Global Materials Demand (cards + filters) -->
+  <section id="tab-global" class="tab">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Global Materials Demand</h2>
+        <div class="filters">
+          <label>Filter type:</label>
+          <select id="global-filter">
+            <option value="all">All</option>
+            <option value="gems">Gems</option>
+            <option value="books">Books</option>
+            <option value="enemies">Enemies</option>
+            <option value="bossNormal">Normal Boss Drops</option>
+            <option value="bossWeekly">Weekly Boss Drops</option>
+            <option value="local">Local Specialty</option>
+            <option value="levelUp">Level-Up Materials</option>
+            <option value="mora">Mora</option>
+          </select>
+          <input id="global-search" type="search" placeholder="Search..." />
+          <button id="global-recalc">Recalculate</button>
+          <button id="global-used-by-chars">Chars from characterData</button>
+        </div>
+      </div>
+
+      <div id="global-cards" class="card-grid"></div>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <small>100% offline • IndexedDB • brak żądań sieciowych</small>
+  </footer>
+
+  <!-- Order matters: helpers -> data -> app -->
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/materials.js"></script>
+  <script src="js/characterData.js"></script>
+  <script src="js/materials-app.js"></script>
+  <script src="js/global-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-container {
+  display: flex;
+  background-color: #222;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  background: #333;
+  color: #eee;
+  border: none;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: #555;
+  font-weight: bold;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Siatka kafelków w zakładce Owned Characters */
+#owned .character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+  padding: 12px 8px 24px;
+  justify-items: center;
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.character-card {
+  background: #222;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 8px;
+  width: 200px;
+}
+
+.character-card img, .team-member img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #222;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.role-tag {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.role-Main-DPS {
+  background: crimson;          /* silna rola ofensywna */
+  color: white;
+}
+
+.role-Sub-DPS {
+  background: goldenrod;        /* wsparcie ofensywne */
+  color: black;
+}
+
+.role-Support {
+  background: teal;             /* ogólne wsparcie */
+  color: white;
+}
+
+.role-Healer {
+  background: forestgreen;      /* rola lecząca */
+  color: white;
+}
+
+.role-Sub-DPS-Support {
+  background: darkorchid;       /* mieszana rola ofensywna/wsparcia */
+  color: white;
+}
+
+.role-Main-DPS-Driver {
+  background: steelblue;        /* "enabler" / użytkownik reakcji */
+  color: white;
+}
+
+.role-Healer {
+  background: darkgoldenrod;    /* leczenie drużyny */
+  color: black;
+}
+
+.role-Shielder {
+  background: sienna;           /* obrona, tarcze */
+  color: white;
+}
+
+.role-Support-Flex {
+  background: darkslateblue;  /* elastyczna rola wspierająca */
+  color: white;
+}
+
+.role-Main-DPS-Sub-DPS {
+  background: orangered;   /* intensywny, dotąd niewykorzystany odcień */
+  color: white;            /* dobra czytelność na żywym tle */
+}
+
+.role-Support-Driver {
+  background: mediumturquoise;  /* świeży, niewykorzystany odcień blue‑green */
+  color: white;                 /* wysoki kontrast na jasnym tle */
+}
+
+.member img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.element-icons-filter {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.element-icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.element-icon.selected {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px gold);
+}
+
+
+/* Tryb kompaktowy dla Imaginarium Theater */
+.team-card.compact .team-comment {
+  display: none;
+}
+
+.team-rotation {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.rotation-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.rotation-step {
+  width: 25%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rotation-icon {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.rotation-skill-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.rotation-note {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.rotation-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.toggle-rotation-button {
+    background-color: #4a6fa5;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.toggle-rotation-button:hover {
+    background-color: #3a5a80;
+}
+
+
+
+
+.team-comments {
+  margin-top: 10px;
+}
+
+.team-comment-block {
+  border-left: 4px solid #ccc;
+  padding: 6px 10px;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.team-member {
+  text-align: center;
+  padding: 6px;
+}
+
+.member-name {
+  margin-top: 4px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.member-role {
+  padding: 2px 6px;
+  margin-top: 2px;
+  font-size: 12px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+}
+
+/* Przykładowe kolory dla ról */
+.role-main-dps { background-color: #d9534f; }
+.role-sub-dps { background-color: #f0ad4e; }
+.role-support { background-color: #5bc0de; }
+.role-healer { background-color: #5cb85c; }
+
+/* Element ikony pod rolą */
+.element-icon-under {
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+}
+
+
+/* Dodaj na końcu pliku CSS */
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.filter-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #eee;
+  cursor: pointer;
+}
+
+/* --- Wygląd zakładki Owned Characters --- */
+
+.owned-character-entry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px 16px;
+  width: 120px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 0 0, rgba(255,255,255,0.06), transparent 55%),
+              radial-gradient(circle at 100% 100%, rgba(0,153,255,0.15), transparent 55%),
+              #18181f;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, background 0.16s ease-out;
+  cursor: pointer; /* ← DODAJ TO */
+}
+
+.owned-character-entry:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
+  background: radial-gradient(circle at 0 0, rgba(255,255,255,0.12), transparent 55%),
+              radial-gradient(circle at 100% 100%, rgba(0,153,255,0.22), transparent 55%),
+              #191a24;
+}
+
+/* Avatar postaci */
+.owned-character-image {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  object-fit: cover;
+  display: block;
+  border: 3px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Pasek z nazwą i checkboxem */
+.character-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  font-size: 13px;
+  color: #f5f5f5;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sam checkbox – nowocześniejszy wygląd */
+.character-label input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: #4aa8ff; /* nowoczesny niebieski zaznaczenia (Chrome/Edge/FF) */
+  cursor: pointer;
+}
+
+/* Klikalna całość etykiety */
+.character-label input[type="checkbox"] + text,
+.character-label {
+  cursor: pointer;
+}
+
+/* --- Kafelki filtrowania drużyn po postaciach (Imaginarium Theater) --- */
+
+.character-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.character-filter-tile {
+  position: relative;
+  width: 110px;
+  padding: 10px 8px 12px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 0 0, rgba(255,255,255,0.06), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(0,153,255,0.18), transparent 55%),
+    #18181f;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.16s ease-out,
+              box-shadow 0.16s ease-out,
+              background 0.16s ease-out,
+              opacity 0.16s ease-out;
+}
+
+.character-filter-tile.empty {
+  background:
+    radial-gradient(circle at 0 0, rgba(255,255,255,0.02), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255,255,255,0.04), transparent 55%),
+    #14141a;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+  border: 1px dashed rgba(255,255,255,0.25);
+}
+
+.character-filter-tile:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
+  background:
+    radial-gradient(circle at 0 0, rgba(255,255,255,0.10), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(0,153,255,0.25), transparent 55%),
+    #191a24;
+}
+
+.character-filter-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 22px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 4px;
+  border: 3px solid rgba(255,255,255,0.20);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(0, 0, 0, 0.7);
+}
+
+.character-filter-name {
+  margin-top: 2px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #f5f5f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.character-filter-role {
+  display: inline-block;
+  margin-top: 3px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+}
+
+.character-filter-element {
+  width: 26px;
+  height: 26px;
+  margin-top: 6px;
+}
+
+.character-filter-placeholder {
+  font-size: 12px;
+  color: #bbbbbb;
+  padding: 18px 4px;
+  line-height: 1.3;
+}
+
+/* Mały przycisk kasowania postaci z kafelka */
+.character-filter-clear {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ff8080;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.18);
+  transition: background 0.15s ease-out, transform 0.15s ease-out, color 0.15s ease-out;
+}
+
+.character-filter-clear:hover {
+  background: rgba(255, 80, 80, 0.9);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* --- Dropdown z wyborem postaci dla kafelków filtra --- */
+
+.character-filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: none;
+  margin-top: 6px;
+  width: 260px;
+  max-height: 260px;
+  padding: 6px 4px;
+  border-radius: 14px;
+  background: #15151f;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.85);
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.character-filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.12s ease-out, transform 0.12s ease-out;
+}
+
+.character-filter-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.character-filter-option-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+.character-filter-option-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.character-filter-option-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f5f5f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.character-filter-option-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #bbbbbb;
+}
+
+.character-filter-option-element {
+  width: 18px;
+  height: 18px;
+}
+
+/* specjalny wygląd opcji "Wyczyść ten slot" */
+.character-filter-option-clear {
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ff9a9a;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 4px;
+  padding-bottom: 6px;
+}
+
+.tp-pager{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+
+.tp-pager__label{
+  font-size:13px;
+  color:#cfd6e4;
+}

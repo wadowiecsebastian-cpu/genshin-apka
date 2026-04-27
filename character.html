@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Postać</title>
+  <link rel="stylesheet" href="css/global-nav.css" />
+  <link id="companion-theme-css" rel="stylesheet" href="css/companion-theme.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/info-styles.css" />
+  <link rel="stylesheet" href="css/teams-style.css" />
+  <link rel="stylesheet" href="css/team-comment.css" />
+  <link rel="stylesheet" href="css/rotation.css" />
+  <link rel="stylesheet" href="css/character.css" />
+</head>
+<body class="character-detail-page">
+  <nav id="global-nav"></nav>
+
+  <main class="character-detail-shell">
+    <section class="character-hero" id="character-hero">
+      <div class="character-hero__portrait-wrap">
+        <button id="prev-character" class="character-nav-button character-nav-button--prev" aria-label="Previous character">&larr;</button>
+        <img id="portrait" class="character-hero__portrait portrait-img" src="" alt="Portret postaci">
+        <button id="next-character" class="character-nav-button character-nav-button--next" aria-label="Next character">&rarr;</button>
+      </div>
+
+      <div class="character-hero__identity">
+        <div class="character-hero__eyebrow" id="character-role-kicker">Character</div>
+        <h1 id="character-name">Ładowanie...</h1>
+        <div class="character-hero__meta" id="character-meta"></div>
+        <p id="character-summary" class="character-hero__summary"></p>
+        <div id="character-tags" class="character-tags"></div>
+      </div>
+
+      <div id="character-base-stats" class="character-base-stats"></div>
+      <aside id="character-featured-weapon" class="character-featured-weapon"></aside>
+    </section>
+
+    <div class="tabs character-tabs" role="tablist" aria-label="Character sections">
+      <button class="tab-button active" data-tab="info">Info</button>
+      <button class="tab-button" data-tab="summary">Summary</button>
+      <button class="tab-button" data-tab="weapons">Weapons</button>
+      <button class="tab-button" data-tab="artifacts">Artifacts</button>
+      <button class="tab-button" data-tab="recommendedStats">Recommended Stats</button>
+      <button class="tab-button" data-tab="teams">Teams</button>
+      <button class="tab-button" data-tab="strengths">Strengths</button>
+      <button class="tab-button" data-tab="weaknesses">Weaknesses</button>
+    </div>
+
+    <div class="character-toolbar">
+      <label for="roleSelect">Build role</label>
+      <select id="roleSelect"></select>
+    </div>
+
+    <div class="character-layout">
+      <section class="character-content-area">
+        <div id="summary" class="tab-content"><div id="summary-content"></div></div>
+        <div id="info" class="tab-content active"><div class="info-text" id="info-content"></div></div>
+        <div id="weapons" class="tab-content"><div id="weapons-content"></div></div>
+        <div id="artifacts" class="tab-content"><div id="artifacts-content"></div></div>
+        <div id="recommendedStats" class="tab-content"><div id="recommendedStats-content"></div></div>
+        <div id="teams" class="tab-content"><div id="teams-content"></div></div>
+        <div id="strengths" class="tab-content"><div id="strengths-content"></div></div>
+        <div id="weaknesses" class="tab-content"><div id="weaknesses-content"></div></div>
+      </section>
+
+      <aside id="character-side-panel" class="character-side-panel"></aside>
+    </div>
+  </main>
+
+  <script src="js/characterData.js"></script>
+  <script src="js/materials.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/global-nav.js"></script>
+</body>
+</html>

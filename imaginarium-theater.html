@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title>Imaginarium Theater</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Zmienne kolorów + spójny styl kart -->
+  <link rel="stylesheet" href="css/materials.css" />
+  <link rel="stylesheet" href="css/global-nav.css" />
+  
+  <link rel="stylesheet" href="css/imaginarium-theater.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+</head>
+
+<body>
+  <nav id="global-nav"></nav>
+
+  <main class="tp">
+    <header class="tp__header">
+      <div class="tp__titleWrap">
+        <h1 class="tp__title">Imaginarium Theater</h1>
+        <div class="tp__subtitle">
+          Unikalne drużyny z <code>characterData.js</code> • 8 slotów u góry • limit 2 wystąpień postaci
+        </div>
+      </div>
+
+      <div class="tp__headerRight">
+        <div class="tp__seg" role="group" aria-label="Widok wyników">
+          <button id="viewTiles" class="tp__segBtn is-active" type="button">Kafelki</button>
+          <button id="viewList" class="tp__segBtn" type="button">Lista</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- TOP: filtry żywiołów nad wybranymi drużynami -->
+    <section class="tp__top">
+      <div class="tp__topBar">
+        <div class="tp__filters">
+          <div class="tp__label">Filtry żywiołów (max 3):</div>
+          <div id="elementFilters" class="tp__elements"></div>
+          <div class="tp__hint">
+            Wyniki zostaną odfiltrowane tak, aby drużyny **nie miały członków spoza wybranych żywiołów**.
+          </div>
+        </div>
+
+        <div class="tp__topActions">
+          <label class="tp__check">
+            <input id="ownedOnly" type="checkbox" />
+            Tylko drużyny z posiadanych postaci (4/4)
+          </label>
+
+          <label class="tp__select">
+            <span>Sortowanie:</span>
+            <select id="sortMode">
+              <option value="name">Alfabetycznie (nazwa drużyny)</option>
+              <option value="match">Po liczbie pasujących elementów</option>
+              <option value="owned">Po kompletności owned (ile/4)</option>
+            </select>
+          </label>
+
+          <button id="clearTop" class="tp__btn tp__btn--ghost" type="button">Wyczyść top listę</button>
+        </div>
+      </div>
+
+      <div class="tp__slotsHeader">
+        <div class="tp__label">Wybrane drużyny (8 slotów):</div>
+        <div class="tp__smallHint">Lock blokuje slot przed czyszczeniem / auto-uzupełnianiem.</div>
+      </div>
+
+      <div id="topSlots" class="tp__slots"></div>
+
+      <div id="topStats" class="tp__topStats"></div>
+    </section>
+
+    <!-- WYNIKI -->
+    <section class="tp__results">
+      <div class="tp__resultsHeader">
+        <div id="resultsCount" class="tp__resultsCount"></div>
+        <div id="activeRules" class="tp__rules"></div>
+      </div>
+
+      <div id="results" class="tp__grid"></div>
+    </section>
+
+    <!-- MODAL: walidacja limitu 2 wystąpień + opcje zamiany -->
+    <div id="conflictModal" class="tp__modalBackdrop" hidden>
+      <div class="tp__modal" role="dialog" aria-modal="true" aria-labelledby="conflictTitle">
+        <div class="tp__modalHeader">
+          <div>
+            <div id="conflictTitle" class="tp__modalTitle">Nie można dodać drużyny</div>
+            <div id="conflictDesc" class="tp__modalDesc"></div>
+          </div>
+          <button id="conflictClose" class="tp__iconBtn" type="button" aria-label="Zamknij">✕</button>
+        </div>
+
+        <div class="tp__modalBody">
+          <div class="tp__modalSection">
+            <div class="tp__modalLabel">Blokujące postacie i sloty:</div>
+            <div id="conflictList" class="tp__conflictList"></div>
+          </div>
+
+          <div class="tp__modalSection">
+            <div class="tp__modalLabel">Opcje:</div>
+            <div id="swapOptions" class="tp__swapOptions"></div>
+          </div>
+        </div>
+
+        <div class="tp__modalFooter">
+          <button id="conflictCancel" class="tp__btn tp__btn--ghost" type="button">Anuluj</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Twoje istniejące narzędzia -->
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/characterData.js"></script>
+  <script src="js/global-nav.js"></script>
+
+  <!-- Nowy planner -->
+  <script src="js/imaginarium-theater.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edytor ratingów – tier-history</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/global-nav.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/tier-history-editor.css" />
+</head>
+<body>
+  <nav id="global-nav"></nav>
+  <header class="app-header">
+    <h1>Edytor ratingów – tier-history.js</h1>
+    <p class="subtitle">
+      Wybierz wersję gry, ustaw ratingi dla postaci, a na końcu wygeneruj zaktualizowany kod pliku <code>tier-history.js</code>.
+    </p>
+  </header>
+
+  <main class="app-main">
+    <!-- Panel wersji -->
+    <section class="panel panel-versions">
+      <h2>Wersje gry</h2>
+      <div class="field-row">
+        <label for="versionSelect">Aktualna wersja:</label>
+        <select id="versionSelect"></select>
+      </div>
+      <div class="field-row">
+        <label for="newVersionInput">Dodaj nową wersję (np. 6.2):</label>
+        <input id="newVersionInput" type="text" placeholder="np. 6.2" />
+        <button id="addVersionBtn" type="button">Dodaj wersję</button>
+      </div>
+      <p class="hint">
+        Jeśli dla danej wersji postać nie ma przypisanego ratingu, w pliku <code>tier-history.js</code> nie będzie klucza dla tej wersji.
+      </p>
+    </section>
+
+    <!-- Panel filtrów -->
+    <section class="panel panel-filters">
+      <h2>Filtry postaci</h2>
+      <div class="filters-grid">
+        <div class="field-row">
+          <label for="nameFilter">Nazwa postaci:</label>
+          <input id="nameFilter" type="text" placeholder="Szukaj po nazwie..." />
+        </div>
+        <div class="field-row">
+          <label for="elementFilter">Żywioł:</label>
+          <select id="elementFilter">
+            <option value="">Wszystkie</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <label for="rarityFilter">Rzadkość:</label>
+          <select id="rarityFilter">
+            <option value="">Wszystkie</option>
+            <option value="★★★★">★★★★</option>
+            <option value="★★★★★">★★★★★</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <label for="roleFilter">Rola (fragment tekstu):</label>
+          <input id="roleFilter" type="text" placeholder="np. Support, Main DPS" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabela postaci -->
+    <section class="panel panel-table">
+      <div class="panel-header-row">
+        <h2>Postacie i ratingi</h2>
+        <button id="toggleTableBtn" type="button" class="panel-toggle">
+          Zwiń tabelę
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="charactersTable">
+          <thead>
+            <tr>
+              <th>Postać</th>
+              <th>Debiut</th>
+              <th>Rzadkość</th>
+              <th>Broń</th>
+              <th>Żywioł</th>
+              <th>Rola</th>
+              <th id="ratingHeader">Ocena (wersja)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- wypełniane przez JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <p class="hint table-hint">
+        Zmiana wartości w kolumnie <strong>Ocena</strong> od razu modyfikuje obiekt <code>window.tierHistory</code> w pamięci.
+      </p>
+    </section>
+
+    <!-- Widok graficzny – przeciąganie postaci -->
+    <section class="panel panel-visual">
+      <div class="panel-header-row">
+        <h2>Widok graficzny – przeciąganie postaci</h2>
+        <button id="toggleFullscreenBtn" type="button" class="panel-toggle">
+          Pełny ekran
+        </button>
+      </div>
+
+      <div id="fullscreenVersionLabel" class="fullscreen-version-label"></div>
+
+      <div id="tierHint" class="tier-hint"></div>
+
+      <p class="hint">
+        Przeciągaj portrety postaci pomiędzy kolumnami, aby zmienić ich rating w aktualnie wybranej wersji.
+      </p>
+
+        <div class="visual-board" id="visualBoard">
+        <!-- wiersz nagłówków kolumn -->
+        <div class="visual-header-row">
+          <div class="visual-header-cell visual-header-tier">Tier</div>
+          <div class="visual-header-cell">Main DPS</div>
+          <div class="visual-header-cell">Sub-DPS</div>
+          <div class="visual-header-cell">Support</div>
+        </div>
+
+        <!-- siatka: wiersze SS–D + wiersz bez oceny -->
+        <div class="visual-grid">
+          <!-- SS -->
+          <div class="visual-row" data-rating="SS">
+            <div class="visual-row-label">SS</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="SS" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="SS" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="SS" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- S -->
+          <div class="visual-row" data-rating="S">
+            <div class="visual-row-label">S</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="S" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="S" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="S" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- A -->
+          <div class="visual-row" data-rating="A">
+            <div class="visual-row-label">A</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="A" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="A" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="A" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- B -->
+          <div class="visual-row" data-rating="B">
+            <div class="visual-row-label">B</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="B" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="B" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="B" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- C -->
+          <div class="visual-row" data-rating="C">
+            <div class="visual-row-label">C</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="C" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="C" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="C" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- D -->
+          <div class="visual-row" data-rating="D">
+            <div class="visual-row-label">D</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="D" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="D" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="D" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- wiersz: brak przypisanego ratingu -->
+          <div class="visual-row visual-row-none" data-rating="">
+            <div class="visual-row-label">–</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="" data-rolegroup="Support"></div>
+            </div>
+          </div>
+
+          <!-- wiersz: postacie niedostępne w edytowanej wersji (debiut później) -->
+          <div class="visual-row visual-row-locked" data-rating="locked">
+            <div class="visual-row-label">Niedostępne</div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="locked" data-rolegroup="Main DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="locked" data-rolegroup="Sub-DPS"></div>
+            </div>
+            <div class="visual-cell">
+              <div class="visual-dropzone" data-rating="locked" data-rolegroup="Support"></div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <p class="hint small">
+        Uwaga: postaci, które debiutują w późniejszej wersji niż wybrana, są oznaczone na czerwono i nie można ich przeciągać.
+      </p>
+    </section>
+
+    <!-- Generowanie kodu -->
+    <section class="panel panel-output">
+      <h2>Generowanie nowego pliku tier-history.js</h2>
+      <button id="generateBtn" type="button">Generuj kod tier-history.js</button>
+      <p class="hint">
+        Skopiuj wygenerowany kod poniżej i wklej do swojego pliku <code>tier-history.js</code>, nadpisując jego zawartość.
+      </p>
+      <textarea id="outputArea" rows="12" spellcheck="false"></textarea>
+    </section>
+  </main>
+
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/view-memory.js"></script>
+  <script src="js/settings-core.js"></script>
+
+  <script src="js/tier-history.js"></script>
+  <script src="js/global-nav.js"></script>
+  <script src="js/tier-history-editor.js"></script>
+</body>
+</html>

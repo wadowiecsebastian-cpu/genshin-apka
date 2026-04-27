@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Planner</title>
+  <link rel="stylesheet" href="css/team-planner.css" />
+  <link rel="stylesheet" href="css/rotation.css" />
+  <link rel="stylesheet" href="css/global-nav.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <style>
+    /* Tymczasowe style dla lepszej widoczności */
+    .filters {
+      background-color: #080000;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+  </style>
+
+  <link rel="stylesheet" href="css/app-shell.css"/>
+  
+</head>
+<body>
+  <nav id="global-nav"></nav>
+
+  <section class="app-page-intro app-page-intro--compact">
+    <div class="app-page-kicker">Teams</div>
+    <h1>Team Planner</h1>
+    <p>Szybkie przełączanie między własnymi postaciami a drużynami Imaginarium Theater w bardziej czytelnym układzie.</p>
+  </section>
+
+  <div class="tab-container">
+    <button class="tab-button active" data-tab="owned">Owned Characters</button>
+    <button class="tab-button" data-tab="imaginarium">Imaginarium Theater</button>
+  </div>
+
+  <div id="owned" class="tab-content active">
+    <div id="owned-characters" class="character-grid"></div>
+  </div>
+
+  <div id="imaginarium" class="tab-content">
+    <div class="filters">
+      <div id="element-filters" class="element-icons-filter">
+        <img src="Element Icons/Anemo.png" alt="Anemo" data-element="Anemo" class="element-icon">
+        <img src="Element Icons/Geo.png" alt="Geo" data-element="Geo" class="element-icon">
+        <img src="Element Icons/Electro.png" alt="Electro" data-element="Electro" class="element-icon">
+        <img src="Element Icons/Dendro.png" alt="Dendro" data-element="Dendro" class="element-icon">
+        <img src="Element Icons/Hydro.png" alt="Hydro" data-element="Hydro" class="element-icon">
+        <img src="Element Icons/Pyro.png" alt="Pyro" data-element="Pyro" class="element-icon">
+        <img src="Element Icons/Cryo.png" alt="Cryo" data-element="Cryo" class="element-icon">
+      </div>
+      
+      <!-- Dodaj kontener na opcje filtrów -->
+      <div class="filter-options">
+        <label><input type="checkbox" id="owned-filter" /> Only owned characters</label>
+      </div>
+
+      <!-- Nowe kafelki filtrowania drużyn po postaciach -->
+      <div id="character-filter-row" class="character-filter-row">
+        <!-- JS wstawi tu 4 kafelki -->
+      </div>
+      
+    </div>
+    <div id="teams-container" class="teams-grid"></div>
+  </div>
+
+  <script src="js/characterData.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/view-memory.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/team-planner.js"></script>
+  <script src="js/global-nav.js"></script>
+</body>
+</html>

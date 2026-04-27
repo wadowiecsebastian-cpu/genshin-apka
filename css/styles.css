@@ -1,0 +1,501 @@
+/* Ogólne style */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 200px 1fr;
+    height: auto; /* Zmiana na auto, aby strona była przewijalna */
+}
+
+.header {
+    grid-column: span 2;
+    background-color: #333;
+    color: white;
+    padding: 2px;
+    text-align: center;
+	font-size: 1rem; /* Opcjonalne zmniejszenie rozmiaru tekstu dla większej kompaktowości */
+	position: static; /* Wymuszenie normalnej pozycji w przepływie dokumentu */
+}
+
+.sidebar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    overflow-y: auto;
+    transition: height 0.3s ease; /* Płynne przejście zmiany wysokości */
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styl domyślny przycisku zwijania */
+#toggleSidebar {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Styl zwiniętego sidebaru */
+.sidebar.collapsed {
+    width: 0; /* Ustawia szerokość na 0, aby ukryć sidebar */
+    padding: 0;
+    overflow: hidden; /* Ukrywa zawartość */
+    transition: width 0.3s ease; /* Płynne przesunięcie */
+}
+
+.sidebar.collapsed #toggleSidebar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.sidebar:not(.collapsed) {
+    width: 200px; /* Ustaw standardową szerokość sidebaru */
+    transition: width 0.3s ease; /* Płynne otwieranie */
+}
+
+.main-content {
+    padding: 20px;
+    overflow-y: auto;
+	transition: margin-left 0.3s ease, width 0.3s ease; /* Płynne przejście */
+	width: 100%;
+}
+
+.main-content.expanded {
+    margin-left: -200px; /* Usuń przesunięcie, gdy sidebar jest zwinięty */
+    width: 100%; /* Rozciągnij na pełną szerokość */
+}
+
+.subtab-content {
+    display: none;
+}
+
+.subtab-content.active {
+    display: block;
+}
+
+button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #16a085;
+}
+
+.dark-mode {
+    background-color: #1e1e1e; /* Ciemne tło */
+    color: #ffffff; /* Jasny tekst */
+}
+
+.dark-mode .character-content {
+    background-color: #1e1e1e; /* Ciemne tło */
+    color: #ffffff; /* Jasny tekst */
+}
+
+.tooltip {
+    position: absolute;
+    padding: 8px;
+    background-color: #444;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+/* Stylizacja zespołów */
+.team-list {
+    margin: 0;
+    padding: 0;
+}
+
+.team {
+    margin-bottom: 20px;
+}
+
+.team h3 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.team-container {
+    display: flex;
+    justify-content: space-between; /* Równanie elementów w poziomie */
+    gap: 20px; /* Odstęp między kolumnami */
+    flex-wrap: wrap; /* Przenoszenie elementów do następnego wiersza, jeśli nie mieszczą się w jednym */
+}
+
+.team-role {
+    flex: 1 1 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.team-role img {
+    width: 100px; /* Dostosuj do odpowiednich rozmiarów */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.team-comment {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Stylizacja sekcji Strengths & Weaknesses */
+.strengths-weaknesses {
+    margin-top: 1rem;
+}
+
+.strengths-weaknesses h3 {
+    margin-bottom: 0.5rem;
+}
+
+.strengths-weaknesses ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.strengths-weaknesses ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Style dla dwóch kolumn */
+.build-columns {
+    display: flex;
+    gap: 20px; /* Odstęp między kolumnami */
+}
+
+.build-column {
+    flex: 1; /* Każda kolumna zajmuje równą szerokość */
+}
+
+.weapon-item, .artifact-item { 
+    display: flex;               /* Ustawia elementy wewnątrz kontenera w jednym rzędzie */
+    align-items: center;         /* Wyrównuje elementy pionowo do środka */
+    margin-bottom: 10px;         /* Odstęp poniżej elementu */
+}
+
+.weapon-item strong, .artifact-item strong { 
+    margin: 0;                   /* Usuń ewentualny dodatkowy odstęp wokół tekstu */
+}
+
+.weapon-comment, .artifact-comment {
+    border: 2px solid red;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.weapon-comment p, .artifact-comment p {
+    margin: 10px; /* Usuwa dodatkowe marginesy między paragrafami */
+}
+
+.character-list, .weapon-list, .artifact-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.character-list li .weapon-list li, .artifact-list li {
+    margin: 0 0 10px 0;
+}
+
+.character-list button, .weapon-list button, .artifact-list button {
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: #34495e;
+    border: none;
+    text-align: center; /* Wyśrodkowanie tekstu */
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column; /* Ustawia ikonę nad tekstem */
+    align-items: center;
+    gap: 5px; /* Odstęp między ikoną a tekstem */
+	transition: background-color 0.3s, color 0.3s; /* Płynna zmiana koloru */
+}
+
+.character-list button:hover, .weapon-list button:hover, .artifact-list button:hover {
+    background-color: #1abc9c;
+}
+
+.character-list button.active, .weapon-list button.active, .artifact-list button.active {
+    background-color: #1abc9c; /* Kolor tła dla aktywnego przycisku */
+    color: white; /* Kolor tekstu dla aktywnego przycisku */
+    font-weight: bold; /* Pogrubienie tekstu dla lepszej widoczności */
+}
+
+.character-image, .weapon-image, .artifact-image {
+    width: 110px; /* Dopasuj rozmiar do swoich potrzeb */
+    height: 110px; /* Dopasuj rozmiar do swoich potrzeb */
+    border-radius: 30%; /* Jeśli chcesz, aby obrazki były okrągłe */
+    margin-right: 10px; /* Odstęp między obrazkiem a tekstem */
+}
+
+
+.character-list i, .weapon-list i, .artifact-list i {
+    margin-right: 10px;
+}
+
+.character-content, .weapon-content, .artifact-content {
+    display: none;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.character-content.active, .weapon-content.active, .artifact-content.active {
+    display: block;
+}
+
+.owned-checkbox {
+   transform: scale(1.8); /* Powiększa checkboxa 1,5 razy */
+}
+
+/* Stylizacja dla posiadanych postaci */
+.team-role p[data-character].owned {
+    color: green;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* Główna tabela */
+.info-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ccc; /* Ramka dla całej tabeli */
+    border-radius: 10px;
+    width: 700px;
+    height: auto;
+    margin: 50px auto; /* Zwiększony margines górny dla przesunięcia tabeli */
+    background-color: #2c3e50; /* Jasne tło */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 10px;
+}
+
+/* Nazwa postaci nad tabelą */
+.character-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: -20px; /* Zmniejszenie marginesu dolnego, aby nazwa była bliżej tabeli */
+    text-align: center;
+    background-color: #fffbea; /* Jasno-żółte tło */
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 2px solid #ffd700;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    position: relative;
+    top: 30px; /* Przesunięcie w dół */
+    margin: auto;
+}
+
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+.image-cell {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.details-cell {
+    flex: 2;
+    padding: 10px;
+}
+
+.character-portrait {
+    width: 330px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid red;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #000000;
+}
+
+.info-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.info-details-table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-details-table td:first-child {
+    font-weight: bold;
+    color: white;
+}
+
+.info-details-table td:last-child {
+    text-align: left;
+    color: white;
+}
+
+.rating-image {
+    width: 30px;
+    height: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.weaponicon-image {
+    width: 40px;
+    height: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    vertical-align: middle; /* Ustawia obraz na środku tekstu */
+}
+
+.element-image {
+    width: 40px;
+    height: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    vertical-align: middle; /* Ustawia obraz na środku tekstu */
+}
+
+.filter-container {
+    margin-bottom: 20px;
+}
+
+#character-filter {
+    padding: 5px;
+    font-size: 14px;
+}
+
+.element-filter {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.hide-letter {
+  font-size: 0; /* Ukrywa tekst, ale nie wpływa na układ */
+}
+
+.hide-letter img {
+  vertical-align: middle; /* Upewnij się, że obrazek jest w odpowiedniej pozycji */
+}
+
+#no-teams-message {
+    display: none;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* 🌒 Tryb ciemny */
+body.dark {
+    background-color: #121212;
+    color: #eee;
+}
+body.dark a, body.dark button {
+    color: #ddd;
+    background-color: #333;
+    border-color: #555;
+}
+
+/* 🔽 Styl akordeonu */
+.accordion-toggle {
+    background: #444;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    outline: none;
+}
+.accordion-toggle:hover {
+    background: #555;
+}
+.accordion-content {
+    display: none;
+    padding: 10px;
+    background: #222;
+}
+
+
+#character-image-container img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+#character-image-container img:hover {
+  transform: scale(1.05);
+}
+
+
+/* === Styl dla portretu postaci obok sekcji Info === */
+.info-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.portrait-img {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}

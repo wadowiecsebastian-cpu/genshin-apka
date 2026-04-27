@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Character Code Generator (asc/tal templates + pick-lists)</title>
+  <style>
+    :root {
+      --bg: #0f1220;
+      --panel: #171a2b;
+      --muted: #8e95b3;
+      --text: #e6e8f5;
+      --accent: #6aa8ff;
+      --accent-2: #9b8cff;
+      --ok: #2ecc71;
+      --danger: #ff6b6b;
+      --border: #262a44;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -20%, #18203a 0%, #0f1220 60%);
+      color: var(--text);
+    }
+    header { padding: 18px 22px; border-bottom: 1px solid var(--border); display:flex; align-items:center; gap:16px; background:#10142a99; backdrop-filter: blur(6px); position: sticky; top: 0; z-index: 4; }
+    header h1 { font-size: 18px; margin: 0; letter-spacing: .3px; }
+    header .badge { font-size: 12px; color: #cfd6ff; background: linear-gradient(90deg, #2b3151, #1d2341); border: 1px solid var(--border); padding: 3px 8px; border-radius: 100px; }
+
+    .container { max-width: 1100px; padding: 24px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 22px; }
+
+    .card { background: linear-gradient(180deg, #141832, #12162c 60%); border:1px solid var(--border); border-radius: 14px; box-shadow: 0 10px 30px #0b0e1b inset, 0 0 0 1px #0b0e1b; overflow: hidden; }
+    .card h2 { font-size: 14px; font-weight: 600; letter-spacing: .4px; color: #cfd6ff; margin: 0; padding: 12px 14px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #171c39, #131833); display:flex; align-items:center; justify-content: space-between; }
+    .card .body { padding: 14px; }
+
+    label { font-size: 12px; color: var(--muted); display:block; margin: 12px 0 6px; }
+    input[type="text"], select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #0f1330; color: var(--text); outline: none; }
+    input[type="text"]::placeholder { color: #778; }
+
+    .row { display:grid; gap: 12px; grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .row-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    .actions { display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    button { appearance: none; border: 1px solid var(--border); background: linear-gradient(180deg, #1b2142, #0e1436); color: var(--text); padding: 10px 14px; border-radius: 12px; cursor: pointer; font-weight: 600; letter-spacing: .2px; }
+    button:hover { filter: brightness(1.1); }
+    .btn-primary { border-color: #2b3b7a; background: linear-gradient(180deg, #2b3b7a, #1b275c); }
+    .btn-ok { border-color: #256f4a; background: linear-gradient(180deg, #2e9b62, #1f6a45); }
+    .btn-danger { border-color: #7a2b2b; background: linear-gradient(180deg, #b83d3d, #7a2b2b); }
+
+    .hint { font-size: 12px; color: var(--muted); }
+    .muted { color: var(--muted); }
+
+    .preview { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12.5px; line-height: 1.5; background: #0b0e22; border: 1px solid var(--border); border-radius: 12px; padding: 12px; color: #dfe3ff; min-height: 220px; white-space: pre; overflow: auto; }
+
+    .pill { display:inline-flex; align-items:center; gap:6px; padding: 6px 9px; border: 1px solid var(--border); border-radius: 999px; background: #10163b; font-size: 12px; color: #cbd5ff; margin: 4px 6px 0 0; }
+
+    details { border-top: 1px dashed var(--border); margin-top: 16px; padding-top: 10px; }
+    summary { cursor: pointer; color:#cfd6ff; }
+    code.inline { background:#0b0f28; border:1px solid var(--border); padding:2px 6px; border-radius:6px; }
+
+    table { width:100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px dashed var(--border); padding: 8px 6px; font-size: 13px; }
+    th { text-align:left; color:#c1c7ee; font-weight:600; }
+
+    .footer { margin-top: 20px; font-size: 12px; color: var(--muted); display:flex; gap:12px; flex-wrap: wrap; }
+  </style>
+  <!-- Ładujemy zewnętrzny plik z listami wyboru -->
+  <script src="picksData.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Character Code Generator</h1>
+    <span class="badge">Fixed asc/tal templates • Pick-lists</span>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <!-- Left: Form & Queue -->
+      <section class="card">
+        <h2>
+          Input
+          <span class="hint">Wpisz lub wybierz z list (Name, Element, Picks)</span>
+        </h2>
+        <div class="body">
+          <div class="row">
+            <div>
+              <label for="name">Character name (key)</label>
+              <input id="name" type="text" placeholder="Alhaitham" />
+            </div>
+            <div>
+              <label for="element">Element</label>
+              <select id="element">
+                <option value="Anemo">Anemo</option>
+                <option value="Geo">Geo</option>
+                <option value="Electro">Electro</option>
+                <option value="Dendro" selected>Dendro</option>
+                <option value="Pyro">Pyro</option>
+                <option value="Hydro">Hydro</option>
+                <option value="Cryo">Cryo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row-3" style="margin-top: 2px;">
+            <div>
+              <label for="bossNormal">picks.bossNormal</label>
+              <input id="bossNormal" type="text" placeholder="boss_Pseudo-Stamens" autocomplete="off" />
+            </div>
+            <div>
+              <label for="local">picks.local</label>
+              <input id="local" type="text" placeholder="local_Sand Grease Pupa" autocomplete="off" />
+            </div>
+            <div>
+              <label for="enAsc">picks.enemiesAsc</label>
+              <input id="enAsc" type="text" placeholder="silk" autocomplete="off" />
+            </div>
+            <div>
+              <label for="books">picks.books</label>
+              <input id="books" type="text" placeholder="ingenuity" autocomplete="off" />
+            </div>
+            <div>
+              <label for="enTal">picks.enemiesTal</label>
+              <input id="enTal" type="text" placeholder="silk" autocomplete="off" />
+            </div>
+            <div>
+              <label for="bossWeekly">picks.bossWeekly</label>
+              <input id="bossWeekly" type="text" placeholder="weekly_Scaramouche1" autocomplete="off" />
+            </div>
+          </div>
+          <p class="hint" id="listsStatus" style="margin:8px 2px 0;">Listy: <em>ładowanie…</em></p>
+
+          <div class="actions">
+            <button class="btn-primary" id="addBtn">Add character to queue</button>
+            <button id="clearFormBtn">Clear form</button>
+            <button class="btn-danger" id="clearQueueBtn">Clear queue</button>
+          </div>
+
+          <details>
+            <summary>Show fixed templates (asc, tal)</summary>
+            <div class="row">
+              <div>
+                <label>Ascension template (read‑only)</label>
+                <div class="preview" id="ascTplPreview"></div>
+              </div>
+              <div>
+                <label>Talent template (read‑only)</label>
+                <div class="preview" id="talTplPreview"></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Right: Output -->
+      <section class="card">
+        <h2>
+          Output
+          <span class="hint"><span id="count">0</span> in queue</span>
+        </h2>
+        <div class="body">
+          <div class="preview" id="codePreview">// Your generated code will appear here…</div>
+          <div class="actions">
+            <button class="btn-ok" id="copyBtn">Copy to clipboard</button>
+            <button id="downloadBtn">Download .js</button>
+          </div>
+
+          <h3 style="margin: 16px 2px 6px; font-size: 13px; color:#cfd6ff;">Queued characters</h3>
+          <table id="queueTable" aria-label="Queued characters">
+            <thead>
+              <tr>
+                <th style="width:18%">Name</th>
+                <th style="width:12%">Element</th>
+                <th>Picks</th>
+                <th style="width:70px">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      <div>• Możesz pisać ręcznie lub wybierać z list (datalist). Listy są dostarczane z pliku <code class="inline">picksData.js</code>.</div>
+      <div>• Podgląd generuje gotowy <em>JS object literal</em> z komentarzami (nie JSON).</div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Fixed templates (data for logic) =====
+    const ASC_TEMPLATE = [
+      { mora:20000,  gems:{t1:1,t2:0,t3:0,t4:0}, enemy:{t1:3,t2:0,t3:0}, local:3,  boss:0  }, // 0→1
+      { mora:40000,  gems:{t1:0,t2:3,t3:0,t4:0}, enemy:{t1:15,t2:0,t3:0},local:10, boss:2  }, // 1→2
+      { mora:60000,  gems:{t1:0,t2:6,t3:0,t4:0}, enemy:{t1:0,t2:12,t3:0},local:20, boss:4  }, // 2→3 (Trimmed Red Silk)
+      { mora:80000,  gems:{t1:0,t2:0,t3:3,t4:0}, enemy:{t1:0,t2:18,t3:0},local:30, boss:8  }, // 3→4
+      { mora:100000, gems:{t1:0,t2:0,t3:6,t4:0}, enemy:{t1:0,t2:0,t3:12},local:45, boss:12 }, // 4→5 (Rich Red Brocade)
+      { mora:120000, gems:{t1:0,t2:0,t3:0,t4:6}, enemy:{t1:0,t2:0,t3:24},local:60, boss:20 }, // 5→6
+    ];
+    const ASC_LABELS = [
+      "0→1", "1→2", "2→3 (Trimmed Red Silk)", "3→4", "4→5 (Rich Red Brocade)", "5→6"
+    ];
+
+    const TAL_TEMPLATE = [
+      { books:{t1:3,t2:0,t3:0},  enemy:{t1:6,t2:0,t3:0},  weekly:0, crown:0 }, // 1→2
+      { books:{t1:0,t2:2,t3:0},  enemy:{t1:0,t2:3,t3:0},  weekly:0, crown:0 }, // 2→3
+      { books:{t1:0,t2:4,t3:0},  enemy:{t1:0,t2:4,t3:0},  weekly:0, crown:0 }, // 3→4
+      { books:{t1:0,t2:6,t3:0},  enemy:{t1:0,t2:6,t3:0},  weekly:0, crown:0 }, // 4→5
+      { books:{t1:0,t2:9,t3:0},  enemy:{t1:0,t2:9,t3:0},  weekly:0, crown:0 }, // 5→6
+      { books:{t1:0,t2:0,t3:4},  enemy:{t1:0,t2:0,t3:4},  weekly:1, crown:0 }, // 6→7 +1 weekly
+      { books:{t1:0,t2:0,t3:6},  enemy:{t1:0,t2:0,t3:6},  weekly:1, crown:0 }, // 7→8 +1 weekly
+      { books:{t1:0,t2:0,t3:12}, enemy:{t1:0,t2:0,t3:9},  weekly:2, crown:0 }, // 8→9 +2 weekly
+      { books:{t1:0,t2:0,t3:16}, enemy:{t1:0,t2:0,t3:12}, weekly:2, crown:1 }, // 9→10 +2 weekly + Crown
+    ];
+    const TAL_LABELS = [
+      "1→2", "2→3", "3→4", "4→5", "5→6", "6→7 +1 weekly", "7→8 +1 weekly", "8→9 +2 weekly", "9→10 +2 weekly + Crown"
+    ];
+
+    // ===== DATALISTS (from picksData.js) =====
+    const listsStatus = document.getElementById("listsStatus");
+    const DL_CONTAINER_ID = "datalist-container";
+
+    function coerceItems(arr) {
+      // Accept: ["value", ...] or [{ value, label }]
+      return (arr || []).map(x => {
+        if (typeof x === "string") return { value: x, label: x };
+        const v = String(x.value ?? x.key ?? "");
+        const l = String(x.label ?? x.name ?? v);
+        return { value: v, label: l };
+      });
+    }
+
+    function attachDatalist(inputEl, id, items) {
+      const container = document.getElementById(DL_CONTAINER_ID) || (() => {
+        const d = document.createElement("div");
+        d.id = DL_CONTAINER_ID; d.style.display = "contents"; document.body.appendChild(d); return d; })();
+
+      const dl = document.createElement("datalist");
+      dl.id = id;
+      for (const it of coerceItems(items)) {
+        const opt = document.createElement("option");
+        opt.value = it.value; // display in input
+        opt.label = it.label; // visible in dropdown
+        dl.appendChild(opt);
+      }
+      container.appendChild(dl);
+      inputEl.setAttribute("list", id);
+    }
+
+    function initPickLists() {
+      const ok = (typeof window.PICKS_LISTS === "object" && window.PICKS_LISTS !== null);
+      if (!ok) {
+        listsStatus.innerHTML = "Listy: <span style=\"color:#ffb4b4\">nie znaleziono pliku picksData.js — działam bez podpowiedzi</span>";
+        return;
+      }
+      try {
+        const map = [
+          { el: document.getElementById("bossNormal"), key: "bossNormal" },
+          { el: document.getElementById("local"), key: "local" },
+          { el: document.getElementById("enAsc"), key: "enemiesAsc" },
+          { el: document.getElementById("books"), key: "books" },
+          { el: document.getElementById("enTal"), key: "enemiesTal" },
+          { el: document.getElementById("bossWeekly"), key: "bossWeekly" },
+        ];
+        for (const {el, key} of map) {
+          const items = (window.PICKS_LISTS?.[key] || []);
+          if (el && items.length) attachDatalist(el, `dl_${key}` , items);
+        }
+        listsStatus.textContent = "Listy: załadowano z picksData.js";
+      } catch (e) {
+        console.error("Pick-lists init error", e);
+        listsStatus.innerHTML = "Listy: <span style=\"color:#ffb4b4\">błąd inicjalizacji</span>";
+      }
+    }
+
+    // ===== UI State =====
+    const queue = [];
+
+    // ===== DOM =====
+    const elName = document.getElementById("name");
+    const elElement = document.getElementById("element");
+    const elBossNormal = document.getElementById("bossNormal");
+    const elLocal = document.getElementById("local");
+    const elEnAsc = document.getElementById("enAsc");
+    const elBooks = document.getElementById("books");
+    const elEnTal = document.getElementById("enTal");
+    const elBossWeekly = document.getElementById("bossWeekly");
+
+    const codePreview = document.getElementById("codePreview");
+    const ascTplPreview = document.getElementById("ascTplPreview");
+    const talTplPreview = document.getElementById("talTplPreview");
+    const count = document.getElementById("count");
+    const tableBody = document.querySelector("#queueTable tbody");
+
+    // ===== Init template previews =====
+    ascTplPreview.textContent = `asc: [\n${ASC_TEMPLATE.map((r,i)=>`  { mora:${r.mora}, gems:{t1:${r.gems.t1},t2:${r.gems.t2},t3:${r.gems.t3},t4:${r.gems.t4}}, enemy:{t1:${r.enemy.t1},t2:${r.enemy.t2},t3:${r.enemy.t3}}, local:${r.local}, boss:${r.boss} }, // ${ASC_LABELS[i]}`).join("\n")}\n]`;
+    talTplPreview.textContent = `tal: [\n${TAL_TEMPLATE.map((r,i)=>`  { books:{t1:${r.books.t1},t2:${r.books.t2},t3:${r.books.t3}}, enemy:{t1:${r.enemy.t1},t2:${r.enemy.t2},t3:${r.enemy.t3}}, weekly:${r.weekly}, crown:${r.crown} }, // ${TAL_LABELS[i]}`).join("\n")}\n]`;
+
+    // ===== Event handlers =====
+    document.getElementById("addBtn").addEventListener("click", () => {
+      const name = (elName.value || "").trim();
+      if (!name) { alert("Podaj nazwę postaci (name)."); elName.focus(); return; }
+      const element = elElement.value;
+      const picks = {
+        bossNormal: (elBossNormal.value || "").trim(),
+        local: (elLocal.value || "").trim(),
+        enemiesAsc: (elEnAsc.value || "").trim(),
+        books: (elBooks.value || "").trim(),
+        enemiesTal: (elEnTal.value || "").trim(),
+        bossWeekly: (elBossWeekly.value || "").trim(),
+      };
+
+      const missing = Object.entries(picks).filter(([,v]) => !v).map(([k])=>k);
+      if (missing.length) {
+        if (!confirm(`Brakujące pola: ${missing.join(", ")}\nDodać mimo to?`)) return;
+      }
+
+      const idx = queue.findIndex(it => it.name === name);
+      const payload = { name, element, picks };
+      if (idx >= 0) queue[idx] = payload; else queue.push(payload);
+
+      renderQueue();
+      renderOutput();
+      clearForm(false);
+    });
+
+    document.getElementById("clearFormBtn").addEventListener("click", () => clearForm(true));
+    document.getElementById("clearQueueBtn").addEventListener("click", () => {
+      if (!queue.length) return;
+      if (confirm("Wyczyścić całą kolejkę?")) {
+        queue.splice(0, queue.length);
+        renderQueue();
+        renderOutput();
+      }
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const text = codePreview.textContent;
+      try { await navigator.clipboard.writeText(text); alert("Skopiowano do schowka."); } catch {
+        const ta = document.createElement("textarea");
+        ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
+        alert("Skopiowano (fallback).");
+      }
+    });
+
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const code = codePreview.textContent;
+      const blob = new Blob([code + "\n"], { type: "application/javascript;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "characters.generated.js";
+      document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+    });
+
+    function clearForm(full) {
+      if (full) elName.value = "";
+      elBossNormal.value = "";
+      elLocal.value = "";
+      elEnAsc.value = "";
+      elBooks.value = "";
+      elEnTal.value = "";
+      elBossWeekly.value = "";
+    }
+
+    function renderQueue() {
+      count.textContent = String(queue.length);
+      tableBody.innerHTML = "";
+      for (const it of queue) {
+        const tr = document.createElement("tr");
+        const picksSummary = `bossNormal: "${it.picks.bossNormal}", local: "${it.picks.local}", enemiesAsc: "${it.picks.enemiesAsc}", books: "${it.picks.books}", enemiesTal: "${it.picks.enemiesTal}", bossWeekly: "${it.picks.bossWeekly}"`;
+        tr.innerHTML = `
+          <td>"${it.name}"</td>
+          <td>${it.element}</td>
+          <td class="muted">${picksSummary}</td>
+          <td>
+            <button data-act="remove" data-name="${it.name}">Del</button>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      }
+      tableBody.querySelectorAll('button[data-act="remove"]').forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const nm = e.currentTarget.getAttribute("data-name");
+          const i = queue.findIndex(x => x.name === nm);
+          if (i >= 0) { queue.splice(i,1); renderQueue(); renderOutput(); }
+        });
+      });
+    }
+
+    function renderOneEntry(it) {
+      const picksStr = [
+        `        bossNormal: "${it.picks.bossNormal}",`,
+        `        local: "${it.picks.local}",`,
+        `        enemiesAsc: "${it.picks.enemiesAsc}",`,
+        `        books: "${it.picks.books}",`,
+        `        enemiesTal: "${it.picks.enemiesTal}",`,
+        `        bossWeekly: "${it.picks.bossWeekly}"`
+      ].join("\n");
+
+      return `"${it.name}": {\n      element: "${it.element}",\n      picks: {\n${picksStr}\n      },\n      asc: [\n${ASC_TEMPLATE.map((row, i) => `        { mora:${row.mora}, gems:{t1:${row.gems.t1},t2:${row.gems.t2},t3:${row.gems.t3},t4:${row.gems.t4}}, enemy:{t1:${row.enemy.t1},t2:${row.enemy.t2},t3:${row.enemy.t3}}, local:${row.local}, boss:${row.boss} }, // ${ASC_LABELS[i]}`).join("\n")}\n      ],\n      tal: [\n${TAL_TEMPLATE.map((row, i) => `        { books:{t1:${row.books.t1},t2:${row.books.t2},t3:${row.books.t3}}, enemy:{t1:${row.enemy.t1},t2:${row.enemy.t2},t3:${row.enemy.t3}}, weekly:${row.weekly}, crown:${row.crown} }, // ${TAL_LABELS[i]}`).join("\n")}\n      ]\n    }`;
+    }
+
+    function renderOutput() {
+      if (!queue.length) {
+        codePreview.textContent = `// Your generated code will appear here…`;
+        return;
+      }
+      if (queue.length === 1) {
+        codePreview.textContent = renderOneEntry(queue[0]);
+        return;
+      }
+      const entries = queue.map(renderOneEntry).join(",\n\n    ");
+      const wrapped = `{
+    ${entries}
+}`;
+      codePreview.textContent = wrapped;
+    }
+
+    // Demo fill (optional) – shows formatting
+    (function demoFill(){
+      document.getElementById("name").value = "Alhaitham";
+      document.getElementById("element").value = "Dendro";
+      document.getElementById("bossNormal").value = "boss_Pseudo-Stamens";
+      document.getElementById("local").value = "local_Sand Grease Pupa";
+      document.getElementById("enAsc").value = "silk";
+      document.getElementById("books").value = "ingenuity";
+      document.getElementById("enTal").value = "silk";
+      document.getElementById("bossWeekly").value = "weekly_Scaramouche1";
+    })();
+
+    // Initialize pick-lists after DOM and picksData.js
+    window.addEventListener("DOMContentLoaded", initPickLists);
+  </script>
+</body>
+</html>

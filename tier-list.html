@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tier List</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/global-nav.css" />
+  
+  <link rel="stylesheet" href="css/tier-list.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+</head>
+<body>
+  <nav id="global-nav"></nav>
+
+  <section class="app-page-intro app-page-intro--compact app-page-intro--wide">
+    <div class="app-page-kicker">Tier List</div>
+    <h1>Tier List</h1>
+    <p>Przeglądaj oceny postaci w spójnym widoku. Obecne filtry i przełączniki pozostają bez zmian.</p>
+  </section>
+
+  <div class="tier-grid-container">
+    <div class="tier-grid" id="tier-grid">
+      <!-- Zostanie wypełnione przez JavaScript -->
+    </div>
+  </div>
+
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/view-memory.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/tier-history.js"></script>
+  <script src="js/global-nav.js"></script>
+  <script src="js/tier-list.js"></script>
+</body>
+</html>

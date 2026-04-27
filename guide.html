@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Genshin Tracker – Boss Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Główny styl + pager z character.css -->
+  <link rel="stylesheet" href="css/materials.css" />
+  <link rel="stylesheet" href="character.css" />
+  <style>
+    .page { padding: 16px; max-width: 1100px; margin: 0 auto; }
+    .hero {
+      display:flex; gap:16px; align-items:center;
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:14px; padding:14px 16px;
+    }
+    .hero img{ width:240px;height:240px;border-radius:12px;border:1px solid var(--border);object-fit:cover;background:#101522; }
+    .hero h2{ margin:0 0 6px 0; }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+    .chip{ background:var(--chip); border:1px solid var(--border); color:var(--muted); padding:6px 10px; border-radius:999px; font-size:13px; }
+
+    .section{ margin-top:18px; }
+    .panel{ background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px 16px; }
+    .panel-head{ margin-bottom:10px; }
+    .panel-head h2{ margin:0; font-size:1.25rem; }
+    .muted{ color:var(--muted); }
+
+    .guide-steps{ display:flex; flex-direction:column; gap:12px; }
+    .step{ background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px; }
+    .step-title{ font-weight:700; margin-bottom:6px; }
+    .substeps{ margin:8px 0 0 18px; }
+
+    .team{ background:#181d2c; border:1px solid var(--border); border-radius:10px; padding:12px; display:flex; gap:12px; align-items:flex-start; }
+    .team .meta{ flex:1; }
+    .members{ margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px; }
+    .member{ background:#12172a; border:1px solid var(--border); border-radius:8px; padding:10px; display:flex; gap:10px; align-items:center; }
+    .member .avatar{
+      width:44px; height:44px; border-radius:8px; object-fit:cover;
+      border:1px solid var(--border); flex:0 0 44px;
+    }
+    .member .info{ display:flex; flex-direction:column; }
+    .member b{ line-height:1.1; }
+  </style>
+<link rel="stylesheet" href="css/global-nav.css">
+<link rel="stylesheet" href="css/settings-overrides.css" />
+<link rel="stylesheet" href="css/app-shell.css" />
+</head>
+<body>
+<nav id="global-nav"></nav>
+
+  <header class="app-header">
+    <h1>Genshin Tracker – Boss Guide</h1>
+  </header>
+
+  <main class="page" id="page">
+    <!-- MINI-NAWIGACJA (jak w character.html) -->
+    <section class="section">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Boss Navigation</h2>
+          <small>Arrow keys ←/→ also work</small>
+        </div>
+        <div id="boss-pager" class="pager"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- współdzielone dane -->
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/materials.js"></script>
+  <script src="js/bosses.js"></script>
+  <script>
+    (function(){
+      const page = document.getElementById('page');
+      const url  = new URL(location.href);
+      let idRaw = url.searchParams.get('id') || '';
+      let id = idRaw.toLowerCase();
+
+      function el(tag, cls, html){
+        const n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (html!=null) n.innerHTML = html;
+        return n;
+      }
+
+      function renderNotFound(){
+        const wrap = el('div','not-found');
+        wrap.innerHTML = "<h2>Boss not found</h2><p>Open this page via <code>guide.html?id=&lt;boss_id&gt;</code>.</p>";
+        page.appendChild(wrap);
+      }
+
+      function renderHero(b){
+        const hero = el('section','hero section');
+        const img = el('img');
+        img.src = b.imageBase + ".png";
+        img.alt = b.name;
+
+        const meta = el('div','');
+        meta.appendChild(el('h2', '', b.name));
+        const chips = el('div','chips');
+        chips.appendChild(el('span','chip', 'Region: <b>'+ (b.region||'—') +'</b>'));
+        chips.appendChild(el('span','chip', 'Type: <b>'+ (b.type||'—') +'</b>'));
+        meta.appendChild(chips);
+
+        hero.append(img, meta);
+        page.appendChild(hero);
+      }
+
+      function renderGuide(b){
+        const sec = el('section','section');
+        const panel = el('div','panel');
+        panel.appendChild(el('div','panel-head','<h2>Guide</h2><div class="muted">Battle tips &amp; mechanics</div>'));
+
+        const list = el('div','guide-steps');
+        (b.guide||[]).forEach(g=>{
+          const step = el('div','step');
+          step.appendChild(el('div','step-title', g.text || ''));
+          if (Array.isArray(g.substeps) && g.substeps.length){
+            const ul = el('ul','substeps');
+            g.substeps.forEach(s => ul.appendChild(el('li','', s)));
+            step.appendChild(ul);
+          }
+          list.appendChild(step);
+        });
+
+        if (!(b.guide||[]).length){
+          panel.appendChild(el('div','muted','No guide steps defined for this boss.'));
+        } else {
+          panel.appendChild(list);
+        }
+        sec.appendChild(panel);
+        page.appendChild(sec);
+      }
+
+      /* ============ Team avatars from images/characters ============ */
+      function buildCharImageCandidates(name){
+        const base = String(name||'').trim();
+        const variants = [
+          base,
+          base.replace(/\s+/g,'_'),
+        ];
+        const exts = ['.png','.webp','.jpg','.jpeg'];
+        const paths = [];
+        for (const v of variants){
+          for (const e of exts){ paths.push(`images/characters/${v}${e}`); }
+        }
+        return paths;
+      }
+
+      function attachSequentialSources(img, paths){
+        let i = 0;
+        function tryNext(){
+          if (i >= paths.length){ img.style.display = 'none'; return; }
+          img.src = paths[i++];
+        }
+        img.onerror = tryNext;
+        tryNext();
+      }
+
+      function renderTeams(b){
+        const sec = el('section','section');
+        const panel = el('div','panel');
+        panel.appendChild(el('div','panel-head','<h2>Recommended teams</h2><div class="muted">Community-favorite comps</div>'));
+
+        const teams = b.teams || [];
+        if (!teams.length){
+          panel.appendChild(el('div','muted','No teams defined for this boss.'));
+          sec.appendChild(panel);
+          page.appendChild(sec);
+          return;
+        }
+
+        teams.forEach(t=>{
+          const card = el('div','team');
+          const meta = el('div','meta');
+          meta.appendChild(el('h3','', t.name || 'Team'));
+          const members = el('div','members');
+
+          (t.members||[]).forEach(m=>{
+            const mem = el('div','member');
+
+            const avatar = el('img','avatar');
+            attachSequentialSources(avatar, buildCharImageCandidates(m.name));
+
+            const info = el('div','info');
+            info.innerHTML = '<b>'+ (m.name||'') +'</b><span class="muted">'+ (m.role||'') +'</span>';
+
+            mem.append(avatar, info);
+            members.appendChild(mem);
+          });
+
+          meta.appendChild(members);
+          card.appendChild(meta);
+          panel.appendChild(card);
+        });
+
+        sec.appendChild(panel);
+        page.appendChild(sec);
+      }
+
+      /* ===== MINI-NAWIGACJA (jak w character.js) ===== */
+      function getBossesListSafely(){
+        try { if (typeof BOSSES !== 'undefined' && Array.isArray(BOSSES)) return BOSSES; }
+        catch(e){}
+        if (typeof window !== 'undefined' && Array.isArray(window.BOSSES)) return window.BOSSES;
+        return [];
+      }
+      function imgForBoss(b){ return (b?.imageBase ? (b.imageBase + '.png') : ''); }
+
+      let bossList = [];
+      let currentIndex = 0;
+
+      function renderPager(){
+        const wrap = document.querySelector('#boss-pager');
+        wrap.innerHTML = '';
+        if (!bossList.length) return;
+
+        // Prev
+        const prev = document.createElement('button');
+        prev.className = 'page-btn' + (currentIndex<=0 ? ' disabled' : '');
+        prev.textContent = '‹';
+        prev.title = 'Poprzedni boss';
+        if (currentIndex>0) prev.onclick = ()=> goToIndex(currentIndex-1);
+        wrap.appendChild(prev);
+
+        const n = bossList.length;
+        const start = Math.max(0, currentIndex - 2);
+        const end   = Math.min(n - 1, currentIndex + 2);
+
+        for (let i = start; i <= end; i++){
+          const b = bossList[i];
+          const btn = document.createElement('button');
+          btn.className = 'page-btn' + (i===currentIndex ? ' active' : '');
+          btn.title = b.name;
+
+          const img = document.createElement('img');
+          img.className = 'ppic';
+          img.src = imgForBoss(b);
+          img.alt = b.name;
+          img.onerror = ()=>{ img.style.display='none'; };
+
+          const name = document.createElement('span');
+          name.className = 'name';
+          name.textContent = b.name;
+
+          btn.append(img, name);
+          if (i!==currentIndex) btn.onclick = ()=> goToIndex(i);
+          wrap.appendChild(btn);
+        }
+
+        // Next
+        const next = document.createElement('button');
+        next.className = 'page-btn' + (currentIndex>=n-1 ? ' disabled' : '');
+        next.textContent = '›';
+        next.title = 'Następny boss';
+        if (currentIndex<n-1) next.onclick = ()=> goToIndex(currentIndex+1);
+        wrap.appendChild(next);
+      }
+
+      function goToIndex(idx){
+        currentIndex = Math.max(0, Math.min(idx, bossList.length-1));
+        const target = bossList[currentIndex];
+        if (target?.id){
+          location.href = `guide.html?id=${encodeURIComponent(target.id)}`;
+        }
+      }
+
+      function main(){
+        // Debug
+        console.log('[Guide] id from URL =', idRaw);
+
+        bossList = getBossesListSafely();
+        if (!bossList.length){ console.warn('[Guide] BOSSES not available'); renderNotFound(); return; }
+
+        let idx = bossList.findIndex(x => String(x.id||'').toLowerCase() === id);
+        if (!id || idx < 0){
+          console.warn('[Guide] No id or boss not found. Defaulting to first boss.', idRaw);
+          idx = 0;
+        }
+        currentIndex = idx;
+
+        // Render pager i treści
+        renderPager();
+        const boss = bossList[currentIndex];
+        renderHero(boss);
+        renderGuide(boss);
+        renderTeams(boss);
+
+        // Skróty klawiaturowe
+        window.addEventListener('keydown', (e)=>{
+          if (e.target && (e.target.tagName==='INPUT' || e.target.tagName==='TEXTAREA')) return;
+          if (e.key === 'ArrowLeft'  && currentIndex>0) goToIndex(currentIndex-1);
+          if (e.key === 'ArrowRight' && currentIndex<bossList.length-1) goToIndex(currentIndex+1);
+          if (e.key === 'Home') goToIndex(0);
+          if (e.key === 'End')  goToIndex(bossList.length-1);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', main, { once:true });
+    })();
+  </script>
+<script src="js/global-nav.js"></script>
+</body>
+</html>

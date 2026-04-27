@@ -1,0 +1,293 @@
+:root{
+  --app-bg: #101014;
+  --app-text: #ddd;
+  --app-text-muted: rgba(221,221,221,.72);
+  --app-card: #171a20;
+  --app-accent: #3252ff;
+
+  --app-contrast: 1;
+  --app-radius: 12px;
+  --app-shadow: 0 10px 28px rgba(0,0,0,.30);
+
+  --app-card-border: 1px solid rgba(255,255,255,.10);
+  --app-section-headers: 1; /* 1=on, 0=off */
+  --app-density: 1; /* 0=compact,1=normal,2=large */
+}
+
+html[data-theme="light"]{
+  --app-bg:#f6f7fb;
+  --app-text:#111;
+  --app-text-muted: rgba(17,17,17,.66);
+  --app-card:#ffffff;
+  --app-card-border: 1px solid rgba(0,0,0,.10);
+  --app-shadow: 0 10px 28px rgba(0,0,0,.10);
+}
+
+html[data-theme="amoled"]{
+  --app-bg:#000;
+  --app-card:#090909;
+  --app-card-border: 1px solid rgba(255,255,255,.10);
+  --app-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+html{
+  background: var(--app-bg) !important;
+  color: var(--app-text) !important;
+}
+
+body{
+  background: var(--app-bg) !important;
+  color: var(--app-text) !important;
+  filter: contrast(var(--app-contrast));
+}
+
+a{ color: var(--app-text); }
+a:hover{ color: var(--app-accent); }
+
+/* Karty – delikatnie ujednolicamy bez grzebania w modułach */
+.home-card,
+.set-card,
+.card,
+.panel{
+  border-radius: var(--app-radius) !important;
+  box-shadow: var(--app-shadow) !important;
+}
+
+/* Opcjonalne obramowania kart */
+html[data-card-borders="off"] .home-card,
+html[data-card-borders="off"] .set-card,
+html[data-card-borders="off"] .card,
+html[data-card-borders="off"] .panel{
+  border: none !important;
+}
+
+/* Sticky nav opcjonalne */
+html[data-nav-sticky="off"] #global-nav{
+  position: static !important;
+  top: auto !important;
+  height: auto !important;
+}
+
+/* Reduce motion */
+html[data-motion="off"] *{
+  transition: none !important;
+  animation: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Nav: icons */
+#global-nav .nav-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 18px;
+  margin-right: 6px;
+  opacity: .95;
+}
+#global-nav .nav-text{
+  display:inline-block;
+}
+
+/* Nav: mobile collapse (optional) */
+#global-nav.is-collapsible .nav-toggle{
+  display:none;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: inherit;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 780px){
+  #global-nav.is-collapsible .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  #global-nav.is-collapsible.nav-collapsed a,
+  #global-nav.is-collapsible.nav-collapsed .nav-version-controls{
+    display:none !important;
+  }
+  #global-nav.is-collapsible.nav-collapsed .brand,
+  #global-nav.is-collapsible.nav-collapsed .spacer,
+  #global-nav.is-collapsible.nav-collapsed .nav-toggle{
+    display:inline-flex !important;
+  }
+}
+
+html[data-motion="limited"] *{
+  transition-duration:.08s !important;
+  animation-duration:.12s !important;
+}
+
+html[data-density="compact"] .home-card,
+html[data-density="compact"] .set-card,
+html[data-density="compact"] .team-card,
+html[data-density="compact"] .today-section,
+html[data-density="compact"] .filters,
+html[data-density="compact"] .controls,
+html[data-density="compact"] .ta-card,
+html[data-density="compact"] .pity__card{
+  padding:10px !important;
+}
+
+html[data-density="large"] .home-card,
+html[data-density="large"] .set-card,
+html[data-density="large"] .team-card,
+html[data-density="large"] .today-section,
+html[data-density="large"] .filters,
+html[data-density="large"] .controls,
+html[data-density="large"] .ta-card,
+html[data-density="large"] .pity__card{
+  padding:18px !important;
+}
+
+html[data-compact-spacing="on"] .app-page-intro,
+html[data-compact-spacing="on"] .settings-shell,
+html[data-compact-spacing="on"] .settings-cards,
+html[data-compact-spacing="on"] .home-main,
+html[data-compact-spacing="on"] .today-main{
+  gap:10px !important;
+}
+
+.character-portrait-small,
+.team-member img,
+.today-char-avatar,
+.tp__portrait{
+  width:var(--app-portrait-size, 64px) !important;
+  height:var(--app-portrait-size, 64px) !important;
+}
+
+.owned-character-image,
+.character-filter-avatar{
+  width:calc(var(--app-portrait-size, 64px) + 12px) !important;
+  height:calc(var(--app-portrait-size, 64px) + 12px) !important;
+}
+
+.character-compact{
+  width:calc(var(--app-portrait-size, 64px) + 22px) !important;
+}
+
+.character-name-small{
+  max-width:calc(var(--app-portrait-size, 64px) + 14px) !important;
+}
+
+#app-ui-tooltip{
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:4000;
+  max-width:280px;
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(10,12,18,.96);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 12px 28px rgba(0,0,0,.32);
+  font-size:12px;
+  line-height:1.35;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .12s ease;
+}
+
+#app-ui-tooltip.is-visible{
+  opacity:1;
+}
+
+#app-toast-stack{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:3500;
+  display:grid;
+  gap:10px;
+}
+
+.app-toast{
+  min-width:240px;
+  max-width:360px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:var(--app-card, #171a20);
+  color:var(--app-text, #ddd);
+  border:var(--app-card-border, 1px solid rgba(255,255,255,.10));
+  box-shadow:var(--app-shadow, 0 10px 28px rgba(0,0,0,.30));
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .16s ease, transform .16s ease;
+}
+
+.app-toast.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.app-toast--success{
+  border-color:rgba(94, 214, 128, .48);
+}
+
+.app-toast--error{
+  border-color:rgba(255, 108, 108, .48);
+}
+
+#app-back-to-top{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:3400;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:var(--app-card, #171a20);
+  color:var(--app-text, #ddd);
+  box-shadow:var(--app-shadow, 0 10px 28px rgba(0,0,0,.30));
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .16s ease, transform .16s ease;
+}
+
+#app-back-to-top.is-visible{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+html[data-notifications="on"] #app-back-to-top{
+  bottom:84px;
+}
+
+html[data-performance-mode="on"] body::before{
+  display:none !important;
+}
+
+html[data-performance-mode="on"] .home-card,
+html[data-performance-mode="on"] .set-card,
+html[data-performance-mode="on"] .team-card,
+html[data-performance-mode="on"] .today-section,
+html[data-performance-mode="on"] .ta-card,
+html[data-performance-mode="on"] .pity__card{
+  box-shadow:none !important;
+}
+
+html[data-show-ids="on"] [data-app-debug-id]{
+  position:relative;
+}
+
+html[data-show-ids="on"] [data-app-debug-id]::after{
+  content:attr(data-app-debug-id);
+  position:absolute;
+  top:8px;
+  right:8px;
+  padding:2px 6px;
+  border-radius:999px;
+  background:rgba(0,0,0,.64);
+  color:var(--app-accent, #3252ff);
+  font-size:10px;
+  line-height:1;
+  pointer-events:none;
+  z-index:2;
+}

@@ -1,0 +1,62 @@
+.rotation-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 8px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  justify-content: flex-start;
+}
+.rotation-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 64px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #ccc;
+}
+.rotation-step img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  background: #222;
+}
+.rotation-note {
+  margin-top: 4px;
+}
+
+.rotation-skill-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 4px;
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.rotation-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.rotation-note {
+  font-size: 12px;
+  color: #ccc;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.rotation-step {
+  display: inline-block;
+  width: 80px;
+  margin: 6px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  text-align: center;
+}

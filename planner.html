@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title>Planer farmienia – Drużyny (wg Character Progress)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/planner.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/global-nav.css">
+<link rel="stylesheet" href="css/settings-overrides.css" />
+<link rel="stylesheet" href="css/app-shell.css" />
+</head>
+<body>
+<nav id="global-nav"></nav>
+
+  
+
+  <main class="container">
+    <h1>Planer farmienia – drużyny (≥1 członek w Character Progress)</h1>
+
+    <section class="controls">
+      <div class="controls__row">
+        <label for="search">Szukaj postaci:</label>
+        <input id="search" type="text" placeholder="Wpisz nazwę postaci." />
+      </div>
+
+      <div class="controls__row">
+        <button id="sortByName" class="btn">Sortuj po nazwie (A→Z)</button>
+        <button id="sortByCount" class="btn">Sortuj po liczbie drużyn (↓)</button>
+        <button id="refresh" class="btn btn--ghost" title="Przelicz ponownie z danych">Odśwież</button>
+
+        <!-- Filtr jak w Character Progress -->
+        <label style="margin-left:8px; display:inline-flex; align-items:center; gap:6px;">
+          <input type="checkbox" id="filter-today" />
+          Show characters farmable today
+        </label>
+      </div>
+    </section>
+
+    <section class="table-wrap">
+      <table id="plannerTable" class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Portret</th>
+            <th>Postać</th>
+            <th>Asc Cur</th>
+            <th>Asc Target</th>
+            <th>NA Cur</th>
+            <th>NA Target</th>
+            <th>Skill Cur</th>
+            <th>Skill Target</th>
+            <th>Burst Cur</th>
+            <th>Burst Target</th>
+            <th>Book farm days</th>
+            <th>Number of Teams for Character</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody id="plannerTbody">
+          <!-- wypełnia planner.js -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="legend">
+      <details>
+        <summary>Jak wybieramy drużyny?</summary>
+        <p>
+          Zaczytujemy drużyny z <code>characterData.js</code> i zostawiamy tylko unikalne składy,
+          w których znajduje się <strong>co najmniej jeden</strong> członek obecny w Character Progress.
+          Unikalność drużyny to posortowana lista członków → sygnatura.
+        </p>
+        <p>
+          Wartości <em>Cur/Target</em> są pobierane bezpośrednio z Character Progress (IndexedDB).
+          Jeśli nie znaleziono rekordu dla postaci, w komórce pojawi się „–”.
+        </p>
+      </details>
+    </section>
+  </main>
+
+  <!-- Dane z głównej aplikacji -->
+  <script src="js/characterData.js" defer></script>
+  <!-- Dostęp do IndexedDB i bookDays z CHARACTER_COSTS -->
+  <script src="js/idb.js" defer></script>
+  <script src="js/migrator.js" defer></script>
+  <script src="js/settings-core.js" defer></script>
+  <script src="js/materials.js" defer></script>
+  <!-- planner -->
+  <script src="js/planner.js" defer></script>
+<script src="js/global-nav.js"></script>
+</body>
+</html>

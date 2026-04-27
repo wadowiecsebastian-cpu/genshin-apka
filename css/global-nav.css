@@ -1,0 +1,163 @@
+/* global-nav.css */
+:root{
+  --gn-bg:#ffffff;
+  --gn-fg:#111;
+  --gn-border:rgba(0,0,0,0.08);
+  --gn-hover:#f4f7ff;
+  --gn-active:#3252ff;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --gn-bg:#14161a;
+    --gn-fg:#e9ebf1;
+    --gn-border:rgba(255,255,255,0.12);
+    --gn-hover:#1e2532;
+    --gn-active:#6e8bff;
+  }
+}
+#global-nav{
+  position: sticky;
+  top: 0;
+  z-index: 2147482000;
+  background: var(--gn-bg);
+  border-bottom: 1px solid var(--gn-border);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#global-nav a{
+  text-decoration: none;
+  color: var(--gn-fg);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 14px;
+}
+#global-nav a:hover{
+  background: var(--gn-hover);
+}
+#global-nav a.active{
+  border-color: var(--gn-active);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gn-active) 30%, transparent);
+}
+#global-nav .spacer{ flex:1; }
+#global-nav .brand{
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+#global-nav .nav-dark-toggle {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: none;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#global-nav .nav-dark-toggle:hover {
+  background: #666;
+}
+
+/* Selektor wersji gry w pasku nawigacji (tylko na stronie tier-list) */
+#global-nav .nav-version-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gn-fg);
+}
+
+#global-nav .nav-version-controls label {
+  white-space: nowrap;
+}
+
+#global-nav .nav-version-controls select {
+  background: var(--gn-bg);
+  color: var(--gn-fg);
+  border: 1px solid var(--gn-border);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 13px;
+}
+
+/* Filtry tier-listy w pasku nawigacji (tylko tier-list.html) */
+#global-nav .nav-tier-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--gn-fg);
+  flex-wrap: wrap;
+}
+
+#global-nav .nav-tier-filters label {
+  white-space: nowrap;
+}
+
+#global-nav .nav-tier-filters select {
+  background: var(--gn-bg);
+  color: var(--gn-fg);
+  border: 1px solid var(--gn-border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+#global-nav .nav-tier-filters .tier-checkboxes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+#global-nav .nav-tier-filters .tier-checkboxes label {
+  font-size: 12px;
+}
+
+#global-nav .nav-tier-filters input[type="checkbox"] {
+  transform: scale(0.9);
+  vertical-align: middle;
+}
+
+/* Przełącznik widoku tier-listy (element / role) */
+#global-nav .nav-tier-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--gn-fg);
+}
+
+#global-nav .nav-tier-view-toggle select {
+  background: var(--gn-bg);
+  color: var(--gn-fg);
+  border: 1px solid var(--gn-border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Przycisk systemowego fullscreen (tylko tier-list) */
+#global-nav .nav-fullscreen-toggle {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--gn-border);
+  background: var(--gn-bg);
+  color: var(--gn-fg);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#global-nav .nav-fullscreen-toggle:hover {
+  background: var(--gn-hover);
+}
+
+/* Ukrywanie całego paska nawigacyjnego w fullscreen (klasa na <body>) */
+body.nav-hidden #global-nav {
+  display: none;
+}

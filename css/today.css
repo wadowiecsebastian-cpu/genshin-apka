@@ -1,0 +1,370 @@
+/* Widok "What should I do today?" – minimalistyczny, spójny z materials/planner */
+
+.today-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.today-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.today-title {
+  font-size: 1.6rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.today-date {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.today-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.today-summary-sep {
+  opacity: 0.6;
+}
+
+#today-books-runs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  font-weight: 700;
+}
+
+#today-books-runs strong {
+  color: var(--text);
+  font-weight: 900;
+}
+
+.today-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.today-section-title {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.today-section-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Delikatne oznaczenia sekcji */
+.today-section--must {
+  border-left: 4px solid var(--warn);
+}
+
+.today-section--high {
+  border-left: 4px solid var(--accent);
+}
+
+.today-section--optional {
+  border-left: 4px solid var(--accent-2);
+}
+
+.today-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Pojedyncze zadanie */
+.today-task {
+  background: var(--row);
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border: 1px solid var(--border);
+}
+
+.today-task-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.today-task-checkbox {
+  margin-top: 2px;
+}
+
+.today-task-body {
+  flex: 1;
+}
+
+.today-task-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Wyraźny badge z liczbą runów przy talent books */
+.today-runs-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 200, 60, 0.14); /* delikatny "gold" bez psucia motywu */
+  color: var(--text);
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.today-task-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.today-task-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.today-pill {
+  font-size: 0.75rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+}
+
+/* --- Nowe: postacie + tier + team-count w Today --- */
+.today-charlist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.today-charpill {
+  font-size: 0.75rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+/* --- Nowe: "miękkie" kafelki postaci (avatar + tier icon + team badge) --- */
+.today-charcard{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+}
+
+.today-char-avatar{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  object-fit: cover;
+  flex: 0 0 22px;
+}
+
+.today-char-fallback{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  display: none;              /* pokaże się dopiero gdy img nie istnieje */
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text);
+  flex: 0 0 22px;
+}
+
+.today-char-name{
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.today-tier-icon{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex: 0 0 18px;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25));
+}
+
+.today-tier-fallback{
+  display: none;              /* pokaże się dopiero gdy tier-icon nie istnieje */
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #1c2335;        /* jak badge w materials */
+  color: var(--text);
+}
+
+.today-team-badge{
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #1c2335;        /* jak badge w materials */
+  color: var(--muted);
+  white-space: nowrap;
+}
+.today-team-badge strong{
+  color: var(--text);
+}
+
+/* --- Nowe: liczniki Have/Need/Missing – wygląd jak kafelki z Global Materials Demand --- */
+.today-metrics{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* mini-kafel */
+.today-metric{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+}
+
+/* statusy jak w #tab-global .card--ok / .card--partial */
+.today-metric.today-metric--ok{
+  background: color-mix(in srgb, var(--ok) 14%, var(--card));
+  border-color: var(--ok);
+  box-shadow: inset 0 0 0 2px var(--ok);
+}
+
+.today-metric.today-metric--partial{
+  background: color-mix(in srgb, var(--bad) 14%, var(--card));
+  border-color: var(--bad);
+  box-shadow: inset 0 0 0 2px var(--bad);
+}
+
+/* Fallback bez color-mix */
+@supports not (background: color-mix(in srgb, #000 10%, #fff)) {
+  .today-metric.today-metric--ok{ background: rgba(54,179,126,.12); }
+  .today-metric.today-metric--partial{ background: rgba(220,53,69,.14); }
+}
+
+.today-metric-title{
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  letter-spacing: .1px;
+  white-space: nowrap;
+}
+
+.today-metric-pills{
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.today-metric-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #1c2335;          /* identycznie jak .badge w materials.css */
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.today-metric-pill strong{
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* delikatne podbicia jak w Global Demand (bez zmiany kolorystyki całej karty) */
+.today-metric-pill--missing strong{
+  color: var(--bad);
+}
+
+.today-metric-pill--have strong{
+  color: var(--text);
+}
+
+.today-metric-pill--need strong{
+  color: var(--text);
+}
+
+/* Stan wykonane */
+.today-task--done {
+  opacity: 0.6;
+}
+
+.today-task--done .today-task-title {
+  text-decoration: line-through;
+}
+
+/* Talent books poza dzisiejszym dniem – lekko wygaszone */
+.today-task--unavailable {
+  opacity: 0.72;
+}
+
+/* Małe dostosowania dla mniejszych rozdzielczości */
+@media (max-width: 1200px) {
+  .today-main {
+    padding: 10px;
+  }
+}

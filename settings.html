@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title>Ustawienia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="css/global-nav.css" />
+  
+  <link rel="stylesheet" href="css/settings.css" />
+  <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+</head>
+<body>
+  <nav id="global-nav"></nav>
+
+  <section class="app-page-intro">
+    <div class="app-page-kicker">Settings</div>
+    <h1>Ustawienia aplikacji</h1>
+    <p>W jednym miejscu zarządzasz wyglądem, zachowaniem i układem nawigacji bez ruszania logiki modułów.</p>
+  </section>
+
+  <main class="settings-shell">
+    <aside class="settings-left">
+      <div class="settings-title">Sekcje ustawień</div>
+      <div class="settings-sections" id="settingsSections"></div>
+    </aside>
+
+    <section class="settings-right">
+      <div class="settings-actions">
+        <button id="btnApply" class="btn primary" type="button">Zastosuj</button>
+        <button id="btnUndo" class="btn" type="button">Cofnij</button>
+        <button id="btnReset" class="btn danger" type="button">Przywróć domyślne</button>
+      </div>
+
+      <div id="settingsCards" class="settings-cards"></div>
+    </section>
+  </main>
+  <script src="js/idb.js"></script>
+  <script src="js/migrator.js"></script>
+  <script src="js/settings-core.js"></script>
+  <script src="js/settings-page.js"></script>
+  <script src="js/global-nav.js"></script>
+</body>
+</html>
