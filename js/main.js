@@ -768,8 +768,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         memberDiv.className = "member";
 
         const img = document.createElement("img");
-        img.src = `images/Characters/${member.name}.png`;
+        img.src = `images/characters/${member.name}.png`;
         img.alt = member.name;
+        img.onerror = () => {
+          img.onerror = null;
+          img.src = `Portrety/${member.name}.png`;
+        };
 
         const name = document.createElement("strong");
         name.textContent = member.name;
