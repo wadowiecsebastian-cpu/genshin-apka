@@ -1,0 +1,581 @@
+/* Last-mile responsive layer loaded by global-nav.js on every main page. */
+:root{
+  --mobile-gutter: clamp(10px, 3vw, 24px);
+  --tap-size: 44px;
+}
+
+html{
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
+img,
+svg,
+canvas,
+video{
+  max-width:100%;
+}
+
+button,
+.btn,
+.tab-button,
+.tab-btn,
+.tab-link,
+.pity__btn,
+.pity__tab,
+.tp__btn,
+.tp__segBtn,
+.ta-btn,
+input,
+select,
+textarea{
+  max-width:100%;
+  touch-action:manipulation;
+}
+
+input,
+select,
+textarea{
+  min-width:0;
+}
+
+:where(.character-panel,.side-card,.team-card,.card,.item-card,.artifact-card,.ta-card,.pity__card,.settings-card,.home-card,.panel,.boss-card,.set-card,.today-section,.tp__card){
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+:where(.table-wrap,.table-wrapper,.ta-table-wrap,.pity__tableWrap){
+  max-width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+:where(table.grid,.ta-table,.pity__table){
+  width:100%;
+}
+
+@media (max-width: 1180px){
+  body{
+    display:block !important;
+    padding-left:0 !important;
+    min-width:0 !important;
+  }
+
+  body > :not(#global-nav):not(#app-chrome-topbar):not(script):not(style){
+    grid-column:auto !important;
+    min-width:0 !important;
+  }
+
+  #global-nav{
+    position:sticky !important;
+    top:0 !important;
+    left:auto !important;
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+    padding:10px var(--mobile-gutter) !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    gap:8px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    border-right:0 !important;
+    border-bottom:1px solid var(--border, rgba(255,255,255,.14)) !important;
+    scrollbar-width:thin;
+  }
+
+  #global-nav .brand{
+    flex:0 0 auto !important;
+    width:auto !important;
+    min-width:max-content;
+    min-height:var(--tap-size) !important;
+    margin:0 8px 0 0 !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    white-space:nowrap;
+  }
+
+  #global-nav .brand::before{
+    flex:0 0 auto;
+  }
+
+  #global-nav a{
+    flex:0 0 auto !important;
+    min-height:var(--tap-size) !important;
+    white-space:nowrap;
+  }
+
+  #global-nav .nav-text{
+    overflow:visible !important;
+    text-overflow:clip !important;
+  }
+
+  #global-nav .spacer,
+  #global-nav .nav-recent{
+    display:none !important;
+  }
+
+  #global-nav .nav-version-controls,
+  #global-nav .nav-tier-filters,
+  #global-nav .nav-tier-view-toggle{
+    flex:0 0 min(380px, calc(100vw - 32px));
+    width:min(380px, calc(100vw - 32px)) !important;
+    max-height:45vh;
+    overflow:auto;
+  }
+
+  #app-chrome-topbar{
+    position:static !important;
+    inset:auto !important;
+    width:calc(100% - (var(--mobile-gutter) * 2)) !important;
+    margin:10px auto 0 !important;
+    padding:0 !important;
+    display:flex !important;
+    justify-content:flex-end !important;
+    flex-wrap:wrap !important;
+    gap:8px !important;
+    pointer-events:auto !important;
+  }
+
+  #app-chrome-topbar > *{
+    pointer-events:auto !important;
+  }
+
+  .app-chrome-date{
+    flex:1 1 220px;
+    min-width:0;
+  }
+
+  body > main,
+  body > .container,
+  body > .tab-container,
+  body > .tier-grid-container,
+  body > section.tab,
+  body > .tab-content,
+  body > footer.app-footer,
+  .app-page-intro,
+  .app-page-intro--wide,
+  .app-main,
+  .today-main,
+  .ta-page,
+  .tp,
+  .pity,
+  .me-wrap,
+  .settings-shell,
+  .character-detail-page .character-detail-shell,
+  .tier-list-toolbar{
+    width:calc(100% - (var(--mobile-gutter) * 2)) !important;
+    max-width:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  body > main,
+  body > .container,
+  .app-main,
+  .today-main,
+  .ta-page,
+  .tp,
+  .pity,
+  .me-wrap,
+  .settings-shell,
+  .character-detail-page .character-detail-shell,
+  .tier-grid-container{
+    margin-top:12px !important;
+  }
+
+  .character-hero,
+  .character-layout,
+  .character-info-grid,
+  .summary-dashboard,
+  .summary-stat-grid,
+  .settings-shell,
+  .ta-grid,
+  .pity__grid,
+  .tp__grid,
+  .today-grid,
+  .home-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .ta-card,
+  .ta-card-wide{
+    grid-column:1 / -1 !important;
+  }
+
+  .character-hero{
+    align-items:start !important;
+  }
+
+  .character-hero__portrait-wrap{
+    min-height:0 !important;
+  }
+
+  .character-hero__portrait{
+    height:clamp(190px, 38vw, 320px) !important;
+  }
+
+  .character-base-stats{
+    border-left:0 !important;
+    padding-left:0 !important;
+  }
+
+  .character-side-panel{
+    width:100%;
+  }
+
+  .tabs,
+  .tab-container,
+  .character-tabs,
+  .pity__tabs,
+  .tp__seg,
+  .me-tabs .tabbar{
+    width:100%;
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    gap:8px !important;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+  }
+
+  .tabs > *,
+  .tab-container > *,
+  .character-tabs > *,
+  .pity__tabs > *,
+  .tp__seg > *,
+  .me-tabs .tabbar > *{
+    flex:0 0 auto !important;
+    min-width:max-content !important;
+    scroll-snap-align:start;
+  }
+
+  .filters,
+  .controls,
+  .ta-toolbar,
+  .panel-head,
+  .pity__row,
+  .field-row,
+  .set-row,
+  .settings-actions,
+  .tp__topBar,
+  .rotation-header-container{
+    flex-wrap:wrap !important;
+    align-items:stretch !important;
+  }
+
+  .filters > *,
+  .controls > *,
+  .ta-toolbar > *,
+  .panel-head > *,
+  .pity__row > *,
+  .field-row > *,
+  .set-row > *,
+  .settings-actions > *,
+  .tp__topBar > *{
+    min-width:0;
+  }
+
+  .team-members,
+  .summary-team-members{
+    flex-wrap:wrap !important;
+  }
+
+  .teams-grid{
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)) !important;
+    gap:16px !important;
+  }
+
+  #owned .character-grid,
+  .card-grid,
+  #character-grid,
+  .home-tiles,
+  .home-kpis,
+  .mini-character-grid,
+  .mini-material-grid,
+  .summary-option-grid,
+  .summary-target-grid{
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 150px), 1fr)) !important;
+  }
+
+  .tier-grid-container{
+    justify-content:flex-start !important;
+    align-items:flex-start !important;
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .tier-grid{
+    width:max-content !important;
+    min-width:760px !important;
+    height:auto !important;
+    min-height:640px;
+    align-self:flex-start;
+  }
+
+  .tier-grid.role-view{
+    min-width:680px !important;
+  }
+
+  .tier-list-toolbar{
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)) !important;
+  }
+
+  .tier-list-toolbar .nav-tier-filters{
+    grid-column:1 / -1 !important;
+    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 780px){
+  :root{
+    --mobile-gutter:10px;
+  }
+
+  #global-nav{
+    padding:8px 10px !important;
+  }
+
+  #global-nav .brand{
+    font-size:14px !important;
+  }
+
+  #global-nav .brand::before{
+    width:28px !important;
+    height:28px !important;
+    font-size:24px !important;
+  }
+
+  #global-nav a{
+    min-height:40px !important;
+    padding:8px 10px !important;
+    font-size:13px !important;
+  }
+
+  .app-chrome-date,
+  .app-chrome-icon,
+  .app-chrome-avatar{
+    min-height:38px !important;
+    height:38px !important;
+  }
+
+  .app-chrome-date{
+    flex-basis:100%;
+    justify-content:flex-start !important;
+  }
+
+  .app-page-intro,
+  .character-hero,
+  .character-toolbar,
+  .character-panel,
+  .side-card,
+  .pity__card,
+  .ta-card,
+  .tp__card,
+  .panel,
+  .home-card,
+  .today-section,
+  .settings-left,
+  .settings-card{
+    padding:12px !important;
+  }
+
+  .character-toolbar{
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+
+  .character-toolbar select,
+  .character-toolbar label{
+    width:100%;
+  }
+
+  .character-hero__identity h1,
+  .app-page-intro h1,
+  .ta-title h1,
+  .pity__title{
+    font-size:clamp(1.35rem, 7vw, 1.9rem) !important;
+    line-height:1.12 !important;
+    text-align:left;
+  }
+
+  .character-hero__portrait{
+    height:clamp(180px, 58vw, 260px) !important;
+  }
+
+  .item-card,
+  .artifact-card,
+  .team-block,
+  .item-card__content,
+  .artifact-card__content,
+  .featured-weapon-card{
+    grid-template-columns:1fr !important;
+  }
+
+  .item-card__media,
+  .artifact-card__media{
+    justify-content:center !important;
+  }
+
+  .team-member,
+  .member{
+    flex:1 1 88px !important;
+    max-width:none !important;
+  }
+
+  .owned-character-image,
+  .character-filter-avatar{
+    width:64px !important;
+    height:64px !important;
+    border-radius:18px !important;
+  }
+
+  #owned .character-grid{
+    grid-template-columns:repeat(auto-fit, minmax(96px, 1fr)) !important;
+    gap:12px !important;
+  }
+
+  .character-label{
+    max-width:100%;
+    white-space:normal !important;
+    line-height:1.2;
+  }
+
+  .character-filter-row{
+    gap:10px !important;
+  }
+
+  .character-filter-tile{
+    width:calc(50% - 5px) !important;
+    min-width:118px;
+  }
+
+  .character-filter-dropdown{
+    width:min(300px, calc(100vw - 24px)) !important;
+    max-width:calc(100vw - 24px) !important;
+  }
+
+  .rotation-step{
+    width:calc(50% - 8px) !important;
+  }
+
+  .ta-input,
+  .ta-select,
+  .filters input,
+  .filters select,
+  .controls input,
+  .controls select{
+    flex:1 1 100% !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .pity__table,
+  .ta-table,
+  table.grid{
+    min-width:680px;
+  }
+
+  .tier-list-toolbar,
+  .tier-list-toolbar .nav-tier-filters{
+    grid-template-columns:1fr !important;
+  }
+
+  .tier-list-toolbar .nav-tier-filters > *,
+  .tier-list-toolbar .nav-tier-filters select,
+  .tier-list-toolbar .nav-tier-filters .tier-checkboxes,
+  .tier-list-toolbar #nav-fullscreen-toggle{
+    grid-column:auto !important;
+    width:100% !important;
+  }
+
+  .tier-list-toolbar .nav-tier-filters label{
+    min-height:0 !important;
+  }
+}
+
+@media (max-width: 520px){
+  :root{
+    --mobile-gutter:6px;
+  }
+
+  body{
+    font-size:13px !important;
+  }
+
+  #global-nav{
+    gap:6px !important;
+  }
+
+  #global-nav .brand{
+    max-width:72vw;
+  }
+
+  .tabs > *,
+  .tab-container > *,
+  .character-tabs > *,
+  .pity__tabs > *,
+  .tp__seg > *{
+    min-height:40px !important;
+    padding-left:10px !important;
+    padding-right:10px !important;
+  }
+
+  .card-grid,
+  #character-grid,
+  #owned .character-grid,
+  .home-tiles,
+  .home-kpis,
+  .summary-option-grid,
+  .summary-target-grid,
+  .mini-character-grid,
+  .mini-material-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+  }
+
+  .team-members{
+    gap:8px !important;
+  }
+
+  .member img,
+  .team-member img{
+    width:52px !important;
+    height:52px !important;
+  }
+
+  .rotation-step{
+    width:100% !important;
+  }
+
+  .summary-team-member{
+    width:100% !important;
+    border-radius:10px !important;
+  }
+
+  .tier-grid{
+    min-width:620px !important;
+  }
+
+  .tier-grid.role-view{
+    min-width:560px !important;
+  }
+}

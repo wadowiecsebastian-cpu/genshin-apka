@@ -27,12 +27,28 @@
     head.appendChild(link);
   }
 
+  function syncResponsiveStyles(){
+    var head = document.head || document.getElementsByTagName("head")[0];
+    if (!head) return;
+
+    var link = document.getElementById("app-responsive-css");
+    if (!link) {
+      link = document.createElement("link");
+      link.id = "app-responsive-css";
+      link.rel = "stylesheet";
+      link.href = "css/responsive.css";
+    }
+
+    head.appendChild(link);
+  }
+
   function removeTopbar(){
     var bar = document.getElementById("app-chrome-topbar");
     if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
   }
 
   syncCompanionTheme(settingsSnapshot());
+  syncResponsiveStyles();
 
   // where to mount
   function ensureNavContainer(){
@@ -418,6 +434,7 @@
       var performanceMode = !!(settings && settings.performance && settings.performance.mode === "on");
 
       syncCompanionTheme(settings);
+      syncResponsiveStyles();
       if (safeMode || performanceMode) removeTopbar();
       else ensureTopbar();
 
