@@ -1,21 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edytor ratingów – tier-history</title>
+  <title>Edytor ratingĂłw â€“ tier-history</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/global-nav.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
   <link rel="stylesheet" href="css/tier-history-editor.css" />
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
+  <link rel="stylesheet" href="css/tier-history-editor.mobile.css">
 </head>
 <body>
   <nav id="global-nav"></nav>
   <header class="app-header">
-    <h1>Edytor ratingów – tier-history.js</h1>
+    <h1>Edytor ratingĂłw â€“ tier-history.js</h1>
     <p class="subtitle">
-      Wybierz wersję gry, ustaw ratingi dla postaci, a na końcu wygeneruj zaktualizowany kod pliku <code>tier-history.js</code>.
+      Wybierz wersjÄ™ gry, ustaw ratingi dla postaci, a na koĹ„cu wygeneruj zaktualizowany kod pliku <code>tier-history.js</code>.
     </p>
   </header>
 
@@ -28,16 +33,16 @@
         <select id="versionSelect"></select>
       </div>
       <div class="field-row">
-        <label for="newVersionInput">Dodaj nową wersję (np. 6.2):</label>
+        <label for="newVersionInput">Dodaj nowÄ… wersjÄ™ (np. 6.2):</label>
         <input id="newVersionInput" type="text" placeholder="np. 6.2" />
-        <button id="addVersionBtn" type="button">Dodaj wersję</button>
+        <button id="addVersionBtn" type="button">Dodaj wersjÄ™</button>
       </div>
       <p class="hint">
-        Jeśli dla danej wersji postać nie ma przypisanego ratingu, w pliku <code>tier-history.js</code> nie będzie klucza dla tej wersji.
+        JeĹ›li dla danej wersji postaÄ‡ nie ma przypisanego ratingu, w pliku <code>tier-history.js</code> nie bÄ™dzie klucza dla tej wersji.
       </p>
     </section>
 
-    <!-- Panel filtrów -->
+    <!-- Panel filtrĂłw -->
     <section class="panel panel-filters">
       <h2>Filtry postaci</h2>
       <div class="filters-grid">
@@ -46,17 +51,17 @@
           <input id="nameFilter" type="text" placeholder="Szukaj po nazwie..." />
         </div>
         <div class="field-row">
-          <label for="elementFilter">Żywioł:</label>
+          <label for="elementFilter">Ĺ»ywioĹ‚:</label>
           <select id="elementFilter">
             <option value="">Wszystkie</option>
           </select>
         </div>
         <div class="field-row">
-          <label for="rarityFilter">Rzadkość:</label>
+          <label for="rarityFilter">RzadkoĹ›Ä‡:</label>
           <select id="rarityFilter">
             <option value="">Wszystkie</option>
-            <option value="★★★★">★★★★</option>
-            <option value="★★★★★">★★★★★</option>
+            <option value="â…â…â…â…">â…â…â…â…</option>
+            <option value="â…â…â…â…â…">â…â…â…â…â…</option>
           </select>
         </div>
         <div class="field-row">
@@ -71,7 +76,7 @@
       <div class="panel-header-row">
         <h2>Postacie i ratingi</h2>
         <button id="toggleTableBtn" type="button" class="panel-toggle">
-          Zwiń tabelę
+          ZwiĹ„ tabelÄ™
         </button>
       </div>
 
@@ -79,32 +84,32 @@
         <table id="charactersTable">
           <thead>
             <tr>
-              <th>Postać</th>
+              <th>PostaÄ‡</th>
               <th>Debiut</th>
-              <th>Rzadkość</th>
-              <th>Broń</th>
-              <th>Żywioł</th>
+              <th>RzadkoĹ›Ä‡</th>
+              <th>BroĹ„</th>
+              <th>Ĺ»ywioĹ‚</th>
               <th>Rola</th>
               <th id="ratingHeader">Ocena (wersja)</th>
             </tr>
           </thead>
           <tbody>
-            <!-- wypełniane przez JS -->
+            <!-- wypeĹ‚niane przez JS -->
           </tbody>
         </table>
       </div>
 
       <p class="hint table-hint">
-        Zmiana wartości w kolumnie <strong>Ocena</strong> od razu modyfikuje obiekt <code>window.tierHistory</code> w pamięci.
+        Zmiana wartoĹ›ci w kolumnie <strong>Ocena</strong> od razu modyfikuje obiekt <code>window.tierHistory</code> w pamiÄ™ci.
       </p>
     </section>
 
-    <!-- Widok graficzny – przeciąganie postaci -->
+    <!-- Widok graficzny â€“ przeciÄ…ganie postaci -->
     <section class="panel panel-visual">
       <div class="panel-header-row">
-        <h2>Widok graficzny – przeciąganie postaci</h2>
+        <h2>Widok graficzny â€“ przeciÄ…ganie postaci</h2>
         <button id="toggleFullscreenBtn" type="button" class="panel-toggle">
-          Pełny ekran
+          PeĹ‚ny ekran
         </button>
       </div>
 
@@ -113,11 +118,11 @@
       <div id="tierHint" class="tier-hint"></div>
 
       <p class="hint">
-        Przeciągaj portrety postaci pomiędzy kolumnami, aby zmienić ich rating w aktualnie wybranej wersji.
+        PrzeciÄ…gaj portrety postaci pomiÄ™dzy kolumnami, aby zmieniÄ‡ ich rating w aktualnie wybranej wersji.
       </p>
 
         <div class="visual-board" id="visualBoard">
-        <!-- wiersz nagłówków kolumn -->
+        <!-- wiersz nagĹ‚ĂłwkĂłw kolumn -->
         <div class="visual-header-row">
           <div class="visual-header-cell visual-header-tier">Tier</div>
           <div class="visual-header-cell">Main DPS</div>
@@ -125,7 +130,7 @@
           <div class="visual-header-cell">Support</div>
         </div>
 
-        <!-- siatka: wiersze SS–D + wiersz bez oceny -->
+        <!-- siatka: wiersze SSâ€“D + wiersz bez oceny -->
         <div class="visual-grid">
           <!-- SS -->
           <div class="visual-row" data-rating="SS">
@@ -213,7 +218,7 @@
 
           <!-- wiersz: brak przypisanego ratingu -->
           <div class="visual-row visual-row-none" data-rating="">
-            <div class="visual-row-label">–</div>
+            <div class="visual-row-label">â€“</div>
             <div class="visual-cell">
               <div class="visual-dropzone" data-rating="" data-rolegroup="Main DPS"></div>
             </div>
@@ -225,9 +230,9 @@
             </div>
           </div>
 
-          <!-- wiersz: postacie niedostępne w edytowanej wersji (debiut później) -->
+          <!-- wiersz: postacie niedostÄ™pne w edytowanej wersji (debiut pĂłĹşniej) -->
           <div class="visual-row visual-row-locked" data-rating="locked">
-            <div class="visual-row-label">Niedostępne</div>
+            <div class="visual-row-label">NiedostÄ™pne</div>
             <div class="visual-cell">
               <div class="visual-dropzone" data-rating="locked" data-rolegroup="Main DPS"></div>
             </div>
@@ -238,12 +243,12 @@
               <div class="visual-dropzone" data-rating="locked" data-rolegroup="Support"></div>
             </div>
           </div>
-          
+
         </div>
       </div>
 
       <p class="hint small">
-        Uwaga: postaci, które debiutują w późniejszej wersji niż wybrana, są oznaczone na czerwono i nie można ich przeciągać.
+        Uwaga: postaci, ktĂłre debiutujÄ… w pĂłĹşniejszej wersji niĹĽ wybrana, sÄ… oznaczone na czerwono i nie moĹĽna ich przeciÄ…gaÄ‡.
       </p>
     </section>
 
@@ -252,7 +257,7 @@
       <h2>Generowanie nowego pliku tier-history.js</h2>
       <button id="generateBtn" type="button">Generuj kod tier-history.js</button>
       <p class="hint">
-        Skopiuj wygenerowany kod poniżej i wklej do swojego pliku <code>tier-history.js</code>, nadpisując jego zawartość.
+        Skopiuj wygenerowany kod poniĹĽej i wklej do swojego pliku <code>tier-history.js</code>, nadpisujÄ…c jego zawartoĹ›Ä‡.
       </p>
       <textarea id="outputArea" rows="12" spellcheck="false"></textarea>
     </section>
@@ -266,5 +271,6 @@
   <script src="js/tier-history.js"></script>
   <script src="js/global-nav.js"></script>
   <script src="js/tier-history-editor.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

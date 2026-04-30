@@ -1,32 +1,36 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
-  <title>Planer farmienia – Drużyny (wg Character Progress)</title>
+  <title>Planer farmienia â€“ DruĹĽyny (wg Character Progress)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="css/planner.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/global-nav.css">
 <link rel="stylesheet" href="css/settings-overrides.css" />
 <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/planner.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
 <nav id="global-nav"></nav>
 
-  
+
 
   <main class="container">
-    <h1>Planer farmienia – drużyny (≥1 członek w Character Progress)</h1>
+    <h1>Planer farmienia â€“ druĹĽyny (â‰Ą1 czĹ‚onek w Character Progress)</h1>
 
     <section class="controls">
       <div class="controls__row">
         <label for="search">Szukaj postaci:</label>
-        <input id="search" type="text" placeholder="Wpisz nazwę postaci." />
+        <input id="search" type="text" placeholder="Wpisz nazwÄ™ postaci." />
       </div>
 
       <div class="controls__row">
-        <button id="sortByName" class="btn">Sortuj po nazwie (A→Z)</button>
-        <button id="sortByCount" class="btn">Sortuj po liczbie drużyn (↓)</button>
-        <button id="refresh" class="btn btn--ghost" title="Przelicz ponownie z danych">Odśwież</button>
+        <button id="sortByName" class="btn">Sortuj po nazwie (Aâ†’Z)</button>
+        <button id="sortByCount" class="btn">Sortuj po liczbie druĹĽyn (â†“)</button>
+        <button id="refresh" class="btn btn--ghost" title="Przelicz ponownie z danych">OdĹ›wieĹĽ</button>
 
         <!-- Filtr jak w Character Progress -->
         <label style="margin-left:8px; display:inline-flex; align-items:center; gap:6px;">
@@ -42,7 +46,7 @@
           <tr>
             <th>#</th>
             <th>Portret</th>
-            <th>Postać</th>
+            <th>PostaÄ‡</th>
             <th>Asc Cur</th>
             <th>Asc Target</th>
             <th>NA Cur</th>
@@ -57,30 +61,30 @@
           </tr>
         </thead>
         <tbody id="plannerTbody">
-          <!-- wypełnia planner.js -->
+          <!-- wypeĹ‚nia planner.js -->
         </tbody>
       </table>
     </section>
 
     <section class="legend">
       <details>
-        <summary>Jak wybieramy drużyny?</summary>
+        <summary>Jak wybieramy druĹĽyny?</summary>
         <p>
-          Zaczytujemy drużyny z <code>characterData.js</code> i zostawiamy tylko unikalne składy,
-          w których znajduje się <strong>co najmniej jeden</strong> członek obecny w Character Progress.
-          Unikalność drużyny to posortowana lista członków → sygnatura.
+          Zaczytujemy druĹĽyny z <code>characterData.js</code> i zostawiamy tylko unikalne skĹ‚ady,
+          w ktĂłrych znajduje siÄ™ <strong>co najmniej jeden</strong> czĹ‚onek obecny w Character Progress.
+          UnikalnoĹ›Ä‡ druĹĽyny to posortowana lista czĹ‚onkĂłw â†’ sygnatura.
         </p>
         <p>
-          Wartości <em>Cur/Target</em> są pobierane bezpośrednio z Character Progress (IndexedDB).
-          Jeśli nie znaleziono rekordu dla postaci, w komórce pojawi się „–”.
+          WartoĹ›ci <em>Cur/Target</em> sÄ… pobierane bezpoĹ›rednio z Character Progress (IndexedDB).
+          JeĹ›li nie znaleziono rekordu dla postaci, w komĂłrce pojawi siÄ™ â€žâ€“â€ť.
         </p>
       </details>
     </section>
   </main>
 
-  <!-- Dane z głównej aplikacji -->
+  <!-- Dane z gĹ‚Ăłwnej aplikacji -->
   <script src="js/characterData.js" defer></script>
-  <!-- Dostęp do IndexedDB i bookDays z CHARACTER_COSTS -->
+  <!-- DostÄ™p do IndexedDB i bookDays z CHARACTER_COSTS -->
   <script src="js/idb.js" defer></script>
   <script src="js/migrator.js" defer></script>
   <script src="js/settings-core.js" defer></script>
@@ -88,5 +92,6 @@
   <!-- planner -->
   <script src="js/planner.js" defer></script>
 <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

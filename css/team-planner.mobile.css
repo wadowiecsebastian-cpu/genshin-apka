@@ -1,0 +1,51 @@
+﻿.is-mobile .tab-container,
+.is-mobile .team-planner-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.is-mobile .tab-button,
+.is-mobile .team-filter button,
+.is-mobile .filter-options label {
+  min-height: 44px;
+}
+
+.is-mobile .character-filter-row,
+.is-mobile .element-icons-filter,
+.is-mobile .team-members {
+  max-width: 100%;
+}
+
+.is-mobile .team-card,
+.is-mobile .owned-character-entry,
+.is-mobile .character-filter-tile {
+  border-radius: 16px;
+}
+
+.is-mobile .team-comments,
+.is-mobile .team-rotation {
+  width: 100%;
+}
+
+.is-mobile.is-portrait #owned .character-grid,
+.is-mobile.is-portrait .character-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.is-mobile.is-portrait .team-members,
+.is-mobile.is-portrait .character-filter-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.is-mobile.is-landscape #owned .character-grid,
+.is-mobile.is-landscape .character-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.is-mobile.is-landscape .team-members,
+.is-mobile.is-landscape .character-filter-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}

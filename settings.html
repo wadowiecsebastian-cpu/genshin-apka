@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="stylesheet" href="css/global-nav.css" />
-  
+
   <link rel="stylesheet" href="css/settings.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
   <nav id="global-nav"></nav>
@@ -17,12 +21,12 @@
   <section class="app-page-intro">
     <div class="app-page-kicker">Settings</div>
     <h1>Ustawienia aplikacji</h1>
-    <p>W jednym miejscu zarządzasz wyglądem, zachowaniem i układem nawigacji bez ruszania logiki modułów.</p>
+    <p>W jednym miejscu zarzÄ…dzasz wyglÄ…dem, zachowaniem i ukĹ‚adem nawigacji bez ruszania logiki moduĹ‚Ăłw.</p>
   </section>
 
   <main class="settings-shell">
     <aside class="settings-left">
-      <div class="settings-title">Sekcje ustawień</div>
+      <div class="settings-title">Sekcje ustawieĹ„</div>
       <div class="settings-sections" id="settingsSections"></div>
     </aside>
 
@@ -30,7 +34,7 @@
       <div class="settings-actions">
         <button id="btnApply" class="btn primary" type="button">Zastosuj</button>
         <button id="btnUndo" class="btn" type="button">Cofnij</button>
-        <button id="btnReset" class="btn danger" type="button">Przywróć domyślne</button>
+        <button id="btnReset" class="btn danger" type="button">PrzywrĂłÄ‡ domyĹ›lne</button>
       </div>
 
       <div id="settingsCards" class="settings-cards"></div>
@@ -41,5 +45,6 @@
   <script src="js/settings-core.js"></script>
   <script src="js/settings-page.js"></script>
   <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+﻿.is-mobile .toast,
+.is-mobile .notification,
+.is-mobile .app-toast {
+  left: 12px;
+  right: 12px;
+  bottom: 76px;
+  max-width: none;
+}
+
+.is-mobile .modal,
+.is-mobile dialog,
+.is-mobile .drawer {
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+}
+
+.is-mobile .settings-panel,
+.is-mobile .settings-card {
+  border-radius: 16px;
+}

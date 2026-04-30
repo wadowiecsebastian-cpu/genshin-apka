@@ -1,0 +1,73 @@
+﻿.is-mobile {
+  --mobile-page-pad: 12px;
+  --mobile-card-radius: 16px;
+  --mobile-touch: 44px;
+  overflow-x: hidden;
+}
+
+.is-mobile body,
+.is-mobile main,
+.is-mobile section {
+  max-width: 100%;
+}
+
+.is-mobile img,
+.is-mobile canvas,
+.is-mobile video,
+.is-mobile table {
+  max-width: 100%;
+}
+
+.is-mobile button,
+.is-mobile input,
+.is-mobile select,
+.is-mobile textarea,
+.is-mobile .btn,
+.is-mobile [role="button"] {
+  min-height: var(--mobile-touch);
+}
+
+.is-mobile input,
+.is-mobile select,
+.is-mobile textarea {
+  width: 100%;
+  font-size: 16px;
+}
+
+.is-mobile .app-page-intro {
+  margin: 10px var(--mobile-page-pad) 12px;
+  padding: 16px;
+  border-radius: var(--mobile-card-radius);
+}
+
+.is-mobile .app-page-intro h1 {
+  font-size: clamp(1.7rem, 8vw, 2.25rem);
+  line-height: 1.04;
+}
+
+.is-mobile .app-page-intro p {
+  line-height: 1.5;
+}
+
+.is-mobile .table-wrap,
+.is-mobile .table-container,
+.is-mobile .pity__tableWrap,
+.is-mobile .ta-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.is-mobile.is-portrait .app-grid,
+.is-mobile.is-portrait .grid,
+.is-mobile.is-portrait .cards-grid,
+.is-mobile.is-portrait .dashboard-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .app-grid,
+.is-mobile.is-landscape .grid,
+.is-mobile.is-landscape .cards-grid,
+.is-mobile.is-landscape .dashboard-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

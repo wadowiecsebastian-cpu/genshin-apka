@@ -1,8 +1,8 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Genshin Tracker – Bosses</title>
+  <title>Genshin Tracker â€“ Bosses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/materials.css" />
   <style>
@@ -36,12 +36,16 @@
 <link rel="stylesheet" href="css/global-nav.css">
 <link rel="stylesheet" href="css/settings-overrides.css" />
 <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
 <nav id="global-nav"></nav>
 
   <header class="app-header">
-    <h1>Genshin Tracker – Bosses</h1>
+    <h1>Genshin Tracker â€“ Bosses</h1>
     <nav class="tabs">
       <button class="tab-btn active" data-tab="normal">Normal Bosses</button>
       <button class="tab-btn" data-tab="weekly">Weekly Bosses</button>
@@ -102,7 +106,7 @@
     async function getInv(key){ return await IDB.get('inventory', key) ?? 0; }
     async function setInv(key,val){ return await IDB.set('inventory', key, val); }
 
-    // Szukanie definicji materiału w MATERIALS.* (gems, books, enemies, boss drops, local, misc)
+    // Szukanie definicji materiaĹ‚u w MATERIALS.* (gems, books, enemies, boss drops, local, misc)
     function findMaterial(key){
       const secs = [MATERIALS.gems, MATERIALS.books, MATERIALS.enemies, MATERIALS.bossNormal, MATERIALS.bossWeekly, MATERIALS.local, MATERIALS.misc];
       for (const sec of secs){
@@ -112,13 +116,13 @@
       return null;
     }
 
-    // Pomocnicze: znajdź gem po grupie (element) i tierze (1..4)
+    // Pomocnicze: znajdĹş gem po grupie (element) i tierze (1..4)
     function findGemByGroupTier(group, tier){
       const items = MATERIALS?.gems?.items || [];
       return items.find(it => it.group === group && it.tier === tier) || null;
     }
 
-    // Wspólny renderer wiersza dropu z licznikami
+    // WspĂłlny renderer wiersza dropu z licznikami
     function renderDropRow(container, materialKey){
       const def = findMaterial(materialKey);
       if(!def) return;
@@ -137,7 +141,7 @@
       input.style.width = '80px';
       input.style.textAlign = 'center';
 
-      const minus = document.createElement('button'); minus.textContent='−1';
+      const minus = document.createElement('button'); minus.textContent='â’1';
       const plus  = document.createElement('button'); plus.textContent='+1';
 
       async function commitDirect(){
@@ -181,14 +185,14 @@
     // --- Tworzenie karty bossa ---
     // --- Tworzenie karty bossa ---
 function bossCard(b){
-  const card = document.createElement('div'); 
+  const card = document.createElement('div');
   card.className = 'boss-card';
 
-  const head = document.createElement('div'); 
+  const head = document.createElement('div');
   head.className = 'boss-head';
 
-  const img = document.createElement('img'); 
-  img.src = b.imageBase + ".png"; 
+  const img = document.createElement('img');
+  img.src = b.imageBase + ".png";
   img.alt = b.name;
   img.style.cursor = 'pointer';
   img.addEventListener('click', (e) => {
@@ -197,7 +201,7 @@ function bossCard(b){
   });
 
   const title = document.createElement('div');
-  title.innerHTML = `<div style="font-weight:700;cursor:pointer">${b.name}</div><div class="badge">${b.region} • ${b.type}</div>`;
+  title.innerHTML = `<div style="font-weight:700;cursor:pointer">${b.name}</div><div class="badge">${b.region} â€˘ ${b.type}</div>`;
   title.querySelector('div').addEventListener('click', (e) => {
     e.stopPropagation();
     location.href = `guide.html?id=${b.id}`;
@@ -205,10 +209,10 @@ function bossCard(b){
 
   head.append(img, title);
 
-  const drops = document.createElement('div'); 
+  const drops = document.createElement('div');
   drops.className = 'drops';
 
-  // usunięto:
+  // usuniÄ™to:
   // card.style.cursor = 'pointer';
   // card.addEventListener('click', ()=> {
   //   location.href = `guide.html?id=${b.id}`;
@@ -223,7 +227,7 @@ function bossCard(b){
     sect.className = 'gems-section';
     const header = document.createElement('div');
     header.className = 'gems-header';
-    header.innerHTML = `<span class="chev">▼</span><span>Gems (by elements)</span>`;
+    header.innerHTML = `<span class="chev">â–Ľ</span><span>Gems (by elements)</span>`;
     const body = document.createElement('div');
     body.className = 'gems-body';
 
@@ -237,7 +241,7 @@ function bossCard(b){
 
     header.addEventListener('click', ()=>{
       const collapsed = sect.classList.toggle('collapsed');
-      header.querySelector('.chev').textContent = collapsed ? '▲' : '▼';
+      header.querySelector('.chev').textContent = collapsed ? 'â–˛' : 'â–Ľ';
     });
 
     sect.append(header, body);
@@ -248,7 +252,7 @@ function bossCard(b){
   return card;
 }
 
-    // Render zakładek
+    // Render zakĹ‚adek
     function render(){
       const normal = BOSSES.filter(b=>b.type==='normal');
       const weekly = BOSSES.filter(b=>b.type==='weekly');
@@ -258,20 +262,20 @@ function bossCard(b){
       weekly.forEach(b=> wg.appendChild(bossCard(b)));
     }
 
-    // Helpery do Expand/Collapse ALL w obrębie jednej sekcji (normal/weekly)
+    // Helpery do Expand/Collapse ALL w obrÄ™bie jednej sekcji (normal/weekly)
     function setAllGemsStateIn(containerSel, collapsed){
-      // collapsed === true => zwinąć; false => rozwinąć
+      // collapsed === true => zwinÄ…Ä‡; false => rozwinÄ…Ä‡
       $$(containerSel + ' .gems-section').forEach(sect=>{
         const isCollapsed = sect.classList.contains('collapsed');
         if (collapsed && !isCollapsed) {
           sect.classList.add('collapsed');
           const h = sect.querySelector('.gems-header .chev');
-          if (h) h.textContent = '▲';
+          if (h) h.textContent = 'â–˛';
         }
         if (!collapsed && isCollapsed) {
           sect.classList.remove('collapsed');
           const h = sect.querySelector('.gems-header .chev');
-          if (h) h.textContent = '▼';
+          if (h) h.textContent = 'â–Ľ';
         }
       });
     }
@@ -287,5 +291,6 @@ function bossCard(b){
     }, { once:true });
   </script>
 <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

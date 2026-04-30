@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -7,10 +7,15 @@
 
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/global-nav.css" />
-  
+
   <link rel="stylesheet" href="css/tier-analytics.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/tier-analytics.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
   <nav id="global-nav"></nav>
@@ -19,24 +24,24 @@
     <header class="ta-header">
       <div class="ta-title">
         <h1>Tier Analytics</h1>
-        <p>Podsumowania, porównania wersji, rozkłady, movers, tabela + trendy postaci.</p>
+        <p>Podsumowania, porĂłwnania wersji, rozkĹ‚ady, movers, tabela + trendy postaci.</p>
       </div>
 
       <div class="ta-quick">
-        <div class="ta-chip" id="ta-chip-total">Total: —</div>
-        <div class="ta-chip" id="ta-chip-owned">Owned: —</div>
-        <div class="ta-chip" id="ta-chip-debuts">Debuts: —</div>
-        <div class="ta-chip" id="ta-chip-avg">Avg score: —</div>
+        <div class="ta-chip" id="ta-chip-total">Total: â€”</div>
+        <div class="ta-chip" id="ta-chip-owned">Owned: â€”</div>
+        <div class="ta-chip" id="ta-chip-debuts">Debuts: â€”</div>
+        <div class="ta-chip" id="ta-chip-avg">Avg score: â€”</div>
       </div>
     </header>
 
     <div class="ta-toolbar" style="margin: 0 0 12px;">
       <select class="ta-select" id="analytics-version" title="Wersja">
-        <option value="">Wersja: —</option>
+        <option value="">Wersja: â€”</option>
       </select>
 
-      <select class="ta-select" id="analytics-compare" title="Porównaj z">
-        <option value="">Porównaj: None</option>
+      <select class="ta-select" id="analytics-compare" title="PorĂłwnaj z">
+        <option value="">PorĂłwnaj: None</option>
       </select>
 
       <select class="ta-select" id="analytics-groupby" title="Grupuj">
@@ -56,8 +61,8 @@
     <section class="ta-grid">
       <section class="ta-card">
         <div class="ta-card-head">
-          <h2>Rozkład tierów (wybrana wersja)</h2>
-          <div class="ta-muted" id="ta-subtitle-dist">—</div>
+          <h2>RozkĹ‚ad tierĂłw (wybrana wersja)</h2>
+          <div class="ta-muted" id="ta-subtitle-dist">â€”</div>
         </div>
         <canvas class="ta-canvas" id="ta-canvas-tierdist" width="900" height="260"></canvas>
         <div class="ta-legend" id="ta-legend-tierdist"></div>
@@ -66,7 +71,7 @@
       <section class="ta-card">
         <div class="ta-card-head">
           <h2>Owned vs Not owned</h2>
-          <div class="ta-muted">Ten sam rozkład, ale rozbity na posiadanie.</div>
+          <div class="ta-muted">Ten sam rozkĹ‚ad, ale rozbity na posiadanie.</div>
         </div>
         <canvas class="ta-canvas" id="ta-canvas-owned" width="900" height="260"></canvas>
         <div class="ta-legend" id="ta-legend-owned"></div>
@@ -75,7 +80,7 @@
       <section class="ta-card">
         <div class="ta-card-head">
           <h2>Breakdown wg grupy</h2>
-          <div class="ta-muted">Element / Role / Weapon / Rarity (zależnie od wyboru).</div>
+          <div class="ta-muted">Element / Role / Weapon / Rarity (zaleĹĽnie od wyboru).</div>
         </div>
         <canvas class="ta-canvas" id="ta-canvas-breakdown" width="900" height="320"></canvas>
         <div class="ta-legend" id="ta-legend-breakdown"></div>
@@ -83,8 +88,8 @@
 
       <section class="ta-card">
         <div class="ta-card-head">
-          <h2>Movers (porównanie wersji)</h2>
-          <div class="ta-muted">Największe awanse/spadki względem wersji porównawczej.</div>
+          <h2>Movers (porĂłwnanie wersji)</h2>
+          <div class="ta-muted">NajwiÄ™ksze awanse/spadki wzglÄ™dem wersji porĂłwnawczej.</div>
         </div>
 
         <div class="ta-movers">
@@ -107,7 +112,7 @@
         <div class="ta-card-head ta-row">
           <div>
             <h2>Tabela postaci</h2>
-            <div class="ta-muted">Dropdowny zawężają się dynamicznie + pokazują liczniki. Kliknij wiersz = trend.</div>
+            <div class="ta-muted">Dropdowny zawÄ™ĹĽajÄ… siÄ™ dynamicznie + pokazujÄ… liczniki. Kliknij wiersz = trend.</div>
           </div>
           <div class="ta-actions">
             <button class="ta-btn" id="ta-btn-copy-tsv" type="button">Copy TSV</button>
@@ -116,7 +121,7 @@
         </div>
 
         <div class="ta-toolbar">
-          <input class="ta-input" id="ta-search" type="text" placeholder="Szukaj: nazwa / element / rola / broń / tier…" />
+          <input class="ta-input" id="ta-search" type="text" placeholder="Szukaj: nazwa / element / rola / broĹ„ / tierâ€¦" />
 
           <select class="ta-select" id="ta-filter-element" title="Filtr: Element">
             <option value="">Element: All</option>
@@ -134,15 +139,15 @@
             <option value="">Rarity: All</option>
           </select>
 
-          <button class="ta-btn" id="ta-btn-clear-filters" type="button" title="Wyczyść filtry">Clear</button>
+          <button class="ta-btn" id="ta-btn-clear-filters" type="button" title="WyczyĹ›Ä‡ filtry">Clear</button>
 
           <select class="ta-select" id="ta-sort">
-            <option value="delta_desc">Sort: Delta ↓</option>
-            <option value="delta_asc">Sort: Delta ↑</option>
-            <option value="rating_desc">Sort: Rating (lepsze) ↓</option>
-            <option value="rating_asc">Sort: Rating (gorsze) ↑</option>
-            <option value="name_asc">Sort: Name A→Z</option>
-            <option value="name_desc">Sort: Name Z→A</option>
+            <option value="delta_desc">Sort: Delta â†“</option>
+            <option value="delta_asc">Sort: Delta â†‘</option>
+            <option value="rating_desc">Sort: Rating (lepsze) â†“</option>
+            <option value="rating_asc">Sort: Rating (gorsze) â†‘</option>
+            <option value="name_asc">Sort: Name Aâ†’Z</option>
+            <option value="name_desc">Sort: Name Zâ†’A</option>
           </select>
 
           <label class="ta-check">
@@ -155,10 +160,10 @@
           <table class="ta-table">
             <thead>
               <tr>
-                <th>Postać</th>
+                <th>PostaÄ‡</th>
                 <th>Rating</th>
                 <th>Prev</th>
-                <th>Δ</th>
+                <th>Î”</th>
                 <th>Element</th>
                 <th>Role</th>
                 <th>Weapon</th>
@@ -174,8 +179,8 @@
         <div class="ta-drawer" id="ta-drawer" aria-hidden="true">
           <div class="ta-drawer-head">
             <div>
-              <div class="ta-drawer-title" id="ta-drawer-title">—</div>
-              <div class="ta-muted" id="ta-drawer-sub">—</div>
+              <div class="ta-drawer-title" id="ta-drawer-title">â€”</div>
+              <div class="ta-muted" id="ta-drawer-sub">â€”</div>
             </div>
             <button class="ta-btn" id="ta-drawer-close" type="button">Close</button>
           </div>
@@ -191,5 +196,6 @@
   <script src="js/tier-history.js"></script>
   <script src="js/global-nav.js"></script>
   <script src="js/tier-analytics.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

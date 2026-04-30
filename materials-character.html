@@ -1,31 +1,36 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Genshin Tracker – Character</title>
+  <title>Genshin Tracker â€“ Character</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Główny styl aplikacji -->
+  <!-- GĹ‚Ăłwny styl aplikacji -->
   <link rel="stylesheet" href="css/materials.css" />
   <!-- Styl strony character -->
   <link rel="stylesheet" href="character.css" />
 <link rel="stylesheet" href="css/global-nav.css">
 <link rel="stylesheet" href="css/settings-overrides.css" />
 <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="character.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
 <nav id="global-nav"></nav>
 
   <header class="app-header">
-    <h1>Genshin Tracker – Character</h1>
+    <h1>Genshin Tracker â€“ Character</h1>
   </header>
 
   <main class="page">
-    <!-- PAGINACJA POSTACI (na górze) -->
+    <!-- PAGINACJA POSTACI (na gĂłrze) -->
     <section class="section">
       <div class="panel">
         <div class="panel-head">
           <h2>Character Navigation</h2>
-          <small>Arrow keys ←/→ also work</small>
+          <small>Arrow keys â†/â†’ also work</small>
         </div>
         <div id="char-pager" class="pager"></div>
       </div>
@@ -37,12 +42,12 @@
       <div>
         <h2 id="char-name">Character</h2>
         <div class="chips">
-          <span class="chip">Element: <b id="char-element">—</b></span>
-          <span class="chip">Level: <b id="char-level">—</b></span>
-          <span class="chip">Asc: <b id="char-asc">—</b></span>
-          <span class="chip">NA: <b id="char-na">—</b></span>
-          <span class="chip">Skill: <b id="char-skill">—</b></span>
-          <span class="chip">Burst: <b id="char-burst">—</b></span>
+          <span class="chip">Element: <b id="char-element">â€”</b></span>
+          <span class="chip">Level: <b id="char-level">â€”</b></span>
+          <span class="chip">Asc: <b id="char-asc">â€”</b></span>
+          <span class="chip">NA: <b id="char-na">â€”</b></span>
+          <span class="chip">Skill: <b id="char-skill">â€”</b></span>
+          <span class="chip">Burst: <b id="char-burst">â€”</b></span>
         </div>
         <div class="muted" id="char-notes"></div>
       </div>
@@ -52,7 +57,7 @@
     <section class="section">
       <div class="panel">
         <div class="panel-head">
-          <h2>Ascension – Missing</h2>
+          <h2>Ascension â€“ Missing</h2>
           <small>Calculated from your Character Progress goals</small>
         </div>
         <div class="card-grid compact" id="asc-cards"></div>
@@ -63,7 +68,7 @@
     <section class="section">
       <div class="panel">
         <div class="panel-head">
-          <h2>Leveling – Missing</h2>
+          <h2>Leveling â€“ Missing</h2>
           <small>Calculated from your current and target level checkpoints</small>
         </div>
         <div class="card-grid compact" id="level-cards"></div>
@@ -74,7 +79,7 @@
     <section class="section">
       <div class="panel">
         <div class="panel-head">
-          <h2>Talents – Missing (NA / Skill / Burst)</h2>
+          <h2>Talents â€“ Missing (NA / Skill / Burst)</h2>
           <div id="talent-bookdays" class="muted"></div>
           <small>Calculated separately for each talent</small>
         </div>
@@ -91,13 +96,13 @@
           <a id="goto-bosses" href="bosses.html">Open Bosses</a>
         </div>
         <div class="muted" style="margin-top:8px">
-          Tip: In Materials → Inventory you can fill in missing items; in Bosses you can check drop sources.
+          Tip: In Materials â†’ Inventory you can fill in missing items; in Bosses you can check drop sources.
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Dane i skrypty współdzielone -->
+  <!-- Dane i skrypty wspĂłĹ‚dzielone -->
   <script src="js/idb.js"></script>
   <script src="js/migrator.js"></script>
   <script src="js/settings-core.js"></script>
@@ -105,5 +110,6 @@
   <!-- Logika strony character -->
   <script src="js/character.js"></script>
 <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

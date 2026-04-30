@@ -1,0 +1,34 @@
+﻿.is-mobile #global-nav {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.is-mobile #global-nav a,
+.is-mobile #global-nav button,
+.is-mobile .global-nav a,
+.is-mobile .global-nav button {
+  min-height: 44px;
+  min-width: 44px;
+  white-space: nowrap;
+}
+
+.is-mobile .global-nav,
+.is-mobile .nav-links,
+.is-mobile .nav-list {
+  gap: 8px;
+}
+
+.is-mobile.is-portrait #global-nav,
+.is-mobile.is-portrait .global-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.is-mobile.is-landscape #global-nav,
+.is-mobile.is-landscape .global-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}

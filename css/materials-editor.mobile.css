@@ -1,0 +1,41 @@
+﻿.is-mobile .materials-editor,
+.is-mobile .editor-container,
+.is-mobile .editor-layout {
+  padding: 12px;
+  max-width: 100%;
+}
+
+.is-mobile .editor-form,
+.is-mobile .materials-editor-form,
+.is-mobile .form-grid {
+  gap: 10px;
+}
+
+.is-mobile .materials-editor input,
+.is-mobile .materials-editor select,
+.is-mobile .materials-editor textarea {
+  width: 100%;
+}
+
+.is-mobile .editor-actions,
+.is-mobile .materials-editor-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+}
+
+.is-mobile.is-portrait .editor-form,
+.is-mobile.is-portrait .materials-editor-form,
+.is-mobile.is-portrait .form-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .editor-form,
+.is-mobile.is-landscape .materials-editor-form,
+.is-mobile.is-landscape .form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

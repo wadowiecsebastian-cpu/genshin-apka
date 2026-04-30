@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,12 +7,16 @@
 
   <!-- Global nav styles (jak inne strony) -->
   <link rel="stylesheet" href="css/global-nav.css" />
-  
 
-  <!-- Styl tej zakładki -->
+
+  <!-- Styl tej zakĹ‚adki -->
   <link rel="stylesheet" href="css/materials-editor.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/materials-editor.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 
 <body>
@@ -44,7 +48,7 @@
           <div class="panel">
             <h2>Groups</h2>
             <div class="row">
-              <input id="book-search" class="input" placeholder="Search group…" />
+              <input id="book-search" class="input" placeholder="Search groupâ€¦" />
               <button id="book-add" class="btn" type="button">Add group</button>
             </div>
             <div class="list" id="book-list"></div>
@@ -65,7 +69,7 @@
               </div>
 
               <p class="hint">
-                Tip: To pole wpływa na <code>def.bookDays</code> przypinane do postaci w <code>attachBookDays()</code>. 
+                Tip: To pole wpĹ‚ywa na <code>def.bookDays</code> przypinane do postaci w <code>attachBookDays()</code>.
               </p>
             </div>
           </div>
@@ -78,7 +82,7 @@
           <div class="panel">
             <h2>Characters</h2>
             <div class="row">
-              <input id="char-search" class="input" placeholder="Search character…" />
+              <input id="char-search" class="input" placeholder="Search characterâ€¦" />
               <button id="char-add" class="btn" type="button">Add character</button>
             </div>
             <div class="list" id="char-list"></div>
@@ -87,7 +91,7 @@
           <div class="panel">
             <h2>Edit character</h2>
 
-            <!-- Datalist z kluczami materiałów (uzupełnia JS) -->
+            <!-- Datalist z kluczami materiaĹ‚Ăłw (uzupeĹ‚nia JS) -->
             <datalist id="me-material-keys"></datalist>
 
             <!-- Datalisty filtrowane dla picks -->
@@ -142,7 +146,7 @@
                 </div>
               </div>
 
-              <h3 class="me-subtitle">Ascension costs (asc) — wspólne dla wszystkich postaci (read-only)</h3>
+              <h3 class="me-subtitle">Ascension costs (asc) â€” wspĂłlne dla wszystkich postaci (read-only)</h3>
               <div class="me-table-wrap">
                 <table class="me-table">
                   <thead>
@@ -159,7 +163,7 @@
                 </table>
               </div>
 
-              <h3 class="me-subtitle">Talent costs (tal) — wspólne dla wszystkich postaci (read-only)</h3>
+              <h3 class="me-subtitle">Talent costs (tal) â€” wspĂłlne dla wszystkich postaci (read-only)</h3>
               <div class="me-table-wrap">
                 <table class="me-table">
                   <thead>
@@ -183,7 +187,7 @@
 
               <p class="hint">
                 Formularz zapisuje dane w strukturze <code>CHARACTER_COSTS[name] = { element, picks, asc[], tal[] }</code>.
-                <br/>W tym edytorze <code>asc</code> i <code>tal</code> są wspólne dla wszystkich postaci i nadpisywane przy zapisie.
+                <br/>W tym edytorze <code>asc</code> i <code>tal</code> sÄ… wspĂłlne dla wszystkich postaci i nadpisywane przy zapisie.
               </p>
             </div>
           </div>
@@ -219,7 +223,7 @@
                   <img id="mat-preview" alt="" />
                 </div>
                 <div class="hint">
-                  Podgląd działa dla ścieżek <code>icon</code> z <code>MATERIALS</code>. 
+                  PodglÄ…d dziaĹ‚a dla Ĺ›cieĹĽek <code>icon</code> z <code>MATERIALS</code>.
                 </div>
               </div>
 
@@ -259,9 +263,10 @@
   <script src="js/migrator.js" defer></script>
   <script src="js/settings-core.js" defer></script>
   <script src="js/global-nav.js"></script>
-  <!-- WAŻNE: ładujemy najpierw dane -->
+  <!-- WAĹ»NE: Ĺ‚adujemy najpierw dane -->
   <script src="js/materials.js"></script>
   <!-- potem edytor -->
   <script src="js/materials-editor.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

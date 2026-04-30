@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -64,13 +64,14 @@
 
     .footer { margin-top: 20px; font-size: 12px; color: var(--muted); display:flex; gap:12px; flex-wrap: wrap; }
   </style>
-  <!-- Ładujemy zewnętrzny plik z listami wyboru -->
+  <!-- Ĺadujemy zewnÄ™trzny plik z listami wyboru -->
   <script src="picksData.js"></script>
+  <link rel="stylesheet" href="../../css/generator.mobile.css">
 </head>
 <body>
   <header>
     <h1>Character Code Generator</h1>
-    <span class="badge">Fixed asc/tal templates • Pick-lists</span>
+    <span class="badge">Fixed asc/tal templates â€˘ Pick-lists</span>
   </header>
 
   <div class="container">
@@ -127,7 +128,7 @@
               <input id="bossWeekly" type="text" placeholder="weekly_Scaramouche1" autocomplete="off" />
             </div>
           </div>
-          <p class="hint" id="listsStatus" style="margin:8px 2px 0;">Listy: <em>ładowanie…</em></p>
+          <p class="hint" id="listsStatus" style="margin:8px 2px 0;">Listy: <em>Ĺ‚adowanieâ€¦</em></p>
 
           <div class="actions">
             <button class="btn-primary" id="addBtn">Add character to queue</button>
@@ -139,11 +140,11 @@
             <summary>Show fixed templates (asc, tal)</summary>
             <div class="row">
               <div>
-                <label>Ascension template (read‑only)</label>
+                <label>Ascension template (readâ€‘only)</label>
                 <div class="preview" id="ascTplPreview"></div>
               </div>
               <div>
-                <label>Talent template (read‑only)</label>
+                <label>Talent template (readâ€‘only)</label>
                 <div class="preview" id="talTplPreview"></div>
               </div>
             </div>
@@ -158,7 +159,7 @@
           <span class="hint"><span id="count">0</span> in queue</span>
         </h2>
         <div class="body">
-          <div class="preview" id="codePreview">// Your generated code will appear here…</div>
+          <div class="preview" id="codePreview">// Your generated code will appear hereâ€¦</div>
           <div class="actions">
             <button class="btn-ok" id="copyBtn">Copy to clipboard</button>
             <button id="downloadBtn">Download .js</button>
@@ -181,38 +182,38 @@
     </div>
 
     <div class="footer">
-      <div>• Możesz pisać ręcznie lub wybierać z list (datalist). Listy są dostarczane z pliku <code class="inline">picksData.js</code>.</div>
-      <div>• Podgląd generuje gotowy <em>JS object literal</em> z komentarzami (nie JSON).</div>
+      <div>â€˘ MoĹĽesz pisaÄ‡ rÄ™cznie lub wybieraÄ‡ z list (datalist). Listy sÄ… dostarczane z pliku <code class="inline">picksData.js</code>.</div>
+      <div>â€˘ PodglÄ…d generuje gotowy <em>JS object literal</em> z komentarzami (nie JSON).</div>
     </div>
   </div>
 
   <script>
     // ===== Fixed templates (data for logic) =====
     const ASC_TEMPLATE = [
-      { mora:20000,  gems:{t1:1,t2:0,t3:0,t4:0}, enemy:{t1:3,t2:0,t3:0}, local:3,  boss:0  }, // 0→1
-      { mora:40000,  gems:{t1:0,t2:3,t3:0,t4:0}, enemy:{t1:15,t2:0,t3:0},local:10, boss:2  }, // 1→2
-      { mora:60000,  gems:{t1:0,t2:6,t3:0,t4:0}, enemy:{t1:0,t2:12,t3:0},local:20, boss:4  }, // 2→3 (Trimmed Red Silk)
-      { mora:80000,  gems:{t1:0,t2:0,t3:3,t4:0}, enemy:{t1:0,t2:18,t3:0},local:30, boss:8  }, // 3→4
-      { mora:100000, gems:{t1:0,t2:0,t3:6,t4:0}, enemy:{t1:0,t2:0,t3:12},local:45, boss:12 }, // 4→5 (Rich Red Brocade)
-      { mora:120000, gems:{t1:0,t2:0,t3:0,t4:6}, enemy:{t1:0,t2:0,t3:24},local:60, boss:20 }, // 5→6
+      { mora:20000,  gems:{t1:1,t2:0,t3:0,t4:0}, enemy:{t1:3,t2:0,t3:0}, local:3,  boss:0  }, // 0â†’1
+      { mora:40000,  gems:{t1:0,t2:3,t3:0,t4:0}, enemy:{t1:15,t2:0,t3:0},local:10, boss:2  }, // 1â†’2
+      { mora:60000,  gems:{t1:0,t2:6,t3:0,t4:0}, enemy:{t1:0,t2:12,t3:0},local:20, boss:4  }, // 2â†’3 (Trimmed Red Silk)
+      { mora:80000,  gems:{t1:0,t2:0,t3:3,t4:0}, enemy:{t1:0,t2:18,t3:0},local:30, boss:8  }, // 3â†’4
+      { mora:100000, gems:{t1:0,t2:0,t3:6,t4:0}, enemy:{t1:0,t2:0,t3:12},local:45, boss:12 }, // 4â†’5 (Rich Red Brocade)
+      { mora:120000, gems:{t1:0,t2:0,t3:0,t4:6}, enemy:{t1:0,t2:0,t3:24},local:60, boss:20 }, // 5â†’6
     ];
     const ASC_LABELS = [
-      "0→1", "1→2", "2→3 (Trimmed Red Silk)", "3→4", "4→5 (Rich Red Brocade)", "5→6"
+      "0â†’1", "1â†’2", "2â†’3 (Trimmed Red Silk)", "3â†’4", "4â†’5 (Rich Red Brocade)", "5â†’6"
     ];
 
     const TAL_TEMPLATE = [
-      { books:{t1:3,t2:0,t3:0},  enemy:{t1:6,t2:0,t3:0},  weekly:0, crown:0 }, // 1→2
-      { books:{t1:0,t2:2,t3:0},  enemy:{t1:0,t2:3,t3:0},  weekly:0, crown:0 }, // 2→3
-      { books:{t1:0,t2:4,t3:0},  enemy:{t1:0,t2:4,t3:0},  weekly:0, crown:0 }, // 3→4
-      { books:{t1:0,t2:6,t3:0},  enemy:{t1:0,t2:6,t3:0},  weekly:0, crown:0 }, // 4→5
-      { books:{t1:0,t2:9,t3:0},  enemy:{t1:0,t2:9,t3:0},  weekly:0, crown:0 }, // 5→6
-      { books:{t1:0,t2:0,t3:4},  enemy:{t1:0,t2:0,t3:4},  weekly:1, crown:0 }, // 6→7 +1 weekly
-      { books:{t1:0,t2:0,t3:6},  enemy:{t1:0,t2:0,t3:6},  weekly:1, crown:0 }, // 7→8 +1 weekly
-      { books:{t1:0,t2:0,t3:12}, enemy:{t1:0,t2:0,t3:9},  weekly:2, crown:0 }, // 8→9 +2 weekly
-      { books:{t1:0,t2:0,t3:16}, enemy:{t1:0,t2:0,t3:12}, weekly:2, crown:1 }, // 9→10 +2 weekly + Crown
+      { books:{t1:3,t2:0,t3:0},  enemy:{t1:6,t2:0,t3:0},  weekly:0, crown:0 }, // 1â†’2
+      { books:{t1:0,t2:2,t3:0},  enemy:{t1:0,t2:3,t3:0},  weekly:0, crown:0 }, // 2â†’3
+      { books:{t1:0,t2:4,t3:0},  enemy:{t1:0,t2:4,t3:0},  weekly:0, crown:0 }, // 3â†’4
+      { books:{t1:0,t2:6,t3:0},  enemy:{t1:0,t2:6,t3:0},  weekly:0, crown:0 }, // 4â†’5
+      { books:{t1:0,t2:9,t3:0},  enemy:{t1:0,t2:9,t3:0},  weekly:0, crown:0 }, // 5â†’6
+      { books:{t1:0,t2:0,t3:4},  enemy:{t1:0,t2:0,t3:4},  weekly:1, crown:0 }, // 6â†’7 +1 weekly
+      { books:{t1:0,t2:0,t3:6},  enemy:{t1:0,t2:0,t3:6},  weekly:1, crown:0 }, // 7â†’8 +1 weekly
+      { books:{t1:0,t2:0,t3:12}, enemy:{t1:0,t2:0,t3:9},  weekly:2, crown:0 }, // 8â†’9 +2 weekly
+      { books:{t1:0,t2:0,t3:16}, enemy:{t1:0,t2:0,t3:12}, weekly:2, crown:1 }, // 9â†’10 +2 weekly + Crown
     ];
     const TAL_LABELS = [
-      "1→2", "2→3", "3→4", "4→5", "5→6", "6→7 +1 weekly", "7→8 +1 weekly", "8→9 +2 weekly", "9→10 +2 weekly + Crown"
+      "1â†’2", "2â†’3", "3â†’4", "4â†’5", "5â†’6", "6â†’7 +1 weekly", "7â†’8 +1 weekly", "8â†’9 +2 weekly", "9â†’10 +2 weekly + Crown"
     ];
 
     // ===== DATALISTS (from picksData.js) =====
@@ -249,7 +250,7 @@
     function initPickLists() {
       const ok = (typeof window.PICKS_LISTS === "object" && window.PICKS_LISTS !== null);
       if (!ok) {
-        listsStatus.innerHTML = "Listy: <span style=\"color:#ffb4b4\">nie znaleziono pliku picksData.js — działam bez podpowiedzi</span>";
+        listsStatus.innerHTML = "Listy: <span style=\"color:#ffb4b4\">nie znaleziono pliku picksData.js â€” dziaĹ‚am bez podpowiedzi</span>";
         return;
       }
       try {
@@ -265,10 +266,10 @@
           const items = (window.PICKS_LISTS?.[key] || []);
           if (el && items.length) attachDatalist(el, `dl_${key}` , items);
         }
-        listsStatus.textContent = "Listy: załadowano z picksData.js";
+        listsStatus.textContent = "Listy: zaĹ‚adowano z picksData.js";
       } catch (e) {
         console.error("Pick-lists init error", e);
-        listsStatus.innerHTML = "Listy: <span style=\"color:#ffb4b4\">błąd inicjalizacji</span>";
+        listsStatus.innerHTML = "Listy: <span style=\"color:#ffb4b4\">bĹ‚Ä…d inicjalizacji</span>";
       }
     }
 
@@ -298,7 +299,7 @@
     // ===== Event handlers =====
     document.getElementById("addBtn").addEventListener("click", () => {
       const name = (elName.value || "").trim();
-      if (!name) { alert("Podaj nazwę postaci (name)."); elName.focus(); return; }
+      if (!name) { alert("Podaj nazwÄ™ postaci (name)."); elName.focus(); return; }
       const element = elElement.value;
       const picks = {
         bossNormal: (elBossNormal.value || "").trim(),
@@ -311,7 +312,7 @@
 
       const missing = Object.entries(picks).filter(([,v]) => !v).map(([k])=>k);
       if (missing.length) {
-        if (!confirm(`Brakujące pola: ${missing.join(", ")}\nDodać mimo to?`)) return;
+        if (!confirm(`BrakujÄ…ce pola: ${missing.join(", ")}\nDodaÄ‡ mimo to?`)) return;
       }
 
       const idx = queue.findIndex(it => it.name === name);
@@ -326,7 +327,7 @@
     document.getElementById("clearFormBtn").addEventListener("click", () => clearForm(true));
     document.getElementById("clearQueueBtn").addEventListener("click", () => {
       if (!queue.length) return;
-      if (confirm("Wyczyścić całą kolejkę?")) {
+      if (confirm("WyczyĹ›ciÄ‡ caĹ‚Ä… kolejkÄ™?")) {
         queue.splice(0, queue.length);
         renderQueue();
         renderOutput();
@@ -402,7 +403,7 @@
 
     function renderOutput() {
       if (!queue.length) {
-        codePreview.textContent = `// Your generated code will appear here…`;
+        codePreview.textContent = `// Your generated code will appear hereâ€¦`;
         return;
       }
       if (queue.length === 1) {
@@ -416,7 +417,7 @@
       codePreview.textContent = wrapped;
     }
 
-    // Demo fill (optional) – shows formatting
+    // Demo fill (optional) â€“ shows formatting
     (function demoFill(){
       document.getElementById("name").value = "Alhaitham";
       document.getElementById("element").value = "Dendro";
@@ -431,5 +432,6 @@
     // Initialize pick-lists after DOM and picksData.js
     window.addEventListener("DOMContentLoaded", initPickLists);
   </script>
+  <script src="../../js/device-mode.js"></script>
 </body>
 </html>

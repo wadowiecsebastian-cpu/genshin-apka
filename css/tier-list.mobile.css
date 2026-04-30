@@ -1,0 +1,47 @@
+﻿.is-mobile .tier-grid-container {
+  display: block;
+  min-height: auto;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.is-mobile .tier-grid {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  overflow: visible;
+}
+
+.is-mobile .tier-grid-header,
+.is-mobile .tier-label {
+  min-height: 44px;
+}
+
+.is-mobile .character-compact {
+  width: 72px;
+  min-height: 80px;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.is-mobile .character-portrait-small {
+  width: 48px;
+  height: 48px;
+}
+
+.is-mobile.is-portrait .tier-grid {
+  display: block;
+}
+
+.is-mobile.is-portrait .element-cell,
+.is-mobile.is-portrait .role-cell {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-height: 0;
+}
+
+.is-mobile.is-landscape .tier-grid {
+  display: grid;
+  grid-template-columns: 64px repeat(4, minmax(96px, 1fr));
+}

@@ -1,0 +1,50 @@
+﻿.is-mobile .tp {
+  padding: 12px;
+}
+
+.is-mobile .tp__header,
+.is-mobile .tp__topBar,
+.is-mobile .tp__resultsHeader,
+.is-mobile .tp__cardHead {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.is-mobile .tp__top,
+.is-mobile .tp__results,
+.is-mobile .tp__card,
+.is-mobile .tp__slot {
+  border-radius: 16px;
+}
+
+.is-mobile .tp__topActions,
+.is-mobile .tp__elements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.is-mobile .tp__elBtn,
+.is-mobile .tp__btn,
+.is-mobile .tp__segBtn,
+.is-mobile .tp__iconBtn {
+  min-height: 44px;
+}
+
+.is-mobile .tp__portrait {
+  width: 54px;
+  height: 54px;
+}
+
+.is-mobile.is-portrait .tp__slots,
+.is-mobile.is-portrait .tp__grid,
+.is-mobile.is-portrait .tp__showcase {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.is-mobile.is-landscape .tp__slots,
+.is-mobile.is-landscape .tp__grid,
+.is-mobile.is-landscape .tp__showcase {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}

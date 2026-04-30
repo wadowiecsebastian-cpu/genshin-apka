@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Genshin Tracker – Boss Guide</title>
+  <title>Genshin Tracker â€“ Boss Guide</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Główny styl + pager z character.css -->
+  <!-- GĹ‚Ăłwny styl + pager z character.css -->
   <link rel="stylesheet" href="css/materials.css" />
   <link rel="stylesheet" href="character.css" />
   <style>
@@ -44,12 +44,17 @@
 <link rel="stylesheet" href="css/global-nav.css">
 <link rel="stylesheet" href="css/settings-overrides.css" />
 <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="character.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
 <nav id="global-nav"></nav>
 
   <header class="app-header">
-    <h1>Genshin Tracker – Boss Guide</h1>
+    <h1>Genshin Tracker â€“ Boss Guide</h1>
   </header>
 
   <main class="page" id="page">
@@ -58,14 +63,14 @@
       <div class="panel">
         <div class="panel-head">
           <h2>Boss Navigation</h2>
-          <small>Arrow keys ←/→ also work</small>
+          <small>Arrow keys â†/â†’ also work</small>
         </div>
         <div id="boss-pager" class="pager"></div>
       </div>
     </section>
   </main>
 
-  <!-- współdzielone dane -->
+  <!-- wspĂłĹ‚dzielone dane -->
   <script src="js/idb.js"></script>
   <script src="js/migrator.js"></script>
   <script src="js/settings-core.js"></script>
@@ -100,8 +105,8 @@
         const meta = el('div','');
         meta.appendChild(el('h2', '', b.name));
         const chips = el('div','chips');
-        chips.appendChild(el('span','chip', 'Region: <b>'+ (b.region||'—') +'</b>'));
-        chips.appendChild(el('span','chip', 'Type: <b>'+ (b.type||'—') +'</b>'));
+        chips.appendChild(el('span','chip', 'Region: <b>'+ (b.region||'â€”') +'</b>'));
+        chips.appendChild(el('span','chip', 'Type: <b>'+ (b.type||'â€”') +'</b>'));
         meta.appendChild(chips);
 
         hero.append(img, meta);
@@ -220,7 +225,7 @@
         // Prev
         const prev = document.createElement('button');
         prev.className = 'page-btn' + (currentIndex<=0 ? ' disabled' : '');
-        prev.textContent = '‹';
+        prev.textContent = 'â€ą';
         prev.title = 'Poprzedni boss';
         if (currentIndex>0) prev.onclick = ()=> goToIndex(currentIndex-1);
         wrap.appendChild(prev);
@@ -253,8 +258,8 @@
         // Next
         const next = document.createElement('button');
         next.className = 'page-btn' + (currentIndex>=n-1 ? ' disabled' : '');
-        next.textContent = '›';
-        next.title = 'Następny boss';
+        next.textContent = 'â€ş';
+        next.title = 'NastÄ™pny boss';
         if (currentIndex<n-1) next.onclick = ()=> goToIndex(currentIndex+1);
         wrap.appendChild(next);
       }
@@ -281,14 +286,14 @@
         }
         currentIndex = idx;
 
-        // Render pager i treści
+        // Render pager i treĹ›ci
         renderPager();
         const boss = bossList[currentIndex];
         renderHero(boss);
         renderGuide(boss);
         renderTeams(boss);
 
-        // Skróty klawiaturowe
+        // SkrĂłty klawiaturowe
         window.addEventListener('keydown', (e)=>{
           if (e.target && (e.target.tagName==='INPUT' || e.target.tagName==='TEXTAREA')) return;
           if (e.key === 'ArrowLeft'  && currentIndex>0) goToIndex(currentIndex-1);
@@ -302,5 +307,6 @@
     })();
   </script>
 <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

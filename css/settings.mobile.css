@@ -1,0 +1,57 @@
+﻿.is-mobile .settings-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 12px;
+}
+
+.is-mobile .settings-left,
+.is-mobile .settings-actions {
+  position: static;
+  top: auto;
+}
+
+.is-mobile .settings-sections {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.is-mobile .settings-sections button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.is-mobile .settings-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.is-mobile .settings-actions .danger {
+  grid-column: 1 / -1;
+}
+
+.is-mobile .set-card,
+.is-mobile .settings-left,
+.is-mobile .settings-actions {
+  border-radius: 16px;
+}
+
+.is-mobile .set-row input,
+.is-mobile .set-row select,
+.is-mobile .btn {
+  min-height: 44px;
+}
+
+.is-mobile.is-portrait .set-grid,
+.is-mobile.is-portrait .profile-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .set-grid,
+.is-mobile.is-landscape .profile-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

@@ -1,11 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Genshin Tracker – What should I do today?</title>
+  <title>Genshin Tracker â€“ What should I do today?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Ogólne style + zmienne kolorów z materials -->
+  <!-- OgĂłlne style + zmienne kolorĂłw z materials -->
   <link rel="stylesheet" href="css/materials.css" />
   <!-- Styl globalnej nawigacji -->
   <link rel="stylesheet" href="css/global-nav.css" />
@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="css/app-shell.css" />
   <!-- Dodatkowe style dla widoku Today -->
   <link rel="stylesheet" href="css/today.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
+  <link rel="stylesheet" href="css/today.mobile.css">
 </head>
 <body>
   <nav id="global-nav"></nav>
@@ -25,7 +30,7 @@
       </div>
       <div class="today-summary">
         <span id="today-books-runs"></span>
-        <span class="today-summary-sep">•</span>
+        <span class="today-summary-sep">â€˘</span>
         <span id="today-counter"></span>
       </div>
     </header>
@@ -67,7 +72,8 @@
   <!-- Logika widoku Today -->
   <script src="js/today.js" defer></script>
 
-  <!-- Globalna nawigacja (bez defer – tak jak na innych stronach) -->
+  <!-- Globalna nawigacja (bez defer â€“ tak jak na innych stronach) -->
   <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

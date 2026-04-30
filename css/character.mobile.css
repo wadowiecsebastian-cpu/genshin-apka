@@ -1,0 +1,68 @@
+﻿.is-mobile .character-page,
+.is-mobile .character-container,
+.is-mobile .character-layout {
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.is-mobile .tabs,
+.is-mobile .tab-container,
+.is-mobile .character-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+
+.is-mobile .tabs button,
+.is-mobile .tab-container button,
+.is-mobile .character-tabs button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  scroll-snap-align: start;
+}
+
+.is-mobile .character-hero img,
+.is-mobile .character-image,
+.is-mobile .splash-art,
+.is-mobile .portrait {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.is-mobile .team-card,
+.is-mobile .weapon-card,
+.is-mobile .artifact-card,
+.is-mobile .stat-card,
+.is-mobile .info-card {
+  border-radius: 16px;
+}
+
+.is-mobile .rotation-container,
+.is-mobile .team-rotation,
+.is-mobile .team-members {
+  max-width: 100%;
+}
+
+.is-mobile.is-portrait .character-main,
+.is-mobile.is-portrait .character-content,
+.is-mobile.is-portrait .info-grid,
+.is-mobile.is-portrait .weapons-grid,
+.is-mobile.is-portrait .artifacts-grid,
+.is-mobile.is-portrait .teams-grid,
+.is-mobile.is-portrait .stats-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .character-main,
+.is-mobile.is-landscape .character-content,
+.is-mobile.is-landscape .info-grid,
+.is-mobile.is-landscape .weapons-grid,
+.is-mobile.is-landscape .artifacts-grid,
+.is-mobile.is-landscape .teams-grid,
+.is-mobile.is-landscape .stats-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/global-nav.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <style>
-    /* Tymczasowe style dla lepszej widoczności */
+    /* Tymczasowe style dla lepszej widocznoĹ›ci */
     .filters {
       background-color: #080000;
       padding: 10px;
@@ -19,7 +19,12 @@
   </style>
 
   <link rel="stylesheet" href="css/app-shell.css"/>
-  
+
+  <link rel="stylesheet" href="css/team-planner.mobile.css">
+  <link rel="stylesheet" href="css/rotation.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
   <nav id="global-nav"></nav>
@@ -27,7 +32,7 @@
   <section class="app-page-intro app-page-intro--compact">
     <div class="app-page-kicker">Teams</div>
     <h1>Team Planner</h1>
-    <p>Szybkie przełączanie między własnymi postaciami a drużynami Imaginarium Theater w bardziej czytelnym układzie.</p>
+    <p>Szybkie przeĹ‚Ä…czanie miÄ™dzy wĹ‚asnymi postaciami a druĹĽynami Imaginarium Theater w bardziej czytelnym ukĹ‚adzie.</p>
   </section>
 
   <div class="tab-container">
@@ -50,17 +55,17 @@
         <img src="Element Icons/Pyro.png" alt="Pyro" data-element="Pyro" class="element-icon">
         <img src="Element Icons/Cryo.png" alt="Cryo" data-element="Cryo" class="element-icon">
       </div>
-      
-      <!-- Dodaj kontener na opcje filtrów -->
+
+      <!-- Dodaj kontener na opcje filtrĂłw -->
       <div class="filter-options">
         <label><input type="checkbox" id="owned-filter" /> Only owned characters</label>
       </div>
 
-      <!-- Nowe kafelki filtrowania drużyn po postaciach -->
+      <!-- Nowe kafelki filtrowania druĹĽyn po postaciach -->
       <div id="character-filter-row" class="character-filter-row">
         <!-- JS wstawi tu 4 kafelki -->
       </div>
-      
+
     </div>
     <div id="teams-container" class="teams-grid"></div>
   </div>
@@ -72,5 +77,6 @@
   <script src="js/settings-core.js"></script>
   <script src="js/team-planner.js"></script>
   <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

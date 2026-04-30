@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="pl">
 <head>
@@ -72,7 +72,12 @@
   </style>
 
   <link rel="stylesheet" href="css/app-shell.css"/>
-  
+
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="css/rotation.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
 <nav id="global-nav"></nav>
@@ -82,18 +87,18 @@
 <section class="app-page-intro">
   <div class="app-page-kicker">Characters</div>
   <h1>Biblioteka postaci</h1>
-  <p>Wyszukuj i przeglądaj postacie w prostszym, bardziej przyjaznym układzie, bez zmiany obecnej logiki działania kart.</p>
+  <p>Wyszukuj i przeglÄ…daj postacie w prostszym, bardziej przyjaznym ukĹ‚adzie, bez zmiany obecnej logiki dziaĹ‚ania kart.</p>
 </section>
 
 <input id="search" class="app-search-input" placeholder="Szukaj postaci..." type="text"/>
-<button class="accordion-toggle">📁 Pokaż/Zwiń postacie</button>
+<button class="accordion-toggle">đź“ PokaĹĽ/ZwiĹ„ postacie</button>
 <div class="accordion-content">
 <div class="card-grid" id="character-grid">
-<!-- Karty postaci zostaną wygenerowane dynamicznie -->
+<!-- Karty postaci zostanÄ… wygenerowane dynamicznie -->
 </div>
 </div>
 </div>
-<footer>Wersja przebudowana · Debug aktywny w konsoli</footer>
+<footer>Wersja przebudowana Â· Debug aktywny w konsoli</footer>
 <script src="js/accordion.js"></script>
 <script src="js/idb.js" defer></script>
 <script src="js/migrator.js" defer></script>
@@ -102,8 +107,9 @@
 <script src="js/characterData.js"></script>
 <script src="js/index.js"></script>
 <script>
-    console.log("✅ Strona załadowana i gotowa");
+    console.log("âś… Strona zaĹ‚adowana i gotowa");
   </script>
 <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

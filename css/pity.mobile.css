@@ -1,0 +1,59 @@
+﻿.is-mobile .pity {
+  padding: 12px;
+}
+
+.is-mobile .pity__tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 8px;
+}
+
+.is-mobile .pity__tab {
+  flex: 0 0 auto;
+  min-height: 44px;
+}
+
+.is-mobile .pity__showcase {
+  min-height: auto;
+  padding: 16px;
+}
+
+.is-mobile .pity__heroMedia {
+  position: static;
+  margin-top: 12px;
+}
+
+.is-mobile .pity__heroLead {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.is-mobile .pity__table {
+  min-width: 680px;
+}
+
+.is-mobile .pity__summaryCard,
+.is-mobile .pity__card,
+.is-mobile .pity__stat {
+  border-radius: 16px;
+}
+
+.is-mobile.is-portrait .pity__grid,
+.is-mobile.is-portrait .pity__grid2,
+.is-mobile.is-portrait .pity__grid3,
+.is-mobile.is-portrait .pity__dashboardGrid,
+.is-mobile.is-portrait .pity__summaryLayout,
+.is-mobile.is-portrait .pity__summaryCards,
+.is-mobile.is-portrait .pity__stats {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .pity__grid,
+.is-mobile.is-landscape .pity__dashboardGrid,
+.is-mobile.is-landscape .pity__summaryLayout,
+.is-mobile.is-landscape .pity__summaryCards,
+.is-mobile.is-landscape .pity__stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

@@ -1,18 +1,21 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Genshin Tracker – Materials</title>
+  <title>Genshin Tracker â€“ Materials</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/materials.css" />
 <link rel="stylesheet" href="css/global-nav.css">
 <link rel="stylesheet" href="css/settings-overrides.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
 </head>
 <body>
 <nav id="global-nav"></nav>
 
   <header class="app-header">
-    <h1>Genshin Tracker – Materials</h1>
+    <h1>Genshin Tracker â€“ Materials</h1>
     <nav class="tabs">
       <button class="tab-btn active" data-tab="progress">Character Progress</button>
       <button class="tab-btn" data-tab="inventory">Inventory</button>
@@ -31,31 +34,31 @@
           <label style="margin-left:8px; display:inline-flex; align-items:center; gap:6px;">
             <input type="checkbox" id="filter-today" /> Show characters farmable today
           </label>
-        
 
-          <div class="bulk-targets" role="group" aria-label="Masowe ustawianie celów">
+
+          <div class="bulk-targets" role="group" aria-label="Masowe ustawianie celĂłw">
             <strong style="margin-right:6px;">Masowo:</strong>
             <label>Asc
               <select id="bulk-asc">
-                <option value="">—</option>
+                <option value="">â€”</option>
                 <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
               </select>
             </label>
             <label>NA
               <select id="bulk-na">
-                <option value="">—</option>
+                <option value="">â€”</option>
                 <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
               </select>
             </label>
             <label>Skill
               <select id="bulk-skill">
-                <option value="">—</option>
+                <option value="">â€”</option>
                 <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
               </select>
             </label>
             <label>Burst
               <select id="bulk-burst">
-                <option value="">—</option>
+                <option value="">â€”</option>
                 <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
               </select>
             </label>
@@ -75,7 +78,7 @@
           <thead>
             <tr>
               <th>Character</th>
-              <th>Element<br><select id="filter-element" style="margin-top:4px; font-size:12px;"><option value="">—</option><option value="Pyro">Pyro</option><option value="Hydro">Hydro</option><option value="Electro">Electro</option><option value="Cryo">Cryo</option><option value="Anemo">Anemo</option><option value="Geo">Geo</option><option value="Dendro">Dendro</option></select></th>
+              <th>Element<br><select id="filter-element" style="margin-top:4px; font-size:12px;"><option value="">â€”</option><option value="Pyro">Pyro</option><option value="Hydro">Hydro</option><option value="Electro">Electro</option><option value="Cryo">Cryo</option><option value="Anemo">Anemo</option><option value="Geo">Geo</option><option value="Dendro">Dendro</option></select></th>
               <th>Level Cur</th>
               <th>Level Target</th>
               <th>Asc Cur</th>
@@ -153,7 +156,7 @@
   </section>
 
   <footer class="app-footer">
-    <small>100% offline • IndexedDB • brak żądań sieciowych</small>
+    <small>100% offline â€˘ IndexedDB â€˘ brak ĹĽÄ…daĹ„ sieciowych</small>
   </footer>
 
   <!-- Order matters: helpers -> data -> app -->
@@ -164,5 +167,6 @@
   <script src="js/characterData.js"></script>
   <script src="js/materials-app.js"></script>
   <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+﻿.is-mobile .controls,
+.is-mobile .filters,
+.is-mobile .filter-bar,
+.is-mobile .search-bar {
+  width: 100%;
+  gap: 10px;
+}
+
+.is-mobile .character-list,
+.is-mobile .character-grid,
+.is-mobile #character-list,
+.is-mobile #character-grid {
+  gap: 12px;
+}
+
+.is-mobile .character-card,
+.is-mobile .card {
+  border-radius: 16px;
+}
+
+.is-mobile.is-portrait .filters,
+.is-mobile.is-portrait .filter-bar,
+.is-mobile.is-portrait .controls {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-portrait .character-list,
+.is-mobile.is-portrait .character-grid,
+.is-mobile.is-portrait #character-list,
+.is-mobile.is-portrait #character-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.is-mobile.is-landscape .filters,
+.is-mobile.is-landscape .filter-bar,
+.is-mobile.is-landscape .controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.is-mobile.is-landscape .character-list,
+.is-mobile.is-landscape .character-grid,
+.is-mobile.is-landscape #character-list,
+.is-mobile.is-landscape #character-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}

@@ -1,0 +1,28 @@
+﻿.is-mobile .home-dashboard,
+.is-mobile .home-section,
+.is-mobile .quick-links,
+.is-mobile .stats-grid {
+  max-width: 100%;
+}
+
+.is-mobile .home-card,
+.is-mobile .dashboard-card,
+.is-mobile .module-card,
+.is-mobile .stat-card {
+  min-height: 44px;
+  border-radius: 16px;
+}
+
+.is-mobile.is-portrait .home-dashboard,
+.is-mobile.is-portrait .quick-links,
+.is-mobile.is-portrait .stats-grid,
+.is-mobile.is-portrait .module-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .home-dashboard,
+.is-mobile.is-landscape .quick-links,
+.is-mobile.is-landscape .stats-grid,
+.is-mobile.is-landscape .module-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

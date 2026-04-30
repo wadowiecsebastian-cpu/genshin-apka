@@ -1,17 +1,22 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
   <title>Pity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Spójny wygląd z Twoją apką -->
+  <!-- SpĂłjny wyglÄ…d z TwojÄ… apkÄ… -->
   <link rel="stylesheet" href="css/materials.css" />
   <link rel="stylesheet" href="css/global-nav.css" />
-  
+
   <link rel="stylesheet" href="css/pity.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/pity.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 
 <body>
@@ -22,15 +27,15 @@
       <div>
         <h1 class="pity__title">Pity</h1>
         <div class="pity__subtitle">
-          Historia życzeń, bieżący pity i podsumowanie w stylu Companion.
+          Historia ĹĽyczeĹ„, bieĹĽÄ…cy pity i podsumowanie w stylu Companion.
         </div>
       </div>
     </header>
 
     <!-- Tabs -->
     <nav class="pity__tabs" role="tablist" aria-label="Typ banera">
-      <button class="pity__tab is-active" role="tab" aria-selected="true" aria-controls="panel-char" id="tab-char" type="button">Postać</button>
-      <button class="pity__tab" role="tab" aria-selected="false" aria-controls="panel-weapon" id="tab-weapon" type="button">Broń</button>
+      <button class="pity__tab is-active" role="tab" aria-selected="true" aria-controls="panel-char" id="tab-char" type="button">PostaÄ‡</button>
+      <button class="pity__tab" role="tab" aria-selected="false" aria-controls="panel-weapon" id="tab-weapon" type="button">BroĹ„</button>
       <button class="pity__tab" role="tab" aria-selected="false" aria-controls="panel-standard" id="tab-standard" type="button">Standard</button>
       <button class="pity__tab" role="tab" aria-selected="false" aria-controls="panel-chro" id="tab-chro" type="button">Chronicled</button>
       <button class="pity__tab" role="tab" aria-selected="false" aria-controls="panel-summary" id="tab-summary" type="button">Podsumowanie</button>
@@ -44,14 +49,14 @@
         <summary>Edytor danych i kalkulator</summary>
         <div class="pity__grid">
         <section class="pity__card">
-          <h2 class="pity__h2">Historia — baner postaci</h2>
-          <div class="pity__help">Kolumny: Postać, Pity, Wynik (wygrana/przegrana), Data i godzina. Ostatni wiersz = najświeższy 5★.</div>
+          <h2 class="pity__h2">Historia â€” baner postaci</h2>
+          <div class="pity__help">Kolumny: PostaÄ‡, Pity, Wynik (wygrana/przegrana), Data i godzina. Ostatni wiersz = najĹ›wieĹĽszy 5â….</div>
 
           <div class="pity__tableWrap">
             <table class="pity__table">
               <thead>
                 <tr>
-                  <th>Postać (5★)</th>
+                  <th>PostaÄ‡ (5â…)</th>
                   <th>Pity</th>
                   <th>Wynik</th>
                   <th>Data i godzina</th>
@@ -65,7 +70,7 @@
           <div class="pity__row">
             <button class="pity__btn" data-add="char" type="button">+ Dodaj wiersz</button>
             <button class="pity__btn" data-paste-toggle="char" type="button">Wklej z arkusza</button>
-            <button class="pity__btn pity__btn--ghost" data-clear="char" type="button">Wyczyść</button>
+            <button class="pity__btn pity__btn--ghost" data-clear="char" type="button">WyczyĹ›Ä‡</button>
           </div>
 
           <div class="pity__paste" id="charPaste" hidden>
@@ -92,7 +97,7 @@
             </label>
 
             <label class="pity__field">
-              <span>Docelowa postać</span>
+              <span>Docelowa postaÄ‡</span>
               <input id="charTarget" type="text" placeholder="np. Furina / Clorinde" />
             </label>
           </div>
@@ -101,7 +106,7 @@
             <summary><strong>Zaawansowane: model soft pity</strong></summary>
             <div class="pity__grid3">
               <label class="pity__field">
-                <span>Bazowe P(5★) przed soft</span>
+                <span>Bazowe P(5â…) przed soft</span>
                 <input id="charBase" type="number" step="0.0001" value="0.006" />
               </label>
               <label class="pity__field">
@@ -121,7 +126,7 @@
         </section>
 
         <section class="pity__card">
-          <h2 class="pity__h2">Wyniki — postać</h2>
+          <h2 class="pity__h2">Wyniki â€” postaÄ‡</h2>
           <div class="pity__stats" id="charStats"></div>
 
           <div class="pity__tableWrap" style="margin-top:12px">
@@ -129,8 +134,8 @@
               <thead>
                 <tr>
                   <th>Horyzont</th>
-                  <th>P(5★ ≤ X pulli)</th>
-                  <th>Oczekiwane pull’e do 5★</th>
+                  <th>P(5â… â‰¤ X pulli)</th>
+                  <th>Oczekiwane pullâ€™e do 5â…</th>
                 </tr>
               </thead>
               <tbody id="charTable"></tbody>
@@ -138,7 +143,7 @@
           </div>
 
           <div class="pity__help" style="margin-top:8px">
-            P("Twoja postać") ≈ P(5★) × (50/50 lub gwarant z historii).
+            P("Twoja postaÄ‡") â‰ P(5â…) Ă— (50/50 lub gwarant z historii).
           </div>
         </section>
         </div>
@@ -153,14 +158,14 @@
         <summary>Edytor danych i kalkulator</summary>
         <div class="pity__grid">
         <section class="pity__card">
-          <h2 class="pity__h2">Historia — baner broni</h2>
-          <div class="pity__help">Kolumny: Broń, Pity, Wynik (wygrana/przegrana), Data i godzina.</div>
+          <h2 class="pity__h2">Historia â€” baner broni</h2>
+          <div class="pity__help">Kolumny: BroĹ„, Pity, Wynik (wygrana/przegrana), Data i godzina.</div>
 
           <div class="pity__tableWrap">
             <table class="pity__table">
               <thead>
                 <tr>
-                  <th>Broń (5★)</th>
+                  <th>BroĹ„ (5â…)</th>
                   <th>Pity</th>
                   <th>Wynik</th>
                   <th>Data i godzina</th>
@@ -174,7 +179,7 @@
           <div class="pity__row">
             <button class="pity__btn" data-add="wp" type="button">+ Dodaj wiersz</button>
             <button class="pity__btn" data-paste-toggle="wp" type="button">Wklej z arkusza</button>
-            <button class="pity__btn pity__btn--ghost" data-clear="wp" type="button">Wyczyść</button>
+            <button class="pity__btn pity__btn--ghost" data-clear="wp" type="button">WyczyĹ›Ä‡</button>
           </div>
 
           <div class="pity__paste" id="wpPaste" hidden>
@@ -195,7 +200,7 @@
               <span>Fate Points</span>
               <select id="wpFate">
                 <option value="0" selected>0</option>
-                <option value="1">1 (kolejny 5★ = gwarancja celu)</option>
+                <option value="1">1 (kolejny 5â… = gwarancja celu)</option>
               </select>
               <span class="pity__inline">
                 <input type="checkbox" id="wpAutoFate" checked />
@@ -204,7 +209,7 @@
             </label>
 
             <label class="pity__field">
-              <span>Docelowa broń</span>
+              <span>Docelowa broĹ„</span>
               <input id="wpTarget" type="text" placeholder="np. Beacon of the Reed Sea" />
             </label>
           </div>
@@ -213,7 +218,7 @@
             <summary><strong>Zaawansowane: model i priorytet</strong></summary>
             <div class="pity__grid3">
               <label class="pity__field">
-                <span>Bazowe P(5★) przed soft</span>
+                <span>Bazowe P(5â…) przed soft</span>
                 <input id="wpBase" type="number" step="0.0001" value="0.007" />
               </label>
               <label class="pity__field">
@@ -228,11 +233,11 @@
 
             <div class="pity__grid2">
               <label class="pity__field">
-                <span>P(że 5★ jest jedną z 2 broni z banera)</span>
+                <span>P(ĹĽe 5â… jest jednÄ… z 2 broni z banera)</span>
                 <input id="wpFeatured" type="number" step="0.01" value="0.75" />
               </label>
               <label class="pity__field">
-                <span>P(że trafisz właśnie swoją z tych 2)</span>
+                <span>P(ĹĽe trafisz wĹ‚aĹ›nie swojÄ… z tych 2)</span>
                 <input id="wpSplit" type="number" step="0.01" value="0.5" />
               </label>
             </div>
@@ -244,7 +249,7 @@
         </section>
 
         <section class="pity__card">
-          <h2 class="pity__h2">Wyniki — broń</h2>
+          <h2 class="pity__h2">Wyniki â€” broĹ„</h2>
           <div class="pity__stats" id="wpStats"></div>
 
           <div class="pity__tableWrap" style="margin-top:12px">
@@ -252,8 +257,8 @@
               <thead>
                 <tr>
                   <th>Horyzont</th>
-                  <th>P(5★ ≤ X pulli)</th>
-                  <th>Oczekiwane pull’e do 5★</th>
+                  <th>P(5â… â‰¤ X pulli)</th>
+                  <th>Oczekiwane pullâ€™e do 5â…</th>
                 </tr>
               </thead>
               <tbody id="wpTable"></tbody>
@@ -272,14 +277,14 @@
         <summary>Edytor danych i kalkulator</summary>
         <div class="pity__grid">
         <section class="pity__card">
-          <h2 class="pity__h2">Historia — Chronicled</h2>
+          <h2 class="pity__h2">Historia â€” Chronicled</h2>
           <div class="pity__help">Kolumny: Nazwa, Pity, Wynik, Data i godzina.</div>
 
           <div class="pity__tableWrap">
             <table class="pity__table">
               <thead>
                 <tr>
-                  <th>Nazwa (5★)</th>
+                  <th>Nazwa (5â…)</th>
                   <th>Pity</th>
                   <th>Wynik</th>
                   <th>Data i godzina</th>
@@ -293,7 +298,7 @@
           <div class="pity__row">
             <button class="pity__btn" data-add="chro" type="button">+ Dodaj wiersz</button>
             <button class="pity__btn" data-paste-toggle="chro" type="button">Wklej z arkusza</button>
-            <button class="pity__btn pity__btn--ghost" data-clear="chro" type="button">Wyczyść</button>
+            <button class="pity__btn pity__btn--ghost" data-clear="chro" type="button">WyczyĹ›Ä‡</button>
           </div>
 
           <div class="pity__paste" id="chroPaste" hidden>
@@ -324,7 +329,7 @@
 
             <label class="pity__field">
               <span>Cel (nazwa)</span>
-              <input id="chroTarget" type="text" placeholder="np. wybrana broń" />
+              <input id="chroTarget" type="text" placeholder="np. wybrana broĹ„" />
             </label>
           </div>
 
@@ -332,7 +337,7 @@
             <summary><strong>Zaawansowane: model i priorytet</strong></summary>
             <div class="pity__grid3">
               <label class="pity__field">
-                <span>Bazowe P(5★) przed soft</span>
+                <span>Bazowe P(5â…) przed soft</span>
                 <input id="chroBase" type="number" step="0.0001" value="0.007" />
               </label>
               <label class="pity__field">
@@ -347,11 +352,11 @@
 
             <div class="pity__grid2">
               <label class="pity__field">
-                <span>P(że 5★ jest z puli banera)</span>
+                <span>P(ĹĽe 5â… jest z puli banera)</span>
                 <input id="chroFeatured" type="number" step="0.01" value="0.75" />
               </label>
               <label class="pity__field">
-                <span>P(że trafisz swój cel)</span>
+                <span>P(ĹĽe trafisz swĂłj cel)</span>
                 <input id="chroSplit" type="number" step="0.01" value="0.5" />
               </label>
             </div>
@@ -363,7 +368,7 @@
         </section>
 
         <section class="pity__card">
-          <h2 class="pity__h2">Wyniki — Chronicled</h2>
+          <h2 class="pity__h2">Wyniki â€” Chronicled</h2>
           <div class="pity__stats" id="chroStats"></div>
 
           <div class="pity__tableWrap" style="margin-top:12px">
@@ -371,8 +376,8 @@
               <thead>
                 <tr>
                   <th>Horyzont</th>
-                  <th>P(5★ ≤ X pulli)</th>
-                  <th>Oczekiwane pull’e do 5★</th>
+                  <th>P(5â… â‰¤ X pulli)</th>
+                  <th>Oczekiwane pullâ€™e do 5â…</th>
                 </tr>
               </thead>
               <tbody id="chroTable"></tbody>
@@ -391,14 +396,14 @@
         <summary>Edytor danych i kalkulator</summary>
         <div class="pity__grid">
         <section class="pity__card">
-          <h2 class="pity__h2">Historia — Standard</h2>
+          <h2 class="pity__h2">Historia â€” Standard</h2>
           <div class="pity__help">Kolumny: Nazwa, Pity (lub Nieznane), Data i godzina.</div>
 
           <div class="pity__tableWrap">
             <table class="pity__table">
               <thead>
                 <tr>
-                  <th>Nazwa (5★)</th>
+                  <th>Nazwa (5â…)</th>
                   <th>Pity</th>
                   <th>Data i godzina</th>
                   <th></th>
@@ -411,7 +416,7 @@
           <div class="pity__row">
             <button class="pity__btn" data-add="std" type="button">+ Dodaj wiersz</button>
             <button class="pity__btn" data-paste-toggle="std" type="button">Wklej z arkusza</button>
-            <button class="pity__btn pity__btn--ghost" data-clear="std" type="button">Wyczyść</button>
+            <button class="pity__btn pity__btn--ghost" data-clear="std" type="button">WyczyĹ›Ä‡</button>
           </div>
 
           <div class="pity__paste" id="stdPaste" hidden>
@@ -443,12 +448,12 @@
             <summary><strong>Zaawansowane: model soft pity</strong></summary>
             <div class="pity__grid2">
               <label class="pity__field">
-                <span>Bazowe P(5★) przed soft</span>
+                <span>Bazowe P(5â…) przed soft</span>
                 <input id="stdBase" type="number" step="0.0001" value="0.006" />
               </label>
               <label class="pity__field">
                 <span>(info)</span>
-                <div class="pity__help">Standard jest jak baner postaci (model przybliżony).</div>
+                <div class="pity__help">Standard jest jak baner postaci (model przybliĹĽony).</div>
               </label>
             </div>
           </details>
@@ -459,7 +464,7 @@
         </section>
 
         <section class="pity__card">
-          <h2 class="pity__h2">Wyniki — Standard</h2>
+          <h2 class="pity__h2">Wyniki â€” Standard</h2>
           <div class="pity__stats" id="stdStats"></div>
 
           <div class="pity__tableWrap" style="margin-top:12px">
@@ -467,8 +472,8 @@
               <thead>
                 <tr>
                   <th>Horyzont</th>
-                  <th>P(5★ ≤ X pulli)</th>
-                  <th>Oczekiwane pull’e do 5★</th>
+                  <th>P(5â… â‰¤ X pulli)</th>
+                  <th>Oczekiwane pullâ€™e do 5â…</th>
                 </tr>
               </thead>
               <tbody id="stdTable"></tbody>
@@ -487,7 +492,7 @@
         <summary>Surowe statystyki i tabela pomocnicza</summary>
         <div class="pity__grid">
         <section class="pity__card">
-          <h2 class="pity__h2">Skrót</h2>
+          <h2 class="pity__h2">SkrĂłt</h2>
           <div class="pity__stats" id="sumQuick"></div>
 
           <h2 class="pity__h2" style="margin-top:14px">Stany i prognozy</h2>
@@ -501,7 +506,7 @@
         </section>
 
         <section class="pity__card pity__card--full">
-          <h2 class="pity__h2">Oś czasu (wszystkie banery)</h2>
+          <h2 class="pity__h2">OĹ› czasu (wszystkie banery)</h2>
           <div class="pity__tableWrap">
             <table class="pity__table">
               <thead>
@@ -529,11 +534,11 @@
         <button class="pity__btn" id="btnImport" type="button">Importuj JSON</button>
         <input id="fileImport" type="file" accept="application/json" style="display:none" />
       </div>
-      <div class="pity__help">Zapis automatyczny działa w IndexedDB (IDB). Import/Eksport przenosi dane między urządzeniami.</div>
+      <div class="pity__help">Zapis automatyczny dziaĹ‚a w IndexedDB (IDB). Import/Eksport przenosi dane miÄ™dzy urzÄ…dzeniami.</div>
     </section>
 
     <footer class="pity__footer">
-      Uwaga: soft pity i priorytety są modelami przybliżonymi. Gwarancje gry: hard pity (Postać 90, Broń/Chronicled 80), 50/50 na postaciach i Fate Points na broniach.
+      Uwaga: soft pity i priorytety sÄ… modelami przybliĹĽonymi. Gwarancje gry: hard pity (PostaÄ‡ 90, BroĹ„/Chronicled 80), 50/50 na postaciach i Fate Points na broniach.
     </footer>
   </main>
 
@@ -542,5 +547,6 @@
   <script src="js/settings-core.js" defer></script>
   <script src="js/pity.js" defer></script>
   <script src="js/global-nav.js" defer></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

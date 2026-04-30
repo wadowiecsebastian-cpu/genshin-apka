@@ -1,19 +1,24 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
-  <title>Genshin Tracker – Dashboard</title>
+  <title>Genshin Tracker â€“ Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Bazowe style/zmienne (spójne z resztą apki) -->
+  <!-- Bazowe style/zmienne (spĂłjne z resztÄ… apki) -->
   <link rel="stylesheet" href="css/materials.css" />
   <link rel="stylesheet" href="css/global-nav.css" />
-  
+
 
   <!-- HOME DASHBOARD (nowy, odseparowany plik) -->
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/home.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 <body>
   <nav id="global-nav"></nav>
@@ -60,7 +65,8 @@
   <!-- Logika dashboardu -->
   <script src="js/home.js" defer></script>
 
-  <!-- Globalna nawigacja (bez defer – tak jak na innych stronach) -->
+  <!-- Globalna nawigacja (bez defer â€“ tak jak na innych stronach) -->
   <script src="js/global-nav.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

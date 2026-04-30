@@ -1,0 +1,50 @@
+﻿.is-mobile .materials-container,
+.is-mobile .materials-layout,
+.is-mobile .materials-dashboard,
+.is-mobile .materials-tabs,
+.is-mobile .bosses-page,
+.is-mobile .guide-page {
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.is-mobile .material-card,
+.is-mobile .inventory-item,
+.is-mobile .demand-item,
+.is-mobile .boss-card,
+.is-mobile .guide-card {
+  border-radius: 16px;
+  min-width: 0;
+}
+
+.is-mobile .material-card img,
+.is-mobile .inventory-item img,
+.is-mobile .demand-item img,
+.is-mobile .boss-card img {
+  max-width: 72px;
+  height: auto;
+  object-fit: contain;
+}
+
+.is-mobile .materials-table,
+.is-mobile .boss-table {
+  display: block;
+  overflow-x: auto;
+}
+
+.is-mobile.is-portrait .materials-grid,
+.is-mobile.is-portrait .inventory-grid,
+.is-mobile.is-portrait .demand-grid,
+.is-mobile.is-portrait .boss-grid,
+.is-mobile.is-portrait .guide-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .materials-grid,
+.is-mobile.is-landscape .inventory-grid,
+.is-mobile.is-landscape .demand-grid,
+.is-mobile.is-landscape .boss-grid,
+.is-mobile.is-landscape .guide-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

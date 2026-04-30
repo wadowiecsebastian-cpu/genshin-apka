@@ -1,0 +1,43 @@
+﻿.is-mobile .the-page,
+.is-mobile .tier-history-editor,
+.is-mobile .editor-shell {
+  padding: 12px;
+  max-width: 100%;
+}
+
+.is-mobile .editor-form,
+.is-mobile .form-grid,
+.is-mobile .history-editor-grid {
+  gap: 10px;
+}
+
+.is-mobile .editor-card,
+.is-mobile .history-card,
+.is-mobile .tier-history-card {
+  border-radius: 16px;
+}
+
+.is-mobile .editor-actions,
+.is-mobile .row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.is-mobile .history-table,
+.is-mobile .tier-history-table {
+  display: block;
+  overflow-x: auto;
+}
+
+.is-mobile.is-portrait .editor-form,
+.is-mobile.is-portrait .form-grid,
+.is-mobile.is-portrait .history-editor-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .editor-form,
+.is-mobile.is-landscape .form-grid,
+.is-mobile.is-landscape .history-editor-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

@@ -1,0 +1,28 @@
+﻿.is-mobile .teams-section,
+.is-mobile .teams-grid,
+.is-mobile .team-list {
+  max-width: 100%;
+}
+
+.is-mobile .team-card,
+.is-mobile .team-member {
+  border-radius: 16px;
+}
+
+.is-mobile .team-member img {
+  max-width: 72px;
+  height: auto;
+  object-fit: cover;
+}
+
+.is-mobile.is-portrait .teams-grid,
+.is-mobile.is-portrait .team-list,
+.is-mobile.is-portrait .team-members {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .teams-grid,
+.is-mobile.is-landscape .team-list,
+.is-mobile.is-landscape .team-members {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

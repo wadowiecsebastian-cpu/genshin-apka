@@ -1,0 +1,31 @@
+﻿.is-mobile .today-page,
+.is-mobile .today-container,
+.is-mobile .today-layout {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.is-mobile .today-card,
+.is-mobile .task-card,
+.is-mobile .book-card,
+.is-mobile .boss-task-card {
+  min-height: 44px;
+  border-radius: 16px;
+}
+
+.is-mobile .run-counter,
+.is-mobile .today-counter {
+  width: 100%;
+}
+
+.is-mobile.is-portrait .today-grid,
+.is-mobile.is-portrait .today-sections,
+.is-mobile.is-portrait .books-grid {
+  grid-template-columns: 1fr;
+}
+
+.is-mobile.is-landscape .today-grid,
+.is-mobile.is-landscape .today-sections,
+.is-mobile.is-landscape .books-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}

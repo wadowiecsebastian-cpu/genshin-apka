@@ -1,17 +1,22 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
   <title>Imaginarium Theater</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Zmienne kolorów + spójny styl kart -->
+  <!-- Zmienne kolorĂłw + spĂłjny styl kart -->
   <link rel="stylesheet" href="css/materials.css" />
   <link rel="stylesheet" href="css/global-nav.css" />
-  
+
   <link rel="stylesheet" href="css/imaginarium-theater.css" />
   <link rel="stylesheet" href="css/settings-overrides.css" />
   <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/materials.mobile.css">
+  <link rel="stylesheet" href="css/global-nav.mobile.css">
+  <link rel="stylesheet" href="css/imaginarium-theater.mobile.css">
+  <link rel="stylesheet" href="css/settings-overrides.mobile.css">
+  <link rel="stylesheet" href="css/app-shell.mobile.css">
 </head>
 
 <body>
@@ -22,51 +27,51 @@
       <div class="tp__titleWrap">
         <h1 class="tp__title">Imaginarium Theater</h1>
         <div class="tp__subtitle">
-          Unikalne drużyny z <code>characterData.js</code> • 8 slotów u góry • limit 2 wystąpień postaci
+          Unikalne druĹĽyny z <code>characterData.js</code> â€˘ 8 slotĂłw u gĂłry â€˘ limit 2 wystÄ…pieĹ„ postaci
         </div>
       </div>
 
       <div class="tp__headerRight">
-        <div class="tp__seg" role="group" aria-label="Widok wyników">
+        <div class="tp__seg" role="group" aria-label="Widok wynikĂłw">
           <button id="viewTiles" class="tp__segBtn is-active" type="button">Kafelki</button>
           <button id="viewList" class="tp__segBtn" type="button">Lista</button>
         </div>
       </div>
     </header>
 
-    <!-- TOP: filtry żywiołów nad wybranymi drużynami -->
+    <!-- TOP: filtry ĹĽywioĹ‚Ăłw nad wybranymi druĹĽynami -->
     <section class="tp__top">
       <div class="tp__topBar">
         <div class="tp__filters">
-          <div class="tp__label">Filtry żywiołów (max 3):</div>
+          <div class="tp__label">Filtry ĹĽywioĹ‚Ăłw (max 3):</div>
           <div id="elementFilters" class="tp__elements"></div>
           <div class="tp__hint">
-            Wyniki zostaną odfiltrowane tak, aby drużyny **nie miały członków spoza wybranych żywiołów**.
+            Wyniki zostanÄ… odfiltrowane tak, aby druĹĽyny **nie miaĹ‚y czĹ‚onkĂłw spoza wybranych ĹĽywioĹ‚Ăłw**.
           </div>
         </div>
 
         <div class="tp__topActions">
           <label class="tp__check">
             <input id="ownedOnly" type="checkbox" />
-            Tylko drużyny z posiadanych postaci (4/4)
+            Tylko druĹĽyny z posiadanych postaci (4/4)
           </label>
 
           <label class="tp__select">
             <span>Sortowanie:</span>
             <select id="sortMode">
-              <option value="name">Alfabetycznie (nazwa drużyny)</option>
-              <option value="match">Po liczbie pasujących elementów</option>
-              <option value="owned">Po kompletności owned (ile/4)</option>
+              <option value="name">Alfabetycznie (nazwa druĹĽyny)</option>
+              <option value="match">Po liczbie pasujÄ…cych elementĂłw</option>
+              <option value="owned">Po kompletnoĹ›ci owned (ile/4)</option>
             </select>
           </label>
 
-          <button id="clearTop" class="tp__btn tp__btn--ghost" type="button">Wyczyść top listę</button>
+          <button id="clearTop" class="tp__btn tp__btn--ghost" type="button">WyczyĹ›Ä‡ top listÄ™</button>
         </div>
       </div>
 
       <div class="tp__slotsHeader">
-        <div class="tp__label">Wybrane drużyny (8 slotów):</div>
-        <div class="tp__smallHint">Lock blokuje slot przed czyszczeniem / auto-uzupełnianiem.</div>
+        <div class="tp__label">Wybrane druĹĽyny (8 slotĂłw):</div>
+        <div class="tp__smallHint">Lock blokuje slot przed czyszczeniem / auto-uzupeĹ‚nianiem.</div>
       </div>
 
       <div id="topSlots" class="tp__slots"></div>
@@ -84,20 +89,20 @@
       <div id="results" class="tp__grid"></div>
     </section>
 
-    <!-- MODAL: walidacja limitu 2 wystąpień + opcje zamiany -->
+    <!-- MODAL: walidacja limitu 2 wystÄ…pieĹ„ + opcje zamiany -->
     <div id="conflictModal" class="tp__modalBackdrop" hidden>
       <div class="tp__modal" role="dialog" aria-modal="true" aria-labelledby="conflictTitle">
         <div class="tp__modalHeader">
           <div>
-            <div id="conflictTitle" class="tp__modalTitle">Nie można dodać drużyny</div>
+            <div id="conflictTitle" class="tp__modalTitle">Nie moĹĽna dodaÄ‡ druĹĽyny</div>
             <div id="conflictDesc" class="tp__modalDesc"></div>
           </div>
-          <button id="conflictClose" class="tp__iconBtn" type="button" aria-label="Zamknij">✕</button>
+          <button id="conflictClose" class="tp__iconBtn" type="button" aria-label="Zamknij">âś•</button>
         </div>
 
         <div class="tp__modalBody">
           <div class="tp__modalSection">
-            <div class="tp__modalLabel">Blokujące postacie i sloty:</div>
+            <div class="tp__modalLabel">BlokujÄ…ce postacie i sloty:</div>
             <div id="conflictList" class="tp__conflictList"></div>
           </div>
 
@@ -114,7 +119,7 @@
     </div>
   </main>
 
-  <!-- Twoje istniejące narzędzia -->
+  <!-- Twoje istniejÄ…ce narzÄ™dzia -->
   <script src="js/idb.js"></script>
   <script src="js/migrator.js"></script>
   <script src="js/settings-core.js"></script>
@@ -123,5 +128,6 @@
 
   <!-- Nowy planner -->
   <script src="js/imaginarium-theater.js"></script>
+  <script src="js/device-mode.js"></script>
 </body>
 </html>

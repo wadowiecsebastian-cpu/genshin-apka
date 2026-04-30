@@ -1,0 +1,24 @@
+﻿.is-mobile .rotation-container,
+.is-mobile .team-rotation,
+.is-mobile .rotation-steps {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.is-mobile .rotation-step,
+.is-mobile .rotation-card {
+  min-width: 96px;
+  min-height: 44px;
+  border-radius: 14px;
+}
+
+.is-mobile.is-portrait .rotation-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.is-mobile.is-landscape .rotation-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
