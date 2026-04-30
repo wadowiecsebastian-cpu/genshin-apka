@@ -29,3 +29,30 @@
 .is-mobile.is-landscape .planner-sections {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .planner-card,
+.is-mobile .priority-card,
+.is-mobile .task-card,
+.is-mobile .farm-card,
+.is-mobile .checklist-card,
+.is-mobile .planner-character-card {
+  padding: 12px !important;
+  border: 1px solid var(--mobile-line) !important;
+  border-radius: 16px !important;
+  background: var(--mobile-panel) !important;
+}
+
+.is-mobile .planner-table,
+.is-mobile .priority-table,
+.is-mobile .planner table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.is-mobile .planner-stats,
+.is-mobile .priority-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}

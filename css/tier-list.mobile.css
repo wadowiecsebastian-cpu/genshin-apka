@@ -45,3 +45,41 @@
   display: grid;
   grid-template-columns: 64px repeat(4, minmax(96px, 1fr));
 }
+
+.is-mobile .tier-grid-container {
+  padding: 0 !important;
+}
+
+.is-mobile .tier-list-toolbar,
+.is-mobile .tier-filters,
+.is-mobile .tier-controls {
+  display: flex !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  margin: 10px 0 !important;
+}
+
+.is-mobile .tier-grid,
+.is-mobile .tier-row,
+.is-mobile .tier-section {
+  border: 1px solid var(--mobile-line) !important;
+  border-radius: 16px !important;
+  background: var(--mobile-panel) !important;
+}
+
+.is-mobile .element-cell,
+.is-mobile .role-cell,
+.is-mobile .tier-characters,
+.is-mobile .character-list {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .character-compact,
+.is-mobile .character-card {
+  width: auto !important;
+  min-height: 76px !important;
+  border: 1px solid rgba(54, 78, 112, .86) !important;
+  background: var(--mobile-panel-2) !important;
+}

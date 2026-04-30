@@ -55,3 +55,71 @@
 .is-mobile.is-landscape .profile-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .settings-shell {
+  display: block !important;
+  padding: 0 !important;
+}
+
+.is-mobile .settings-left {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  margin-bottom: 10px !important;
+}
+
+.is-mobile .settings-title {
+  display: none !important;
+}
+
+.is-mobile .settings-sections {
+  scrollbar-width: none;
+}
+
+.is-mobile .settings-sections::-webkit-scrollbar {
+  display: none;
+}
+
+.is-mobile .settings-sections button {
+  width: auto !important;
+  min-height: 36px;
+  padding: 0 14px !important;
+  border-radius: 999px !important;
+  text-align: center;
+}
+
+.is-mobile .settings-actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 48px !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.is-mobile .settings-actions .danger {
+  grid-column: auto !important;
+  font-size: 0 !important;
+}
+
+.is-mobile .settings-actions .danger::after {
+  content: "...";
+  font-size: 16px;
+}
+
+.is-mobile .settings-cards {
+  gap: 10px !important;
+}
+
+.is-mobile .set-card h3 {
+  font-size: 17px !important;
+}
+
+.is-mobile .set-row {
+  padding: 10px !important;
+}
+
+.is-mobile .nav-item {
+  border-radius: 13px !important;
+  background: var(--mobile-panel-2) !important;
+}

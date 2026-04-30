@@ -57,3 +57,91 @@
 .is-mobile.is-landscape .pity__stats {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .pity {
+  padding: 0 !important;
+}
+
+.is-mobile .pity__header {
+  display: block !important;
+  min-height: 122px;
+}
+
+.is-mobile .pity__title {
+  font-size: 28px !important;
+}
+
+.is-mobile .pity__subtitle {
+  max-width: 62%;
+  color: #e1efff !important;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.is-mobile .pity__tabs {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  padding: 4px !important;
+  border-radius: 16px !important;
+  background: #07101d !important;
+}
+
+.is-mobile .pity__tab {
+  min-width: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.is-mobile .pity__grid,
+.is-mobile .pity__stats,
+.is-mobile .pity__grid2,
+.is-mobile .pity__grid3 {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .pity__card--full {
+  grid-column: 1 / -1 !important;
+}
+
+.is-mobile .pity__wishArt,
+.is-mobile .pity__heroLead,
+.is-mobile .pity__heroMedia {
+  max-height: 210px !important;
+  object-fit: contain !important;
+}
+
+.is-mobile .pity__tableWrap {
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.is-mobile .pity__table {
+  min-width: 0 !important;
+}
+
+.is-mobile .pity__table thead {
+  display: none !important;
+}
+
+.is-mobile .pity__table,
+.is-mobile .pity__table tbody,
+.is-mobile .pity__table tr,
+.is-mobile .pity__table td {
+  display: block !important;
+}
+
+.is-mobile .pity__table tr {
+  margin-bottom: 8px;
+  padding: 10px;
+  border: 1px solid rgba(54, 78, 112, .86);
+  border-radius: 13px;
+  background: var(--mobile-panel-2);
+}
+
+.is-mobile .pity__table td {
+  padding: 3px 0 !important;
+  border-bottom: 0 !important;
+}

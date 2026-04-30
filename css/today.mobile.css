@@ -29,3 +29,34 @@
 .is-mobile.is-landscape .books-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .today-main,
+.is-mobile .today-page {
+  padding: 0 !important;
+}
+
+.is-mobile .today-card,
+.is-mobile .task-card,
+.is-mobile .book-card,
+.is-mobile .boss-task-card,
+.is-mobile .today-section {
+  padding: 12px !important;
+  border: 1px solid var(--mobile-line) !important;
+  border-radius: 16px !important;
+  background: var(--mobile-panel) !important;
+}
+
+.is-mobile .today-summary,
+.is-mobile .today-stats {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .task-card,
+.is-mobile .today-task {
+  display: grid !important;
+  grid-template-columns: 32px 42px minmax(0, 1fr) auto !important;
+  gap: 8px !important;
+  align-items: center !important;
+}

@@ -48,3 +48,56 @@
 .is-mobile.is-landscape .tp__showcase {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
+.is-mobile .tp {
+  padding: 0 !important;
+}
+
+.is-mobile .tp__header {
+  display: block !important;
+}
+
+.is-mobile .tp__seg {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  padding: 4px !important;
+  border-radius: 16px !important;
+  background: #07101d !important;
+}
+
+.is-mobile .tp__elements {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .tp__elBtn {
+  width: 40px;
+  padding: 0;
+  border-radius: 13px !important;
+}
+
+.is-mobile .tp__slots {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .tp__slot {
+  min-height: 58px;
+  padding: 7px !important;
+  background: var(--mobile-panel-2) !important;
+}
+
+.is-mobile .tp__grid,
+.is-mobile .tp__showcase {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .tp__portrait {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover;
+}

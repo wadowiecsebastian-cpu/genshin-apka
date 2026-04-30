@@ -71,3 +71,463 @@
 .is-mobile.is-landscape .dashboard-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile {
+  --mobile-shell: min(424px, 100vw);
+  --mobile-bg: #070d16;
+  --mobile-page: #0b1626;
+  --mobile-panel: #101b2b;
+  --mobile-panel-2: #182437;
+  --mobile-line: #29405f;
+  --mobile-muted: #a8bddb;
+  --mobile-text: #ffffff;
+  --mobile-blue: #4ec7ef;
+  --mobile-violet: #725cf0;
+  --mobile-green: #42dda0;
+  width: auto;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 max(12px, calc((100vw - var(--mobile-shell)) / 2 + 12px)) 96px;
+  background:
+    linear-gradient(180deg, rgba(43, 62, 98, .72), rgba(12, 22, 37, .92) 120px, #0b1321 100%),
+    var(--mobile-page);
+  color: var(--mobile-text);
+  font: 600 12px/1.35 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  overflow-x: hidden;
+  box-shadow:
+    0 0 0 10px #0a0f18,
+    0 0 0 13px rgba(255,255,255,.07),
+    0 22px 60px rgba(0,0,0,.6);
+  border-radius: 32px 32px 0 0;
+}
+
+.is-mobile::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 2147482998;
+  width: 104px;
+  height: 22px;
+  transform: translateX(-50%);
+  border-radius: 0 0 16px 16px;
+  background: #050910;
+  pointer-events: none;
+}
+
+.is-mobile #global-nav,
+.is-mobile #app-chrome-topbar {
+  display: none !important;
+}
+
+.is-mobile .mobile-chrome {
+  position: sticky;
+  top: 0;
+  z-index: 2147482500;
+  width: var(--mobile-shell);
+  margin: 0 auto;
+  padding: 14px 15px 10px;
+  background: linear-gradient(135deg, rgba(35, 72, 94, .96), rgba(48, 41, 91, .96));
+  border-radius: 28px 28px 0 0;
+}
+
+.is-mobile .mobile-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px 18px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.is-mobile .mobile-titlebar {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  gap: 10px;
+  align-items: center;
+}
+
+.is-mobile .mobile-title-copy {
+  min-width: 0;
+  text-align: center;
+}
+
+.is-mobile .mobile-title {
+  display: block;
+  overflow: hidden;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.is-mobile .mobile-subtitle {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: #c7dbff;
+  font-size: 11px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.is-mobile .mobile-icon-btn {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 13px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  box-shadow: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.is-mobile .mobile-bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  z-index: 2147482600;
+  width: calc(var(--mobile-shell) - 32px);
+  height: 60px;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 7px;
+  border: 1px solid rgba(47, 68, 98, .9);
+  border-radius: 20px;
+  background: #07101d;
+  box-shadow: 0 -16px 35px rgba(0,0,0,.28);
+}
+
+.is-mobile .mobile-bottom-nav a {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  color: #9fb0cf;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.is-mobile .mobile-bottom-nav a.active {
+  color: #bff8ff;
+  background: linear-gradient(135deg, rgba(86, 200, 239, .34), rgba(80, 58, 197, .46));
+}
+
+.is-mobile .mobile-bottom-nav span {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.is-mobile .mobile-bottom-nav strong {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.is-mobile main,
+.is-mobile .home-main,
+.is-mobile .character-detail-shell,
+.is-mobile .pity,
+.is-mobile .tp,
+.is-mobile .ta-page,
+.is-mobile .settings-shell,
+.is-mobile .app-main,
+.is-mobile .today-main,
+.is-mobile .container,
+.is-mobile .tier-grid-container,
+.is-mobile section.tab {
+  width: calc(var(--mobile-shell) - 24px) !important;
+  max-width: 100% !important;
+  margin: 10px auto 0 !important;
+  padding: 0 !important;
+}
+
+.is-mobile h1,
+.is-mobile h2,
+.is-mobile h3,
+.is-mobile p {
+  letter-spacing: 0;
+}
+
+.is-mobile h1 {
+  font-size: 27px !important;
+  line-height: 1.05 !important;
+  text-align: left !important;
+}
+
+.is-mobile h2 {
+  font-size: 17px !important;
+  line-height: 1.14 !important;
+}
+
+.is-mobile p {
+  font-weight: 500;
+}
+
+.is-mobile .home-card,
+.is-mobile .app-page-intro,
+.is-mobile .character-hero,
+.is-mobile .character-toolbar,
+.is-mobile .character-panel,
+.is-mobile .side-card,
+.is-mobile .tab-content,
+.is-mobile .panel,
+.is-mobile .pity__card,
+.is-mobile .pity__header,
+.is-mobile .pity__tabs,
+.is-mobile .ta-card,
+.is-mobile .settings-left,
+.is-mobile .settings-actions,
+.is-mobile .set-card,
+.is-mobile .today-section,
+.is-mobile .tp__card,
+.is-mobile .tp__hero,
+.is-mobile .me-card,
+.is-mobile .boss-card,
+.is-mobile .card,
+.is-mobile .item-card,
+.is-mobile .artifact-card,
+.is-mobile .team-block {
+  border: 1px solid var(--mobile-line) !important;
+  border-radius: 16px !important;
+  background: var(--mobile-panel) !important;
+  box-shadow: none !important;
+}
+
+.is-mobile .app-page-intro,
+.is-mobile .home-hero,
+.is-mobile .character-hero,
+.is-mobile .tp__hero,
+.is-mobile .pity__header,
+.is-mobile .today-hero,
+.is-mobile .ta-hero,
+.is-mobile .tl-hero,
+.is-mobile .planner-hero,
+.is-mobile .materials-hero {
+  min-height: 132px;
+  padding: 18px 16px !important;
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(90deg, rgba(13, 26, 45, .96) 0%, rgba(18, 31, 57, .92) 56%, rgba(45, 45, 88, .74) 100%),
+    var(--mobile-panel) !important;
+}
+
+.is-mobile .app-page-intro::after,
+.is-mobile .home-hero::after,
+.is-mobile .character-hero::after,
+.is-mobile .tp__hero::after,
+.is-mobile .pity__header::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 48%;
+  opacity: .55;
+  background: url("../images/characters/Raiden.png") center right / cover no-repeat;
+  pointer-events: none;
+}
+
+.is-mobile .mobile-page-index-html .app-page-intro::after {
+  background-image: url("../images/characters/Furina.png");
+}
+
+.is-mobile .mobile-page-tier-list-html .app-page-intro::after,
+.is-mobile .mobile-page-tier-analytics-html .app-page-intro::after {
+  background-image: url("../images/characters/Neuvillette.png");
+}
+
+.is-mobile .mobile-page-team-planner-html .app-page-intro::after,
+.is-mobile .mobile-page-imaginarium-theater-html .app-page-intro::after,
+.is-mobile .mobile-page-pity-html .app-page-intro::after {
+  background-image: url("../images/characters/Furina.png");
+}
+
+.is-mobile .app-page-intro > *,
+.is-mobile .home-hero > *,
+.is-mobile .character-hero > *,
+.is-mobile .tp__hero > *,
+.is-mobile .pity__header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.is-mobile .app-page-kicker,
+.is-mobile .character-hero__eyebrow,
+.is-mobile .home-card h2:first-child,
+.is-mobile .pity__subtitle {
+  color: #6ff5e8 !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 12px !important;
+  font-weight: 900;
+}
+
+.is-mobile .tabs,
+.is-mobile .tab-container,
+.is-mobile .character-tabs,
+.is-mobile .pity__tabs,
+.is-mobile .tp__seg,
+.is-mobile .filters,
+.is-mobile .controls {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  padding: 0 !important;
+  margin: 10px 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  scrollbar-width: none;
+}
+
+.is-mobile .tabs::-webkit-scrollbar,
+.is-mobile .tab-container::-webkit-scrollbar,
+.is-mobile .character-tabs::-webkit-scrollbar,
+.is-mobile .pity__tabs::-webkit-scrollbar,
+.is-mobile .tp__seg::-webkit-scrollbar {
+  display: none;
+}
+
+.is-mobile .tab-button,
+.is-mobile .tab-btn,
+.is-mobile .tab-link,
+.is-mobile .pity__tab,
+.is-mobile .tp__segBtn,
+.is-mobile .home-btn,
+.is-mobile .btn,
+.is-mobile button {
+  min-height: 44px;
+  padding: 0 14px;
+  flex: 1 0 auto;
+  border: 1px solid rgba(77, 101, 140, .86) !important;
+  border-radius: 16px !important;
+  background: rgba(16, 28, 46, .88) !important;
+  color: #d9e8ff !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.is-mobile .tab-button.active,
+.is-mobile .tab-btn.active,
+.is-mobile .tab-link.active,
+.is-mobile .pity__tab.is-active,
+.is-mobile .tp__segBtn.is-active,
+.is-mobile .home-btn--primary,
+.is-mobile .btn.primary {
+  color: #04101c !important;
+  border-color: rgba(108, 180, 255, .7) !important;
+  background: linear-gradient(135deg, #57d0ef, #7359ee) !important;
+}
+
+.is-mobile input,
+.is-mobile select,
+.is-mobile textarea,
+.is-mobile .app-search-input,
+.is-mobile .search-input {
+  min-height: 42px;
+  border: 1px solid rgba(77, 101, 140, .78) !important;
+  border-radius: 14px !important;
+  background: rgba(23, 34, 52, .94) !important;
+  color: #eef7ff !important;
+  box-shadow: none !important;
+}
+
+.is-mobile .home-tiles,
+.is-mobile .home-kpis,
+.is-mobile .pity__stats,
+.is-mobile .pity__grid2,
+.is-mobile .pity__grid3,
+.is-mobile .set-grid,
+.is-mobile .profile-grid,
+.is-mobile .ta-grid,
+.is-mobile .today-grid,
+.is-mobile .card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile.is-portrait .home-tiles,
+.is-mobile.is-portrait .home-kpis,
+.is-mobile.is-portrait .set-grid,
+.is-mobile.is-portrait .profile-grid,
+.is-mobile.is-portrait .ta-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.is-mobile .home-today__item,
+.is-mobile .home-recent__row,
+.is-mobile .home-tile,
+.is-mobile .home-kpi,
+.is-mobile .pity__stat,
+.is-mobile .set-row,
+.is-mobile .today-task,
+.is-mobile .material-row,
+.is-mobile .boss-row {
+  border: 1px solid rgba(54, 78, 112, .86) !important;
+  border-radius: 13px !important;
+  background: var(--mobile-panel-2) !important;
+}
+
+.is-mobile .home-card,
+.is-mobile .panel,
+.is-mobile .pity__card,
+.is-mobile .set-card,
+.is-mobile .settings-actions,
+.is-mobile .settings-left {
+  padding: 12px !important;
+  margin: 0 0 10px !important;
+}
+
+.is-mobile .badge,
+.is-mobile .home-pill,
+.is-mobile .role-tag,
+.is-mobile .element-pill,
+.is-mobile .character-tags span {
+  border-color: rgba(95, 133, 190, .8) !important;
+  border-radius: 999px !important;
+  background: rgba(42, 72, 110, .7) !important;
+  color: #bfefff !important;
+  font-size: 10px !important;
+  font-weight: 900;
+}
+
+.is-mobile .table-wrap,
+.is-mobile .table-wrapper,
+.is-mobile .ta-table-wrap,
+.is-mobile .pity__tableWrap {
+  overflow-x: auto;
+  border-radius: 14px !important;
+}
+
+.is-mobile.is-landscape {
+  --mobile-shell: min(820px, 100vw);
+  border-radius: 22px 22px 0 0;
+}
+
+.is-mobile.is-landscape main,
+.is-mobile.is-landscape .home-main,
+.is-mobile.is-landscape .character-layout,
+.is-mobile.is-landscape .pity__grid,
+.is-mobile.is-landscape .settings-shell,
+.is-mobile.is-landscape .tp__grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}

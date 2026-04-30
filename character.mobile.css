@@ -32,3 +32,67 @@
 .is-mobile.is-landscape .guide-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .character-focus,
+.is-mobile .guide-hero,
+.is-mobile .boss-guide,
+.is-mobile .materials-character-hero,
+.is-mobile .mc-hero,
+.is-mobile .char-header {
+  min-height: 132px;
+  padding: 18px 16px !important;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--mobile-line, #29405f) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(90deg, rgba(13, 26, 45, .96) 0%, rgba(18, 31, 57, .92) 56%, rgba(45, 45, 88, .74) 100%),
+    var(--mobile-panel, #101b2b) !important;
+}
+
+.is-mobile .character-focus::after,
+.is-mobile .guide-hero::after,
+.is-mobile .boss-guide::after,
+.is-mobile .materials-character-hero::after,
+.is-mobile .mc-hero::after,
+.is-mobile .char-header::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 48%;
+  opacity: .55;
+  background: url("images/characters/Raiden.png") center right / cover no-repeat;
+  pointer-events: none;
+}
+
+.is-mobile .character-focus > *,
+.is-mobile .guide-hero > *,
+.is-mobile .boss-guide > *,
+.is-mobile .materials-character-hero > *,
+.is-mobile .mc-hero > *,
+.is-mobile .char-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.is-mobile .material-cost-card,
+.is-mobile .guide-card,
+.is-mobile .mechanic-card,
+.is-mobile .team-card,
+.is-mobile .cost-card,
+.is-mobile .card {
+  padding: 12px !important;
+  border: 1px solid var(--mobile-line, #29405f) !important;
+  border-radius: 16px !important;
+  background: var(--mobile-panel, #101b2b) !important;
+}
+
+.is-mobile .materials-character-grid,
+.is-mobile .guide-grid,
+.is-mobile .costs-grid,
+.is-mobile .stats-grid,
+.is-mobile .team-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}

@@ -48,3 +48,90 @@
 .is-mobile.is-landscape .guide-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .tab {
+  padding: 0 !important;
+}
+
+.is-mobile .app-header {
+  display: none !important;
+}
+
+.is-mobile .panel {
+  padding: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+.is-mobile .panel-head {
+  padding: 0 0 10px !important;
+  border-bottom: 0 !important;
+}
+
+.is-mobile .card-grid,
+.is-mobile #tab-global #global-cards,
+.is-mobile #tab-inventory #inventory-cards,
+.is-mobile .boss-grid,
+.is-mobile .materials-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+  padding: 0 !important;
+}
+
+.is-mobile .card {
+  align-items: center !important;
+  padding: 10px !important;
+  background: var(--mobile-panel-2) !important;
+}
+
+.is-mobile .card img,
+.is-mobile .material-card img,
+.is-mobile .boss-card img {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+}
+
+.is-mobile .needline,
+.is-mobile .qty-row,
+.is-mobile .progress-row,
+.is-mobile .material-stats,
+.is-mobile .boss-drops {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+}
+
+.is-mobile .needcell,
+.is-mobile .stat,
+.is-mobile .kpi {
+  padding: 8px !important;
+  border: 1px solid rgba(54, 78, 112, .86) !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.035) !important;
+}
+
+.is-mobile .filters {
+  align-items: center !important;
+}
+
+.is-mobile .filters input,
+.is-mobile .filters select {
+  flex: 1 0 220px;
+}
+
+.is-mobile .group-block {
+  padding: 10px !important;
+  border: 1px solid var(--mobile-line) !important;
+  border-radius: 16px !important;
+  background: rgba(9, 20, 36, .72) !important;
+}
+
+.is-mobile.is-landscape .card-grid,
+.is-mobile.is-landscape #tab-global #global-cards,
+.is-mobile.is-landscape #tab-inventory #inventory-cards,
+.is-mobile.is-landscape .boss-grid,
+.is-mobile.is-landscape .materials-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}

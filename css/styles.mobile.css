@@ -45,3 +45,46 @@
 .is-mobile.is-landscape #character-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
+.is-mobile .filters,
+.is-mobile .filter-bar,
+.is-mobile .controls {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.is-mobile .character-list,
+.is-mobile .character-grid,
+.is-mobile #character-list,
+.is-mobile #character-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .character-card,
+.is-mobile .character-item {
+  min-height: 154px;
+  padding: 10px !important;
+  overflow: hidden;
+  border: 1px solid rgba(54, 78, 112, .86) !important;
+  border-radius: 16px !important;
+  background: var(--mobile-panel-2) !important;
+}
+
+.is-mobile .character-card img,
+.is-mobile .character-item img {
+  width: 100% !important;
+  height: 96px !important;
+  object-fit: cover !important;
+  border-radius: 13px !important;
+}
+
+.is-mobile .element-filters,
+.is-mobile .tier-filter,
+.is-mobile .rarity-filter {
+  display: flex !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+}

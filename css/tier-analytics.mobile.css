@@ -41,3 +41,40 @@
 .is-mobile.is-landscape .ta-movers {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.is-mobile .ta-page {
+  padding: 0 !important;
+}
+
+.is-mobile .ta-toolbar {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.is-mobile .ta-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+}
+
+.is-mobile .ta-card {
+  padding: 12px !important;
+}
+
+.is-mobile .ta-movers,
+.is-mobile .ta-stat-grid,
+.is-mobile .ta-kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.is-mobile .ta-canvas,
+.is-mobile canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
